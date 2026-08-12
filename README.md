@@ -1,2 +1,3 @@
 # LinkedInJobScamAgent
-An Agent that reviews LinkedIn job DMs or emails, reviews job descriptions, and alerts for potential scams.
+The agent reads the conversation and it must suggest safe, hold, or flag the person as potential scammer
+
