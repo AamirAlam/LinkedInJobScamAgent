@@ -1,0 +1,211 @@
+{
+  "result_file": "/Users/aamir/Desktop/personal/ai-engg/LinkedInJobScamAgent/results/evaluation-result-2026-09-07T19-08-47-242Z.json",
+  "unit": "final decision per conversation",
+  "positive_prediction": "FLAG (SAFE and HOLD count as not flagged)",
+  "cases": 22,
+  "scam_cases": 12,
+  "policies": {
+    "policyAResult": {
+      "TP": 6,
+      "FP": 0,
+      "FN": 6,
+      "TN": 10,
+      "precision": 1.0,
+      "recall": 0.5,
+      "accuracy": 0.7272727272727273,
+      "actions": {
+        "SAFE": 11,
+        "HOLD": 5,
+        "FLAG": 6
+      },
+      "missed_scam_ids": [
+        "E005",
+        "E006",
+        "E009",
+        "E012",
+        "E014",
+        "E015"
+      ],
+      "false_positive_ids": []
+    },
+    "policyBResult": {
+      "TP": 6,
+      "FP": 0,
+      "FN": 6,
+      "TN": 10,
+      "precision": 1.0,
+      "recall": 0.5,
+      "accuracy": 0.7272727272727273,
+      "actions": {
+        "SAFE": 11,
+        "HOLD": 5,
+        "FLAG": 6
+      },
+      "missed_scam_ids": [
+        "E005",
+        "E006",
+        "E009",
+        "E012",
+        "E014",
+        "E015"
+      ],
+      "false_positive_ids": []
+    }
+  },
+  "predictions": [
+    {
+      "evaluation_id": "E001",
+      "source_case_id": "C001",
+      "ground_truth": "legitimate",
+      "policyAResult": "SAFE",
+      "policyBResult": "SAFE"
+    },
+    {
+      "evaluation_id": "E002",
+      "source_case_id": "C008",
+      "ground_truth": "scam",
+      "policyAResult": "FLAG",
+      "policyBResult": "FLAG"
+    },
+    {
+      "evaluation_id": "E003",
+      "source_case_id": "C007",
+      "ground_truth": "scam",
+      "policyAResult": "FLAG",
+      "policyBResult": "FLAG"
+    },
+    {
+      "evaluation_id": "E004",
+      "source_case_id": "C004",
+      "ground_truth": "legitimate",
+      "policyAResult": "SAFE",
+      "policyBResult": "SAFE"
+    },
+    {
+      "evaluation_id": "E005",
+      "source_case_id": "C010",
+      "ground_truth": "scam",
+      "policyAResult": "SAFE",
+      "policyBResult": "SAFE"
+    },
+    {
+      "evaluation_id": "E006",
+      "source_case_id": "C005",
+      "ground_truth": "scam",
+      "policyAResult": "HOLD",
+      "policyBResult": "HOLD"
+    },
+    {
+      "evaluation_id": "E007",
+      "source_case_id": "C002",
+      "ground_truth": "legitimate",
+      "policyAResult": "HOLD",
+      "policyBResult": "HOLD"
+    },
+    {
+      "evaluation_id": "E008",
+      "source_case_id": "C003",
+      "ground_truth": "scam",
+      "policyAResult": "FLAG",
+      "policyBResult": "FLAG"
+    },
+    {
+      "evaluation_id": "E009",
+      "source_case_id": "C012",
+      "ground_truth": "scam",
+      "policyAResult": "HOLD",
+      "policyBResult": "HOLD"
+    },
+    {
+      "evaluation_id": "E010",
+      "source_case_id": "C004",
+      "ground_truth": "scam",
+      "policyAResult": "FLAG",
+      "policyBResult": "FLAG"
+    },
+    {
+      "evaluation_id": "E011",
+      "source_case_id": "C005",
+      "ground_truth": "legitimate",
+      "policyAResult": "SAFE",
+      "policyBResult": "SAFE"
+    },
+    {
+      "evaluation_id": "E012",
+      "source_case_id": "C009",
+      "ground_truth": "scam",
+      "policyAResult": "SAFE",
+      "policyBResult": "SAFE"
+    },
+    {
+      "evaluation_id": "E013",
+      "source_case_id": "C007",
+      "ground_truth": "legitimate",
+      "policyAResult": "SAFE",
+      "policyBResult": "SAFE"
+    },
+    {
+      "evaluation_id": "E014",
+      "source_case_id": "C001",
+      "ground_truth": "scam",
+      "policyAResult": "HOLD",
+      "policyBResult": "HOLD"
+    },
+    {
+      "evaluation_id": "E015",
+      "source_case_id": "C011",
+      "ground_truth": "scam",
+      "policyAResult": "HOLD",
+      "policyBResult": "HOLD"
+    },
+    {
+      "evaluation_id": "E016",
+      "source_case_id": "C006",
+      "ground_truth": "legitimate",
+      "policyAResult": "SAFE",
+      "policyBResult": "SAFE"
+    },
+    {
+      "evaluation_id": "E017",
+      "source_case_id": "C002",
+      "ground_truth": "scam",
+      "policyAResult": "FLAG",
+      "policyBResult": "FLAG"
+    },
+    {
+      "evaluation_id": "E018",
+      "source_case_id": "C010",
+      "ground_truth": "legitimate",
+      "policyAResult": "SAFE",
+      "policyBResult": "SAFE"
+    },
+    {
+      "evaluation_id": "E019",
+      "source_case_id": "C006",
+      "ground_truth": "scam",
+      "policyAResult": "FLAG",
+      "policyBResult": "FLAG"
+    },
+    {
+      "evaluation_id": "E020",
+      "source_case_id": "C008",
+      "ground_truth": "legitimate",
+      "policyAResult": "SAFE",
+      "policyBResult": "SAFE"
+    },
+    {
+      "evaluation_id": "E021",
+      "source_case_id": "C003",
+      "ground_truth": "legitimate",
+      "policyAResult": "SAFE",
+      "policyBResult": "SAFE"
+    },
+    {
+      "evaluation_id": "E022",
+      "source_case_id": "C009",
+      "ground_truth": "legitimate",
+      "policyAResult": "SAFE",
+      "policyBResult": "SAFE"
+    }
+  ]
+}

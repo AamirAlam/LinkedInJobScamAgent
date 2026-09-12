@@ -54,9 +54,14 @@ async function evaluateBelief(messages: Message[]) {
 
 
 async function main() {
-    // run on fist data only
+    // 24 hours / 50 requests, plus a one-second buffer for the reported daily limit.
+    const cooldownMs = Number(process.env.EVALUATION_COOLDOWN_MS ?? 1_729_000);
+    if (!Number.isSafeInteger(cooldownMs) || cooldownMs < 0 || cooldownMs > 2_147_483_647) {
+        throw new Error("EVALUATION_COOLDOWN_MS must be an integer between 0 and 2147483647.");
+    }
+    let hasEvaluated = false;
     const evaluationResult: Array<Object> = []
-    for (const data of evaluationData.slice(0, 2)) {
+    for (const data of evaluationData) {
 
 
         // store result of each case mapped with case_id
@@ -64,8 +69,13 @@ async function main() {
         // belief evaluation at each message step
         const observedMessaged: Message[] = []
         for (const message of data.messages) {
+            // if (hasEvaluated && cooldownMs > 0) {
+            //     console.log(`Cooling down for ${cooldownMs / 1000} seconds before the next evaluation...`);
+            //     await sleep(cooldownMs);
+            // }
             observedMessaged.push(message);
             const belief = await evaluateBelief(observedMessaged);
+            hasEvaluated = true;
             console.log(`Case ID: ${data.evaluation_id}`);
             console.log(`Message Time: ${message.time}`);
             console.log(`Message Sender: ${message.sender}`);
@@ -85,7 +95,9 @@ async function main() {
                 scamProbability: belief?.scamProbability,
                 evidenceUsed: belief?.evidenceUsed,
                 harmCategory: belief?.harmCategory,
-                reasoningSummary: belief?.reasoningSummary
+                reasoningSummary: belief?.reasoningSummary,
+                policyAResult: policyA(belief?.scamProbability),
+                policyBResult: policyB(belief?.scamProbability, belief?.harmCategory || "")
             })
             
         }

@@ -9,9 +9,12 @@
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "src/agent_v0.ts",
+  "main": "src/agent_v1.ts",
   "scripts": {
-    "start": "tsx src/agent_v0.ts",
+    "analyze": "node script/analyze_evaluation.js",
+    "test:analyze": "node --test script/analyze_evaluation.test.js",
+    "start": "tsx src/agent_v1.ts",
+    "baseline": "tsx src/baseline.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
