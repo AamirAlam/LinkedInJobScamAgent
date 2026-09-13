@@ -1,0 +1,418 @@
+\documentclass{article}
+\newif\ifofficialijcai
+\IfFileExists{ijcai26.sty}{\officialijcaitrue}{\officialijcaifalse}
+
+% IJCAI-ECAI 2026 style file from the official author kit.
+% Place ijcai26.sty in the same directory as this file.
+\IfFileExists{ijcai26.sty}{
+  \usepackage{ijcai26}
+}{
+  % Compile-ready Overleaf fallback.
+  % If ijcai26.sty is later uploaded, the document automatically uses it.
+  \usepackage[letterpaper,margin=0.75in]{geometry}
+  \usepackage{multicol}
+}
+
+\usepackage{times}
+\usepackage{soul}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[small]{caption}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\urlstyle{same}
+
+\title{Conversational Scam-Risk Detection Under Partial Observability:\\
+An Exploratory Study of Sequential Belief and Action-Risk Policies}
+
+% Replace with the author block required by the IJCAI-ECAI 2026 author kit.
+\author{Aamir Alam}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Recruitment scams often begin with messages that resemble legitimate hiring conversations and reveal malicious intent only after several interactions. This creates a partial-observability problem: a safety system must make decisions before the recruiter's true intent is known.
+
+We present an exploratory recruitment-scam risk agent that processes conversations sequentially and produces an LLM-generated \texttt{scamProbability} together with a requested-action risk category. A separate policy maps these outputs to \texttt{SAFE}, \texttt{HOLD}, or \texttt{FLAG}. We evaluate two policies: a probability-threshold policy and a second policy that additionally flags explicitly harmful requested actions.
+
+The system is evaluated on 43 recruiting conversations containing 22 scam and 21 legitimate cases and compared with a direct binary LLM baseline. The baseline and both policies obtain identical final binary performance: 100\% precision, 72.73\% recall, 86.05\% accuracy, and an F1 score of 84.21\%. However, their error sets differ. Five of the six scam cases not flagged by the structured policies are routed to \texttt{HOLD} rather than \texttt{SAFE}, producing lower assigned decision cost under the study's experimental cost matrix. Exploratory calibration analysis also reveals substantial mismatch in intermediate probability ranges.
+
+These results support uncertainty-aware and action-risk-aware decision structures as an exploratory design, but do not establish general recruitment-scam detection effectiveness, calibrated probabilities, or real-world harm reduction.
+\end{abstract}
+\ifofficialijcai\else
+\begin{multicols}{2}
+\fi
+
+\section{Introduction}
+
+Online recruitment creates opportunities for attackers to impersonate recruiters, distribute malicious software, request sensitive information, or manipulate candidates into financial or credential-related actions.
+
+A central difficulty is that scam conversations rarely reveal all relevant evidence immediately. Early messages may resemble ordinary recruiting outreach, while dangerous requests appear only later. This motivates the following question:
+
+\begin{quote}
+How can an AI system estimate recruitment-scam risk under partial observability as evidence becomes available throughout a conversation?
+\end{quote}
+
+Three related but distinct targets arise:
+\begin{enumerate}
+    \item estimating whether the recruiting interaction may be fraudulent;
+    \item recognizing whether a requested action creates immediate security risk; and
+    \item warning the candidate before exposure to a dangerous action.
+\end{enumerate}
+
+This study directly evaluates the first two. Early-warning effectiveness is left as an open evaluation question.
+
+The proposed system processes cumulative conversation prefixes and generates a scam-risk estimate and requested-action risk category. A separate policy converts these outputs into \texttt{SAFE}, \texttt{HOLD}, or \texttt{FLAG}. The study asks whether this structured approach changes decision behavior compared with a simpler direct LLM classifier.
+
+\section{Related Work}
+
+\subsection{Online Recruitment Fraud Detection}
+
+Prior work on recruitment fraud has largely treated the task as classification of complete job advertisements. Vidros et al.~\cite{vidros2017recruitment} introduced the Employment Scam Aegean Dataset (EMSCAD), containing 17,880 job advertisements, of which 866 are fraudulent. They evaluated Bag-of-Words representations and manually designed linguistic, contextual, and metadata features with conventional classifiers, showing that textual and metadata signals can identify many fraudulent advertisements.
+
+More recent work has applied transformer-based contextual representations to the same domain. Fraud-BERT~\cite{taneja2025fraudbert} fine-tunes BERT-base on the original imbalanced EMSCAD dataset and reports strong precision, recall, F1, accuracy, and AUC compared with traditional machine-learning and Bi-LSTM baselines.
+
+These approaches primarily classify complete job advertisements. Our study instead considers sequential recruiting conversations, where only a prefix of the interaction is visible at each decision point and evidence may become stronger or weaker over time.
+
+\subsection{Cost-Sensitive Fraud Detection}
+
+Fraud-detection errors can have asymmetric consequences. H{\"o}ppner et al.~\cite{hoppner2022cost} formulate transfer-fraud detection as an instance-dependent cost-sensitive classification problem and show that optimizing financial cost can better align model behavior with operational goals than conventional statistical metrics alone.
+
+This motivates the asymmetric decision-cost analysis in our study. However, our costs are manually assigned relative weights rather than empirically measured losses, so they should be interpreted as modeling assumptions.
+
+\subsection{Selective Prediction and Deferral}
+
+The \texttt{HOLD} action is related to selective prediction and abstention. Mitton et al.~\cite{mitton2026defer} study uncertainty-aware deferral in knowledge tracing. Using Monte Carlo Dropout as an uncertainty signal, they show that abstaining on the most uncertain predictions improves retained-set predictive performance and concentrates errors in the deferred subset.
+
+Our system follows a similar motivation: uncertain recruitment cases may be assigned \texttt{HOLD} instead of being confidently labeled \texttt{SAFE} or \texttt{FLAG}. The current prototype does not implement an operational human-review workflow, so \texttt{HOLD} represents abstention rather than demonstrated successful review.
+
+\subsection{Probability Calibration}
+
+Confidence scores should not automatically be interpreted as calibrated probabilities. Guo et al.~\cite{guo2017calibration} show that modern neural networks can be accurate while poorly calibrated and demonstrate the effectiveness of post-hoc temperature scaling.
+
+This is directly relevant to our use of \texttt{scamProbability}. The values are treated as LLM-generated risk estimates rather than validated posterior probabilities.
+
+\section{Problem Formulation}
+
+A recruiting conversation is represented as a sequence of messages:
+\[
+M_1, M_2, \ldots, M_t.
+\]
+
+At timestep $t$, the system observes only the prefix
+\[
+O_t = \{M_1, M_2, \ldots, M_t\}.
+\]
+Future messages and evaluator-only labels are hidden.
+
+\subsection{Hidden State}
+
+The main outcome state is
+\[
+H \in \{\text{Legitimate}, \text{Fraudulent}\}.
+\]
+
+This binary state represents the underlying interaction outcome. Fraudulent intent is kept conceptually separate from the safety of a requested action: a legitimate recruiter may request an unsafe action, while a scammer may initially make harmless requests.
+
+\subsection{Belief Output}
+
+For every visible conversation prefix, the model returns:
+
+\begin{verbatim}
+{
+  scamProbability: number,
+  evidenceUsed: string[],
+  harmCategory:
+    "non_harmful" |
+    "context_dependent" |
+    "harmful",
+  reasoningSummary: string
+}
+\end{verbatim}
+
+\texttt{scamProbability} is an LLM-generated risk estimate in $[0,1]$. It should not be interpreted as a validated Bayesian posterior. At every timestep, the model evaluates the complete visible prefix again rather than receiving the previous numerical probability.
+
+\subsection{Requested-Action Risk}
+
+The system separately tracks the highest-risk requested action visible so far.
+
+\texttt{non\_harmful} includes ordinary recruiting requests such as resumes, compensation expectations, or scheduling.
+
+\texttt{context\_dependent} includes activities such as reviewing repositories, documents, or project links without executing code.
+
+\texttt{harmful} includes actions such as executing unfamiliar software, installing unverified dependencies, sharing credentials, making payments, signing dangerous transactions, or disabling security controls.
+
+\section{Decision Policies}
+
+The system supports three actions:
+\begin{itemize}
+    \item \texttt{SAFE}: current visible evidence indicates sufficiently low risk;
+    \item \texttt{HOLD}: uncertainty is high enough to require additional verification or human review;
+    \item \texttt{FLAG}: the interaction should be treated as potentially fraudulent.
+\end{itemize}
+
+\subsection{Policy A: Probability Thresholds}
+
+Policy A uses only the estimated scam probability $p$:
+\[
+p \le 0.20 \Rightarrow \texttt{SAFE},
+\]
+\[
+0.20 < p \le 0.70 \Rightarrow \texttt{HOLD},
+\]
+\[
+p > 0.70 \Rightarrow \texttt{FLAG}.
+\]
+
+\subsection{Policy B: Harm Override}
+
+Policy B applies the same thresholds and adds:
+\[
+\texttt{harmCategory}=\texttt{harmful}
+\Rightarrow \texttt{FLAG}.
+\]
+
+A harmful action is not treated as proof of fraud; it is a separate protective trigger.
+
+\section{Baseline}
+
+The baseline is a direct LLM classifier that receives the complete conversation and outputs only \texttt{SAFE} or \texttt{FLAG}. It does not use sequential prefixes, explicit probabilities, \texttt{HOLD}, harm categories, or policy thresholds.
+
+The same underlying model family is used to reduce differences caused purely by model capability. However, the baseline differs from the structured agent in several dimensions simultaneously, so this experiment cannot isolate which structural component causes any observed difference.
+
+\section{Dataset and Experimental Setup}
+
+The V1 evaluation contains 43 recruiting conversations:
+\begin{itemize}
+    \item 22 scam cases;
+    \item 21 legitimate cases.
+\end{itemize}
+
+The dataset is concentrated in technical, software, cryptocurrency, and Web3 recruiting contexts and should not be treated as representative deployment traffic.
+
+During inference, ground-truth labels are hidden. Each conversation is processed sequentially:
+\[
+t_0 = M_1,\quad
+t_1 = M_1 + M_2,\quad \ldots,\quad
+t_n = M_1 + \cdots + M_n.
+\]
+
+The final action is used for the main conversation-level binary comparison:
+\[
+\texttt{FLAG} = \text{predicted scam},
+\]
+\[
+\texttt{SAFE or HOLD} = \text{not flagged}.
+\]
+
+This mapping measures FLAG detection, not whether HOLD results in successful review or protection.
+
+\section{Results}
+
+\subsection{Binary Performance}
+
+\begin{table}[t]
+\centering
+\caption{Final conversation-level binary metrics.}
+\label{tab:binary}
+\begin{tabular}{lccc}
+\toprule
+Metric & Baseline & Policy A & Policy B \\
+\midrule
+Precision & 100.00\% & 100.00\% & 100.00\% \\
+Recall & 72.73\% & 72.73\% & 72.73\% \\
+Accuracy & 86.05\% & 86.05\% & 86.05\% \\
+F1 & 84.21\% & 84.21\% & 84.21\% \\
+False positives & 0 & 0 & 0 \\
+False negatives & 6 & 6 & 6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All three approaches obtain identical aggregate binary performance (Table~\ref{tab:binary}), but the missed cases differ.
+
+The baseline misses E002, E008, E024, E030, E032, and E040. Policies A and B miss E008, E024, E029, E030, E032, and E040. Thus, the structured system changes which conversations are detected even when aggregate metrics remain unchanged.
+
+\subsection{HOLD and Human Review}
+
+For Policies A and B, the final actions are 20 \texttt{SAFE}, 7 \texttt{HOLD}, and 16 \texttt{FLAG}. The overall HOLD rate is
+\[
+\frac{7}{43}=16.28\%.
+\]
+
+Among the 22 scam cases, 16 are FLAG, 5 are HOLD, and 1 is SAFE. Therefore,
+\[
+\frac{16+5}{22}=95.45\%
+\]
+of scam cases receive a non-SAFE outcome. This is not recall; official FLAG recall remains 72.73\%.
+
+The result shows that five of the six scam cases not flagged are routed to uncertainty rather than confidently classified SAFE. No implemented workflow currently guarantees that HOLD results in verification or harm prevention.
+
+\subsection{Decision Cost}
+
+To examine asymmetric error severity, we use the relative cost matrix in Table~\ref{tab:costmatrix}.
+
+\begin{table}[t]
+\centering
+\caption{Experimental relative decision costs.}
+\label{tab:costmatrix}
+\begin{tabular}{lccc}
+\toprule
+Actual state & SAFE & HOLD & FLAG \\
+\midrule
+Scam & 10 & 2 & 0 \\
+Legitimate & 0 & 1 & 5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These values are modeling assumptions rather than measured real-world costs. Under this matrix, the baseline has total assigned cost 60, while Policies A and B each have cost 22. The structured policies reduce assigned cost because most scams that are not flagged are sent to HOLD rather than SAFE.
+
+\subsection{Calibration}
+
+\begin{table}[t]
+\centering
+\caption{Exploratory final-score calibration.}
+\label{tab:calibration}
+\begin{tabular}{lrrr}
+\toprule
+Range & Cases & Mean pred. & Scam rate \\
+\midrule
+0.00--0.20 & 20 & 11.25\% & 5.00\% \\
+0.21--0.40 & 6 & 35.00\% & 66.67\% \\
+0.41--0.60 & 0 & N/A & N/A \\
+0.61--0.80 & 4 & 72.50\% & 100.00\% \\
+0.81--1.00 & 13 & 93.31\% & 100.00\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The largest mismatch occurs in the 0.21--0.40 bucket, where mean predicted risk is 35\% but 66.67\% of cases are labeled scams. These results suggest underestimation in some moderate-risk cases. However, the sample is too small to establish stable calibration.
+
+\section{Failure Analysis}
+
+Six scam cases are not finally flagged: E008, E024, E029, E030, E032, and E040.
+
+\subsection{Conventional Recruiting Flow}
+
+Several missed cases follow realistic hiring patterns involving role discussion, compensation, assessments, or scheduling. Model-generated explanations often emphasize these conventional features when lowering risk. This is a failure hypothesis suggested by outputs, not evidence of the model's internal causal mechanism.
+
+\subsection{Absence of Immediate Harm}
+
+The model frequently lowers risk when no payment, credential, or code-execution request is present. This exposes a key distinction:
+\[
+\text{Fraud likelihood} \neq \text{Immediate action risk}.
+\]
+A scammer may remain non-harmful during early trust-building stages.
+
+\subsection{Threshold-Edge Errors}
+
+E029 receives a scam probability of 0.68. Because Policy A requires $p>0.70$ for FLAG, the result remains HOLD. Some errors therefore depend on the policy boundary rather than complete failure to identify suspicious evidence.
+
+\subsection{Limited Observable Evidence}
+
+In cases such as E032, the visible conversation contains little evidence for strong classification. This is an inherent limitation of partial-observability systems.
+
+\subsection{Risk Dilution}
+
+In some conversations, later plausible messages reduce previously elevated risk. Candidate refusal of a dangerous action, for example, may reduce immediate exposure without providing meaningful evidence that the recruiter is legitimate. Future versions should distinguish changes in fraud belief from changes in immediate action risk.
+
+\section{Probability Decision Case Study}
+
+Case E036 illustrates the difference between belief and action risk. Initially, the recruiting conversation appears ordinary, with risk estimate $p=0.03$. At a later timestep, the recruiter requires the candidate to run an unverified diagnostic client:
+\[
+p=0.62,\qquad \texttt{harmCategory}=\texttt{harmful}.
+\]
+
+Policy A returns HOLD because 0.62 is below the FLAG threshold. Policy B returns FLAG because executing unknown software is considered harmful.
+
+New evidence then appears: Windows SmartScreen and antivirus flag the diagnostic client. The model's risk estimate becomes $p=0.93$, and both policies return FLAG.
+
+A separate illustrative Bayesian calculation uses 0.62 as a prior and assumes
+\[
+P(E|\text{Fraud})=0.90,\qquad
+P(E|\text{Legitimate})=0.11,
+\]
+which yields a posterior near 0.93:
+\[
+P(\text{Fraud}|E)
+=
+\frac{0.90\cdot0.62}
+{0.90\cdot0.62+0.11\cdot0.38}
+\approx 0.93.
+\]
+
+This calculation demonstrates how new evidence could mathematically explain the change. It does not imply that the LLM performs Bayes' rule or that the likelihood values are empirically validated.
+
+\section{Discussion}
+
+The strongest result is not an improvement in binary precision or recall. Instead, the structured policy changes the type of uncertainty exposed to the user. The direct baseline treats six scam cases as SAFE, while the structured policy routes five of six unflagged scams to HOLD.
+
+This difference is hidden when SAFE and HOLD are merged into the same negative class.
+
+The experiment also illustrates the value of separating suspected fraudulent intent, requested-action safety, and policy response. E036 demonstrates that an action can justify protective intervention before the system is confident that the recruiter is fraudulent.
+
+However, the experiment does not establish whether users obey HOLD or FLAG warnings, whether warnings occur early enough, or whether the structured system generalizes beyond the selected dataset.
+
+\section{Limitations}
+
+The evaluation set contains only 43 cases and is concentrated in technical and Web3 recruiting. It is approximately balanced between scam and legitimate cases, unlike an unknown deployment distribution.
+
+Labels may rely on uneven evidence standards: some scam labels incorporate later-known malicious activity, while some legitimate labels primarily reflect absence of observed harm. The model probabilities are not empirically calibrated. The baseline and structured system differ in several dimensions simultaneously.
+
+Only final conversation-level classification is used for the main metrics, so a final FLAG may occur after the first dangerous request. Repeated runs were not used to measure LLM output variability. The project also does not implement recruiter identity verification, an operational HOLD workflow, or downstream harm measurement.
+
+\section{Ethics and Deployment Considerations}
+
+A \texttt{SAFE} output should not be presented as proof that a recruiter is legitimate. Likewise, \texttt{FLAG} represents elevated risk rather than proof that a person or organization is fraudulent.
+
+Recruiting conversations may contain names, contact information, resumes, company details, and other personal information. Publication and deployment require appropriate redaction, retention controls, and access controls. Real-world examples should clearly distinguish constructed scenarios from allegations about identifiable people.
+
+The system should not automatically open links, execute assessment software, report recruiters, or publish allegations based solely on classifier output.
+
+\section{Future Work}
+
+The next version should investigate:
+\begin{enumerate}
+    \item Does Policy B warn earlier on an untouched test set?
+    \item Does HOLD lead to successful verification, abandonment, or delay?
+    \item How much of the benefit remains when the baseline also has HOLD?
+    \item Which cases are identifiable from visible evidence alone?
+    \item How stable are decisions across repeated runs?
+    \item Can thresholds and calibration learned on development data transfer to new cases?
+    \item What is the review workload per scam successfully intercepted?
+    \item What happens when a recruiter deliberately tries to manipulate the classifier?
+\end{enumerate}
+
+Additional experiments should include held-out development and test sets, repeated LLM runs, timestamped danger points, early/timely/late/missed warning metrics, Brier score and log loss, stronger baseline ablations, broader languages and recruiting domains, adversarial messages, and independent label review.
+
+\section{Conclusion}
+
+This work presents an exploratory AI agent for sequential recruitment-scam risk assessment under partial observability.
+
+On a 43-case evaluation set, the structured agent and direct LLM baseline achieve identical final binary metrics: 100\% precision and 72.73\% recall. The main observed difference is how uncertainty is handled: the structured system routes five of six unflagged scams to HOLD rather than SAFE and achieves lower assigned decision cost under the study's experimental cost model.
+
+A harm-aware policy can also take protective action before fraud probability crosses the normal FLAG threshold.
+
+These findings suggest that uncertainty-aware and action-risk-aware policies are useful directions for recruitment-scam safety systems. However, the current study remains a small exploratory pilot. Stronger conclusions require held-out evaluation, earlier-warning measurements, improved calibration, stronger baselines, broader datasets, and real-world user studies.
+
+\ifofficialijcai\else
+\end{multicols}
+\fi
+
+% IJCAI kits commonly include named.bst. If it is not available,
+% use LaTeX's built-in plain bibliography style so references still render.
+\IfFileExists{named.bst}{
+  \bibliographystyle{named}
+}{
+  \bibliographystyle{plain}
+}
+\bibliography{references}
+
+\end{document}

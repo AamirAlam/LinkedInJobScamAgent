@@ -1,0 +1,2825 @@
+[
+  {
+    "E001": [
+      {
+        "time": "t0",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Generic mass-recruiting language",
+          "Unsolicited request to email a CV"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message contains ordinary recruiting content and requests only a CV, with no payment, credential, software-execution, or sensitive-data request. Some generic marketing language creates mild uncertainty.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E002": [
+      {
+        "time": "t0",
+        "scamProbability": 0.38,
+        "evidenceUsed": [
+          "Unsolicited outreach with unusually high hourly rate",
+          "Vague project and role details",
+          "Broad claims about flexible, long-term remote work"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message is a generic recruitment pitch with limited verifiable company or role information and an attractive rate, which creates some fraud risk. No payment, credential request, or harmful action appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.35,
+        "evidenceUsed": [
+          "Unsolicited outreach with unusually high hourly rate",
+          "Vague project and company details",
+          "Broad claims of flexible, long-term remote work"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The offer has some scam-like traits, especially the vague description and high rate, but no direct request for money, credentials, code execution, or sensitive information has appeared. The conversation remains preliminary.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.93,
+        "evidenceUsed": [
+          "Unsolicited high-rate remote offer with vague company/project details",
+          "Requests repository access and instructs candidate to run an unfamiliar platform",
+          "Crypto/financial features including trading, staking, and prediction",
+          "Requests screenshots and feedback before a technical call"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The compensation and broad claims are unusually attractive and underspecified. The recruiter asks the candidate to access and run an unfamiliar repository/application involving financial features, which creates substantial malware and credential risk before any verified interview or hiring process.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.86,
+        "evidenceUsed": [
+          "Unsolicited high hourly rate with vague company and project details",
+          "Requests repository access and asks candidate to run/explore a trading, staking, and prediction platform",
+          "Requests screenshots and feedback before a technical call"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The unusually high rate and vague recruiting pitch are suspicious. The recruiter asks the candidate to run an unfamiliar repository/application, potentially exposing them to malicious code or dependencies, making the highest-risk action harmful.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.82,
+        "evidenceUsed": [
+          "Unusually high $50–$80/hour offer with minimal qualification detail",
+          "Requests repository access and asks candidate to run/explore trading, staking, and prediction platform",
+          "Requests application screenshot and feedback before a technical call",
+          "No deployed link or public documentation provided when requested"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The compensation and vague company/project claims are suspicious, while the request to run an unfamiliar repository or platform creates direct security risk. The candidate appropriately asks for a deployed link or documentation, but no verification is provided.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t5",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Unusually high $50–$80/hour offer with minimal qualification context",
+          "Requests repository access and asks candidate to run/explore a trading, staking, and prediction platform",
+          "Requests screenshots and feedback before a technical call",
+          "No deployed link or public documentation provided despite being asked"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The compensation and vague company/project details are suspicious, and the recruiter redirects from providing a deployed demo to requiring repository-based execution. Running an unfamiliar codebase can expose the candidate to malware or other risks, making the highest-risk action harmful.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t6",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Unusually high $50–$80/hour offer with minimal qualification context",
+          "Requests repository access and asks candidate to run/explore trading, staking, and prediction software",
+          "Avoids providing a deployed project or public documentation",
+          "Requests screenshots and feedback before the technical call, suggesting possible unpaid work or code-execution risk"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The compensation and vague company/project details are suspicious, and the recruiter redirects a request for a deployed demo toward private repository access. Asking the candidate to run an unfamiliar platform creates direct security risk, especially given the finance-related features. No explicit credential or payment request appears.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t7",
+        "scamProbability": 0.78,
+        "evidenceUsed": [
+          "Unusually high $50–$80/hour offer with limited vetting",
+          "Requests repository access and asks candidate to run/explore an unfamiliar trading, staking, and prediction platform",
+          "Requests GitHub username or email before providing a deployed link or public documentation",
+          "Avoids directly sharing a deployed project when asked"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The compensation and remote flexibility are unusually attractive, while the recruiter insists on repository access and running an unfamiliar platform without first providing verifiable public documentation or a deployed link. This is a common risky technical-recruiting pattern, though fraud is not proven.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t8",
+        "scamProbability": 0.82,
+        "evidenceUsed": [
+          "Unusually high $50–$80/hour offer with minimal qualification context",
+          "Requests access to a repository before a technical call",
+          "Asks candidate to run and explore trading, staking, and prediction platform",
+          "Requests screenshots and feedback without providing a deployed link or public documentation",
+          "Deflects request for verification by insisting on repository access"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The compensation and remote-work pitch are unusually attractive, while the recruiter pushes repository access and asks the candidate to run an unfamiliar platform before basic company/project verification. This combination is strongly suspicious, though fraud is not conclusively established.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E003": [
+      {
+        "time": "t0",
+        "scamProbability": 0.01,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a conventional unsolicited networking message expressing interest in blockchain/full-stack roles. It contains no requests for money, credentials, sensitive documents, or risky actions.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Unsolicited PoC assessment before arranging an interview",
+          "External Bitbucket repository and Google Doc links",
+          "Vague recruiter wording and no role, company, or hiring-process details"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The request to review a PoC repository and document can be legitimate, but the vague message, external links, and assessment-first process create meaningful scam risk. No explicit request to run code, install software, or provide sensitive information appears.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E004": [
+      {
+        "time": "t0",
+        "scamProbability": 0.35,
+        "evidenceUsed": [
+          "Unsolicited outreach with unusually high $50–$80/hour range",
+          "Vague project and role details",
+          "Broad claims of flexible, long-term remote work"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message has some common recruiting-scam indicators, especially the high rate and lack of specific role or project information, but it contains no direct request for money, credentials, sensitive documents, or risky technical actions.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.93,
+        "evidenceUsed": [
+          "Unsolicited high-rate remote offer with minimal qualification",
+          "Requests access to a repository and asks candidate to run an unfamiliar platform",
+          "Crypto/financial features: trading, staking, and prediction",
+          "Requests screenshots of the running application"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The compensation and vague company/project description are suspicious, and the recruiter explicitly asks the candidate to run an unfamiliar repository/application involving financial features. This creates substantial malware and credential-theft risk despite the claimed technical interview context.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E005": [
+      {
+        "time": "t0",
+        "scamProbability": 0.35,
+        "evidenceUsed": [
+          "Unsolicited high compensation offer with limited role and company detail",
+          "Vague crypto/staking platform description",
+          "Encourages continuing by simply replying, without verifiable hiring information"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message has some recruiting-scam indicators, especially the vague crypto-related company and unusually broad high-pay claim, but it requests no sensitive information or risky action yet.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.35,
+        "evidenceUsed": [
+          "Unsolicited high-salary crypto/staking role",
+          "Vague company and opportunity details",
+          "Recruiter follow-up uses mild pressure"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The crypto-related role and unusually broad compensation claim create some fraud risk, but the visible messages only request a response and contain no requests for money, credentials, documents, or code execution.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.35,
+        "evidenceUsed": [
+          "Unsolicited high-salary crypto/staking role",
+          "Vague company and hiring-process details",
+          "Recruiter follow-up uses mild pressure"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The opportunity is plausible but has some scam indicators: a vague crypto-related company, unusually broad employment terms, and limited verifiable detail. No request for money, credentials, sensitive documents, or risky technical actions has appeared.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.36,
+        "evidenceUsed": [
+          "Vague company and role details",
+          "Unverified blockchain/token-based compensation",
+          "Unusually broad benefits and high salary for an unsolicited message",
+          "Generic templated wording"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The outreach has some scam-like signals, especially vague employer information and token incentives, but the visible exchange only requests a CV through a conventional hiring process and contains no direct request for money, credentials, or unsafe actions.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.35,
+        "evidenceUsed": [
+          "Unsolicited high-salary blockchain/crypto role",
+          "Vague company and recruiter identity",
+          "Token-based compensation mentioned"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains some scam-associated signals, especially the vague crypto company, unsolicited compensation claim, and token incentives, but no request for money, credentials, sensitive documents, or code execution. The recruiter describes a conventional hiring process and requests only a CV, so fraud is possible but not strongly established.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t5",
+        "scamProbability": 0.45,
+        "evidenceUsed": [
+          "Unverified blockchain/cryptocurrency employer and token-based compensation",
+          "Recruiter avoids elaborating when asked about the hiring process",
+          "Generic job description and unusually broad compensation/benefits claims"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction contains some scam indicators, especially the unverified crypto context, token incentives, generic posting, and evasive reply. However, no request for money, credentials, sensitive documents beyond a CV, or code execution appears, so fraud is uncertain rather than strongly indicated.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t6",
+        "scamProbability": 0.62,
+        "evidenceUsed": [
+          "Unsolicited high-salary blockchain/digital-currency role",
+          "Vague company and recruiter identity",
+          "Token-based incentives mentioned without concrete details",
+          "Recruiter deflects request for hiring-process clarification"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The offer has several scam-associated signals, especially the vague blockchain company, unusually attractive compensation, token incentives, and limited transparency when asked about the process. No request for money, credentials, sensitive documents beyond a CV, or code execution has appeared.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t7",
+        "scamProbability": 0.42,
+        "evidenceUsed": [
+          "Vague company and blockchain project details",
+          "Unusually high compensation with token-based incentives",
+          "Recruiter deflects assignment questions instead of explaining them",
+          "Generic job description and branding"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction has some scam-like signals, especially vague employer details, crypto/token compensation, and evasive answers about the assessment. However, no request for money, credentials, sensitive documents beyond a CV, or code execution has appeared, so fraud is plausible but not strongly established.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t8",
+        "scamProbability": 0.35,
+        "evidenceUsed": [
+          "Unverified blockchain/digital-currency employer",
+          "High compensation and token-based incentives",
+          "Recruiter deflects specific assessment questions"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains some risk signals, especially vague employer details, unusually attractive compensation with token incentives, and limited answers about the hiring process. However, no payment, credential request, malicious link, or harmful technical action has appeared.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t9",
+        "scamProbability": 0.32,
+        "evidenceUsed": [
+          "Blockchain/cryptocurrency employer and token-based compensation",
+          "Recruiter avoids explaining the assessment details and redirects to HackerRank",
+          "Unsolicited high-salary remote lead role with limited company-specific information"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction has some generic, crypto-related recruiting signals and limited transparency, but the process described remains conventional: CV screening followed by a HackerRank assessment and interviews. No request to run unknown code, pay money, or share credentials appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t10",
+        "scamProbability": 0.38,
+        "evidenceUsed": [
+          "Unverified blockchain/digital-currency employer",
+          "High compensation and token-based incentives",
+          "Generic outreach and job description",
+          "Recruiter avoids answering the assignment details directly"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction has some recruiting-scam indicators, especially the unverified crypto context, unusually attractive compensation, generic wording, and evasive response about the assessment. However, no payment, credential request, malicious link, or unsafe execution request appears; the stated process uses HackerRank and the candidate only shared a CV.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t11",
+        "scamProbability": 0.48,
+        "evidenceUsed": [
+          "Unsolicited high-salary blockchain role with token-based compensation",
+          "Vague company and recruiter details",
+          "Recruiter avoided clarifying the assessment format"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The offer has some scam indicators, including unusually broad compensation and vague blockchain-company details, but the conversation only requests a CV and references HackerRank rather than asking for money, credentials, or code execution.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t12",
+        "scamProbability": 0.38,
+        "evidenceUsed": [
+          "Vague company and role details",
+          "Unsolicited high compensation for a remote blockchain role",
+          "Recruiter avoids elaborating on the assessment and redirects to the CV",
+          "Awkward wording and delayed follow-up"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange has some credibility concerns, especially vague employer information, unusually attractive compensation, and limited answers about the hiring process. However, no payment request, credential request, suspicious link, or unsafe technical action appears, so fraud is possible but not strongly evidenced.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      }
+    ]
+  },
+  {
+    "E006": [
+      {
+        "time": "t0",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Generic mass-recruiting language",
+          "Requests a LinkedIn reply to avoid spam classification",
+          "External job links and referral tracking parameters"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message contains mild spam-like signals and tracked external links, but presents ordinary contract roles and a conventional resume/interview process without requesting money, credentials, or risky actions.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E007": [
+      {
+        "time": "t0",
+        "scamProbability": 0.22,
+        "evidenceUsed": [
+          "Unsolicited outreach",
+          "Vague organization and grant-program description"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message is unsolicited and lacks concrete details, but it contains no request for money, credentials, sensitive documents, or risky technical actions.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.28,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange is brief and contains no clear scam indicators or requests for sensitive information. The recruiter’s organization and opportunity claims are unverified, so legitimacy is not established.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The exchange describes a plausible open-source documentation bounty and links to a public GitHub repository. No direct scam indicators or harmful requests appear, though the interaction is too brief to establish legitimacy.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.12,
+        "evidenceUsed": [],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The conversation describes a plausible public GitHub documentation bounty with no requests for credentials, payment, software installation, or code execution. Repository review or contribution is context-dependent, but no clear fraud indicators appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The conversation describes a public GitHub contribution process with no requests for payment, credentials, sensitive data, or unsafe execution. However, legitimacy cannot be confirmed from the conversation alone.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E008": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a routine recruiting outreach about a frontend role, with no requests for money, credentials, sensitive documents, or code execution. The wording is somewhat awkward, but there are no meaningful fraud indicators in the visible message.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a brief, conventional recruiting exchange with no requests for sensitive information, payments, code execution, or external links. The generic wording and profile-reference phrasing create slight uncertainty, but there is little evidence of fraud.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange contains a plausible role description and ordinary recruiting questions, with no requests for money, credentials, sensitive documents, or risky technical actions. Some generic wording and limited company details create mild uncertainty.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains a conventional recruiter outreach and a plausible technical role description, with no requests for money, credentials, sensitive documents, or risky code execution. Legitimacy is not independently verified, so the probability is low rather than zero.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.12,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is a conventional recruiting exchange: a role description is provided, followed by questions about availability and compensation. No requests for money, credentials, sensitive documents, or code execution appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t5",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains a plausible role description and ordinary screening questions about availability and compensation. No requests for money, sensitive information, software execution, or suspicious links appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t6",
+        "scamProbability": 0.12,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is a conventional recruiting exchange about a frontend Web3 role, availability, experience, and compensation. No clear scam indicators or requests for risky actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t7",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is a conventional recruiting exchange covering role details, availability, experience, and compensation. No clear fraud indicators or requests for sensitive information, payment, credentials, or risky technical actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t8",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Generic recruiter identity and role description",
+          "Unusual phrasing and grammatical errors",
+          "No company name or verifiable hiring details provided"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is a routine recruiting exchange covering role details, availability, and compensation. Some generic wording and lack of company specifics create mild uncertainty, but there are no requests for money, credentials, sensitive documents, or risky technical actions.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t9",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Generic recruiter identity and company details",
+          "Unusual wording and grammar",
+          "No company name or verifiable role details provided"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is a routine recruiting exchange covering role responsibilities, availability, and compensation. Some generic wording, grammatical issues, and missing company information create mild uncertainty, but there are no requests for money, credentials, sensitive documents, or risky actions.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t10",
+        "scamProbability": 0.22,
+        "evidenceUsed": [
+          "Unspecified take-home test before any technical meeting",
+          "Awkward grammar and phrasing in recruiter messages",
+          "No company name, website, or verifiable project details provided"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The recruiting flow is plausible and the role details are coherent, but the lack of identifiable company information and an unspecified pre-interview test create moderate uncertainty. No request for money, credentials, sensitive documents, or code execution has appeared.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t11",
+        "scamProbability": 0.28,
+        "evidenceUsed": [
+          "Unusual phrasing and grammatical errors",
+          "Generic recruiter identity and limited company details",
+          "Unpaid test required before speaking with the CTO"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains some mild scam indicators, mainly vague company information, awkward wording, and a pre-interview test. However, no payment, credential request, suspicious link, or code execution has been requested, so fraud is possible but not strongly indicated.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t12",
+        "scamProbability": 0.47,
+        "evidenceUsed": [
+          "Unclear grammar and awkward phrasing",
+          "Unsolicited test involving access to a demo project",
+          "Request for GitHub ID or email before technical meeting"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The conversation is broadly consistent with ordinary recruiting, including a plausible role description and compensation discussion. However, the unpolished communication and vague test/demo invitation create moderate uncertainty; no explicit request to execute code, provide credentials, or pay money appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t13",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Unusual grammar and phrasing",
+          "Unsolicited demo-project test before a technical meeting",
+          "Request to invite an external email to a project"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The conversation contains awkward language and an early project-based test, but no request to run code, install software, provide credentials, or send money. The role details and compensation discussion are plausible, so fraud likelihood appears low to moderate.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t14",
+        "scamProbability": 0.38,
+        "evidenceUsed": [
+          "Vague company and team details",
+          "Unusual test centered on exploring a demo project",
+          "Recruiter requests GitHub ID or email for project invitation"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The conversation has some generic recruiting language and limited employer verification, but the requested task is a product/UI review without asking to run code, install software, share credentials, or pay money. This is somewhat suspicious but not strong evidence of fraud.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      }
+    ]
+  },
+  {
+    "E009": [
+      {
+        "time": "t0",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "A routine recruiting outreach proposing a short introductory call. No suspicious requests or harmful actions appear in the conversation.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a routine recruiting exchange proposing a brief introductory call and confirming availability. No suspicious requests or harmful actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Unverified external conference link",
+          "Domain appears unrelated or insufficiently established for the claimed company",
+          "Urgent same-day meeting scheduling"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is limited to scheduling an introductory call, but the unusual external meeting domain creates meaningful phishing or impersonation risk. No credential, payment, or code-execution request appears.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.99,
+        "evidenceUsed": [
+          "Unverified conference URL using a suspicious domain",
+          "Requests downloading and running an .exe disguised as an audio codec updater",
+          "Claims a meeting requires a Web3 privacy plugin"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The initial recruiting exchange is ordinary, but the unverified meeting link and request to download and run an executable are strong indicators of malware-based recruitment fraud.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E010": [
+      {
+        "time": "t0",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Unsolicited recruiter outreach",
+          "Vague claim of an “exclusive” vacancy",
+          "High compensation claim without role details"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message is brief and lacks verification details, but it contains no direct request for money, credentials, sensitive documents, or risky actions. Fraud likelihood is low but not negligible.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.28,
+        "evidenceUsed": [
+          "Vague recruiter identity and unnamed client",
+          "Unusually high pay claim without role details"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message has mild scam indicators: a generic staffing-company name, an unnamed top-tier client, and a high hourly rate, but no direct request for money, credentials, or risky actions has appeared.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.93,
+        "evidenceUsed": [
+          "Requests government-issued ID and proof of address before sharing basic job details",
+          "Withholds client identity and detailed job description pending intrusive personal-document submission",
+          "Uses vague 'initial security clearance' and compliance justification"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The recruiter requests highly sensitive identity and address documents before providing basic role information, while withholding the client and detailed JD. This is strongly suspicious, though such checks can occasionally occur through legitimate staffing processes.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.98,
+        "evidenceUsed": [
+          "Request for government-issued ID and proof of address before a screening call",
+          "Withholding client name and detailed job description until invasive identity checks",
+          "Use of vague 'initial security clearance' to justify early sensitive-document collection",
+          "Unusually high $90/hr claim with minimal role details"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The recruiter demands highly sensitive identity and address documents before basic recruiting steps and withholds essential job information, strongly indicating likely fraud or identity harvesting. No harmful execution, payment, or credential-sharing request appears.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.99,
+        "evidenceUsed": [
+          "Requests government ID and proof of address before a screening call or official offer",
+          "Requests a social tax number at an unusually early recruiting stage",
+          "Withholds basic job and client details pending sensitive documents",
+          "Uses a 24-hour ultimatum and threatens to forfeit candidacy"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The recruiter demands highly sensitive identity and tax information before providing basic role details or conducting a screening call, combined with coercive urgency. This is extremely strong evidence of fraudulent or abusive recruitment.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E011": [
+      {
+        "time": "t0",
+        "scamProbability": 0.3,
+        "evidenceUsed": [
+          "Vague client and role details",
+          "Buzzword-heavy AI, fintech, and Web3 description",
+          "Minor grammatical errors and duplicated punctuation"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message is a generic recruiter outreach requesting only an updated resume. It contains some vague and promotional wording, but no clear fraudulent request or harmful action.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a routine initial recruiting exchange involving a remote engineering role and interest in learning more. No suspicious requests, payment demands, credential requests, or risky actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a routine recruiting exchange involving a job description and resume sharing, with no clear fraud indicators or requests for risky actions.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E012": [
+      {
+        "time": "t0",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a standard recruiting outreach with a role, compensation, and invitation to chat. No concrete fraud indicators or harmful requests appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "A brief, ordinary recruiting exchange with no suspicious requests or high-risk actions. The role and compensation are stated, and the candidate asks about the tech stack.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.45,
+        "evidenceUsed": [
+          "Recruiting and core engineering communication directed entirely to Discord",
+          "Token incentives in compensation",
+          "Unsolicited invite link to an external Discord server"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The Discord-first setup, token-based compensation, and unsolicited external invite are moderately suspicious, but the conversation contains no request for money, credentials, sensitive documents, or code execution.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.93,
+        "evidenceUsed": [
+          "Recruiting moved entirely to Discord",
+          "Asked candidate to use a third-party verification bot",
+          "Request to authorize Discord account and sync developer roles"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The compensation and crypto/token incentives combined with an unsolicited Discord-only process and bot-based account authorization are strong scam indicators. The visible conversation does not explicitly request credentials, payment, or code execution, so the highest-risk action is context-dependent rather than directly harmful.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E013": [
+      {
+        "time": "t0",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Urgent freelance contract"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "A brief, plausible recruiting offer with a clear project scope and budget; urgency is mildly suspicious, but there is not enough information to indicate fraud.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is a normal freelance recruiting exchange. The recruiter provides a specific project, scope, and budget, while the candidate requests established escrow/contract platforms. No clear fraud indicators or harmful actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.88,
+        "evidenceUsed": [
+          "Unfamiliar 'EscrowGlobal365' presented as the required payment platform",
+          "Pressure to use a specific Web3 escrow service rather than established platforms",
+          "Vague claim about corporate treasury and cross-border tax compliance"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The urgent offer and insistence on an unfamiliar Web3 escrow service are strong fraud indicators, especially after the candidate proposed established platforms. No direct request to pay, share credentials, or execute code has appeared.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.88,
+        "evidenceUsed": [
+          "Insistence on an unfamiliar escrow service",
+          "Claim that corporate tax compliance requires a specific Web3 escrow service",
+          "Redirecting away from established platforms"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The recruiter’s insistence on an obscure escrow provider and questionable compliance rationale strongly suggest a potential payment or advance-fee scam. No harmful action has been requested yet.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.99,
+        "evidenceUsed": [
+          "Urgent freelance offer with fixed budget",
+          "Insistence on an unfamiliar escrow platform",
+          "Suspicious settlement-domain URL",
+          "Request to add a bank card or deposit ETH to activate payouts"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The recruiter requests payment or sensitive financial details through an unfamiliar escrow site, strongly indicating an advance-fee or financial phishing scam.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E014": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message is a conventional, personalized recruiting outreach with a company-domain link and asks only for an updated resume. No clear fraud indicators or risky actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message is a conventional recruiting outreach referencing the candidate’s experience, a company website, and a standard invitation to connect. No suspicious requests or harmful actions appear in the conversation.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.08,
+        "evidenceUsed": [
+          "Candidate name changes from Dharmvir to Aamir",
+          "Generic request for resume and call scheduling"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange is a conventional recruiting outreach with a company website, role-specific personalization, and ordinary requests for a resume and availability. The inconsistent candidate name is mildly suspicious, but there are no requests for money, credentials, sensitive documents, or risky actions.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange is a conventional recruiting outreach involving a resume request and call scheduling, with no requests for money, credentials, software execution, or other harmful actions. The name mismatch between the candidate addressed as Dharmvir and later Aamir is a minor inconsistency, but not strong fraud evidence.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.08,
+        "evidenceUsed": [
+          "Minor name inconsistency: recruiter initially addresses Dharmvir, then Aamir",
+          "Generic request to send a resume and schedule a call"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction is ordinary recruiting: a role-specific outreach, company website, resume request, and call scheduling. The inconsistent candidate name is mildly suspicious but not strong evidence of fraud, and no harmful action or sensitive information was requested.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E015": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [
+          "Requests extensive personal, employment, and compensation details by email",
+          "Application conditioned on providing complete mandatory information"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message resembles a conventional recruiting outreach for a specific role and uses a corporate-looking TCS email address. It requests ordinary hiring information, though the unusually comprehensive mandatory data request creates a small residual risk.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E016": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a routine recruiting acknowledgment with no suspicious request or harmful action.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "A brief, conventional recruiting exchange with no suspicious requests or harmful actions. The limited conversation provides little evidence either way, but nothing currently indicates fraud.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation describes a standard frontend hiring exercise hosted on CodeSandbox, with no requests for credentials, payments, sensitive documents, or executing unknown local code.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation describes a standard frontend interview exercise hosted on CodeSandbox, explicitly avoiding local installation or execution. No suspicious requests or fraud indicators appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "This appears to be a conventional recruiting exercise using CodeSandbox, with no clear fraud indicators. Reviewing and forking a hosted coding sandbox is context-dependent, though the link should still be independently verified.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E017": [
+      {
+        "time": "t0",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Stealth project with limited verifiable details",
+          "Recruiter claims to have seen open-source work without specifying which work"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message is a generic recruiting outreach with some unverifiable claims, but it requests no sensitive information or risky action.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.28,
+        "evidenceUsed": [
+          "Stealth project with no visible public identity or website",
+          "Recruiter makes a crypto/payment-related recruiting approach"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The outreach is somewhat suspicious because it involves an undisclosed stealth crypto payments project, but the conversation contains no request for money, credentials, code execution, or sensitive information.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.28,
+        "evidenceUsed": [
+          "Stealth project with only a placeholder public domain",
+          "Unverified claim of a pre-seed round led by Alliance DAO"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction is brief and involves a normal recruiting introduction and offer to explain materials on a call. The stealth status and unverifiable funding claim create some uncertainty, but there is no request for money, credentials, sensitive documents, or risky technical actions.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Stealth project with only a placeholder domain",
+          "Unverified claim of pre-seed funding led by Alliance DAO"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is consistent with an early-stage recruiting outreach and only proposes a call. The stealth status and unverified funding claim are mild caution signals, but there is no request for money, credentials, sensitive documents, or code execution.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.08,
+        "evidenceUsed": [
+          "Stealth project with only a placeholder domain",
+          "Unverified claim of pre-seed funding led by Alliance DAO"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation shows a plausible recruiting approach with a standard Google Calendar link and no requests for money, credentials, sensitive documents, or code execution. Some uncertainty remains because the project is unverified and claims stealth funding.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E018": [
+      {
+        "time": "t0",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Unsolicited visa-focused outreach",
+          "Webinar invitation promoting immigration services"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message is unsolicited and funnels the recipient toward a visa webinar, which can be associated with lead generation or immigration scams. However, it requests only webinar attendance and contains no demand for money, credentials, sensitive documents, or risky actions.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.32,
+        "evidenceUsed": [
+          "Unsolicited outreach promoting a visa webinar",
+          "Consulting service involvement may lead to paid immigration assistance"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message is primarily an informational webinar invitation and contains no request for money, credentials, sensitive documents, or risky technical actions. However, unsolicited visa-related consulting outreach carries some potential for misleading or predatory sales tactics.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Unsolicited visa-focused outreach rather than a specific role",
+          "Recruiter pivots to asking the candidate to refer friends"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange is brief and promotional, but contains no request for payment, credentials, sensitive documents, or risky actions. The lack of a concrete job and referral solicitation are mildly suspicious, while the interaction remains low-risk.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Unsolicited visa-focused outreach rather than a specific job opportunity",
+          "Request to share the webinar with friends"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange is brief and promotional, but contains no request for money, credentials, sensitive documents, or risky technical actions. The visa marketing focus warrants mild caution, though fraud evidence is limited.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Unsolicited visa-focused outreach rather than a specific job opportunity",
+          "Request to promote the webinar to friends"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange is brief and does not request money, credentials, sensitive documents, or risky actions. The visa-marketing focus and referral request are mildly suspicious, but there is insufficient evidence of fraud.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E019": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "A targeted recruiting outreach referencing the candidate’s relevant article and a specific Staff Architect role. No suspicious requests or harmful actions appear in the conversation.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "A normal, role-specific recruiting exchange with no requests for money, credentials, sensitive documents, or code execution. The probability of fraud is very low, though legitimacy cannot be confirmed from two messages.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The conversation shows a plausible recruiting outreach and a public read-only architecture document, with no clear fraud indicators. Reviewing the linked document is context-dependent but not inherently harmful.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The conversation contains a plausible recruiting approach and a public read-only architecture document, with no clear scam indicators. Reviewing an external design document is context-dependent, so some uncertainty remains.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E020": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a brief, ordinary recruiting opener describing a project and referencing the candidate’s work. No suspicious request or harmful action appears.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "Only an introductory recruiting exchange is visible. No suspicious request or risky action has appeared, so fraud indicators are minimal, though legitimacy cannot be confirmed from this brief conversation.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.32,
+        "evidenceUsed": [
+          "Payment exclusively in USDC",
+          "Interview tracking through proprietary decentralized smart contracts"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The crypto-native compensation and unusual interview-tracking process are mildly suspicious, but no request for money, credentials, sensitive documents, or code execution has appeared.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.28,
+        "evidenceUsed": [
+          "Payment entirely in USDC",
+          "Interview tracking built on proprietary decentralized smart contracts"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The offer has some crypto-recruiting risk signals, especially USDC-only compensation and an unusual decentralized interview-tracking claim, but no request for money, credentials, code execution, or sensitive information has appeared.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.99,
+        "evidenceUsed": [
+          "Requests connecting a crypto wallet",
+          "Asks candidate to sign a transaction",
+          "Requires minting a candidate identity pass to access scheduling",
+          "Unusual external candidate-claim domain and blockchain-based hiring gate"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The recruiter conditions interview scheduling on connecting a wallet and signing a transaction, creating direct risk of wallet compromise or unauthorized blockchain activity. The crypto hiring premise is plausible, but this requested action is highly suspicious.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E021": [
+      {
+        "time": "t0",
+        "scamProbability": 0.12,
+        "evidenceUsed": [
+          "Requests resume submission through an external Google Form",
+          "Unsolicited outreach with broad job description"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message resembles ordinary recruiter outreach and uses a GlobalLogic email address and standard recruiting steps. The external form and unsolicited contact introduce modest uncertainty, but there are no requests for money, credentials, software execution, or other high-risk actions.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation shows a conventional recruiting outreach for a named company, with a company-domain email, job description, application form, and standard interview process. No clear fraudulent or harmful request appears, though the external form warrants ordinary caution.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation shows a conventional recruiting outreach with a company-domain email, a relevant job description, application form, and ordinary follow-up. No clear scam indicators or harmful requests appear, though legitimacy cannot be guaranteed from this exchange alone.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E022": [
+      {
+        "time": "t0",
+        "scamProbability": 0.28,
+        "evidenceUsed": [
+          "Urgent requirement framing",
+          "Vague reference to an EU fintech client",
+          "Unsolicited follow-up with limited role details"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message is brief and somewhat vague, with urgency and no verifiable company, recruiter, or job details. However, it contains no direct request for money, credentials, sensitive documents, or risky technical actions.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.28,
+        "evidenceUsed": [
+          "Repeated follow-ups creating urgency",
+          "Vague client and contract details"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The messages use mild pressure and provide limited verifiable detail, but contain no request for money, credentials, sensitive documents, or risky technical actions.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Repeated follow-ups and urgency pressure",
+          "Vague client details and compensation not yet provided"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The messages show mild urgency and limited specifics, but no clear fraud indicators or risky requests. The interaction remains ordinary recruiting outreach.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Repeated unsolicited follow-ups",
+          "Vague client identity described as a “Klarna” partner",
+          "Request for a phone call before providing fuller role details"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains mild recruiting red flags, mainly pressure and vague client disclosure, but no request for money, credentials, sensitive documents, or risky technical actions. The compensation and role appear plausible, so fraud likelihood is low but not negligible.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E023": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a routine initial recruiting outreach with no suspicious request or harmful action.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a brief, ordinary recruiting exchange with no suspicious requests or risky actions. The probability of fraud is very low, though the conversation provides limited evidence.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a typical recruiter introduction followed by a standard HackerRank technical assessment. No suspicious requests or harmful actions are present.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a standard recruiting exchange: a named recruiting firm, a plausible senior engineering role, and a conventional HackerRank assessment. No suspicious requests or harmful actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange describes a standard coding assessment sent through HackerRank’s official-looking invitation channel, with no requests for money, credentials, sensitive documents, or risky software execution.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E024": [
+      {
+        "time": "t0",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a generic recruiting outreach with no concrete scam indicators or requests for sensitive information. Legitimacy is not independently established, so uncertainty remains.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.12,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a brief, conventional recruiting exchange with no requests for money, credentials, sensitive documents, or risky technical actions. The limited detail prevents certainty, but there are no concrete fraud indicators.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is a routine recruiting exchange describing a DeFi role and asking about relevant experience. No concrete fraud indicators or risky requests appear, though the limited context does not establish legitimacy.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.16,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is a normal early-stage recruiting exchange about a Smart Contract Developer role and prior DeFi experience. No requests for money, credentials, sensitive documents, code execution, or other harmful actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is a routine recruiting exchange about a DeFi smart-contract role and prior experience. No requests for money, credentials, sensitive documents, code execution, or other suspicious actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t5",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a routine recruiting exchange involving role discussion and standard questions about experience, work arrangement, compensation, and availability. No clear fraudulent indicators or harmful requests appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t6",
+        "scamProbability": 0.12,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange consists of standard recruiting questions about experience, work arrangement, role type, compensation, and availability. No clear fraud indicators or risky requests appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t7",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation shows a conventional recruiting flow: role discussion, experience questions, compensation and availability, followed by a CV request. No clear fraud indicators or requests for money, credentials, sensitive documents, or risky technical actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t8",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation consists of ordinary recruiting, experience screening, compensation discussion, and a CV request. No clear scam indicators or harmful actions appear, though the generic outreach and crypto/DeFi context leave some residual uncertainty.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t9",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Generic recruiter identity and company description",
+          "Calendly link uses a broad 'software-agency' slug rather than the stated company name"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange follows a conventional recruiting flow: role discussion, experience questions, CV request, and interview scheduling. The generic company/link branding is mildly suspicious, but there are no requests for money, credentials, sensitive documents, or code execution.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t10",
+        "scamProbability": 0.3,
+        "evidenceUsed": [
+          "Generic recruiter identity and company description",
+          "Crypto/DeFi role with limited concrete job or company details",
+          "Scheduling link uses a generic “software-agency” Calendly path"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation follows a plausible recruiting flow: role discussion, experience questions, CV review, and interview scheduling. Some uncertainty comes from generic company details and the mismatched Calendly URL, but there are no requests for money, credentials, sensitive documents, or code execution.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      }
+    ]
+  },
+  {
+    "E025": [
+      {
+        "time": "t0",
+        "scamProbability": 0.3,
+        "evidenceUsed": [
+          "Misspellings and unprofessional wording",
+          "Urgency without employer or role details",
+          "Unsolicited high hourly rate"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message has some scam-like presentation issues and lacks verifiable company or job details, but it only expresses recruiting interest and requests a reply; there is no direct request for money, credentials, or risky actions.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.32,
+        "evidenceUsed": [
+          "Generic unsolicited outreach with spelling and grammar errors",
+          "No company name or concrete role details provided",
+          "Urgency emphasized without supporting context"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message has some low-quality, vague recruiting signals, but there is not yet evidence of credential theft, payment requests, malicious files, or other direct fraud.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Generic outreach with multiple spelling errors",
+          "Vague client/company identification",
+          "Urgent hiring language"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message has some low-level suspicious signals, especially vague identification, urgency, and poor wording, but it provides a plausible role, stack, rate, and a standard no-install live coding process. No request for money, credentials, sensitive documents, or risky software actions appears.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.22,
+        "evidenceUsed": [
+          "Generic outreach with typos and vague “TechMatrix UK client” identification",
+          "Urgent hiring language"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message has minor red flags such as typos, urgency, and limited company detail, but it provides a plausible role, stack, rate, and standard no-install live-coding process. No harmful request or clear fraud indicator appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Initial message contains multiple typos and vague company/client wording",
+          "Urgent hiring language"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction is somewhat informal and urgent, but it provides a plausible role, stack, rate, live coding format, and planned corporate-domain invite. No requests for money, credentials, sensitive documents, or unsafe software actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E026": [
+      {
+        "time": "t0",
+        "scamProbability": 0.56,
+        "evidenceUsed": [
+          "Vague product description combining SocialFi, staking, AI, and gaming",
+          "No company identity, role details, or verifiable hiring context",
+          "Cryptocurrency/staking focus can carry elevated fraud risk"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The outreach is vague and centered on cryptocurrency-related products, which raises suspicion, but it contains no explicit request for money, credentials, sensitive documents, or risky technical actions.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.76,
+        "evidenceUsed": [
+          "Unsolicited crypto/blockchain recruiting pitch",
+          "Promises to boost a fallen token and revive a game ecosystem",
+          "Vague project details and unclear company identity",
+          "Unpolished language and inconsistent description"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is recruiting-oriented but centers on a speculative token, staking app, and plans to increase token value, with limited verifiable employer or role information. No harmful action has been requested yet, though the crypto focus and vague claims create substantial fraud risk.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E027": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a normal, nonspecific recruiting outreach about a remote contract role. No requests for money, credentials, sensitive documents, code execution, or other risky actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a brief, conventional recruiting exchange with no suspicious requests, links, payment demands, credential requests, or risky actions. The limited conversation does not establish legitimacy, but it provides little evidence of fraud.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.12,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains a plausible recruiter outreach, clear role and compensation details, and a standard technical evaluation. No suspicious request or harmful action appears.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.12,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is a plausible initial recruiting exchange. No clear scam indicators or harmful requests appear; the practical test is only mentioned, not provided.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.82,
+        "evidenceUsed": [
+          "Requests cloning and executing an unfamiliar repository",
+          "Requires npm install, potentially running untrusted dependencies",
+          "Unpaid practical test involving substantive code fixes before interview"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The compensation and role description are plausible, but asking the candidate to install dependencies and execute an unfamiliar repository is a significant security risk. The unpaid coding task also raises concern, though it is common in legitimate recruiting.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E028": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a conventional recruiting message requesting interest and a CV for a specified role. No clear fraud indicators or harmful requests appear, though legitimacy cannot be confirmed from the message alone.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a routine recruiter outreach for an onsite role, requesting interest and a CV. No payment, credential request, suspicious link, or risky action appears.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a standard recruiting exchange requesting interest and a resume for an onsite role. No suspicious requests, payment demands, credential requests, or unsafe actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E029": [
+      {
+        "time": "t0",
+        "scamProbability": 0.68,
+        "evidenceUsed": [
+          "Unsolicited PoC repository and document links",
+          "Hiring decision tied to completing project feedback",
+          "Generic, awkward recruiter phrasing"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The links and assessment may be legitimate recruiting steps, but the unsolicited external repository/document and vague wording create moderate fraud risk. No request to execute code, install software, or provide sensitive information appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      }
+    ]
+  },
+  {
+    "E030": [
+      {
+        "time": "t0",
+        "scamProbability": 0.12,
+        "evidenceUsed": [
+          "Unsolicited recruiting outreach",
+          "Web3/crypto projects mentioned"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a typical introductory recruiting message with no request for money, credentials, sensitive documents, or risky technical actions. The crypto/Web3 focus and unsolicited contact create modest uncertainty but little direct fraud evidence.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a standard initial recruiting exchange with no requests for money, credentials, sensitive documents, or risky technical actions. The crypto/Web3 focus adds some contextual risk, but there is no concrete fraud signal in the visible conversation.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.12,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains a generic recruiting outreach and candidate follow-ups requesting a discovery call. No suspicious requests, payment demands, credential requests, or risky technical actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Unsolicited LinkedIn outreach",
+          "Crypto/Web3 investment and DEX focus",
+          "Unusually broad $50–$100 hourly range",
+          "Vague MVP/team and compensation details"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains some generic, high-paying Web3 recruiting signals, but no request for money, credentials, code execution, or sensitive documents. The recruiter is requesting ordinary hiring information and a CV, so fraud risk appears low to moderate.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Crypto/Web3 recruiting context",
+          "Unusually broad project portfolio and high hourly range",
+          "Recruiter requests CV, availability, and salary expectations before scheduling"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is consistent with ordinary recruiting: a defined role, tech stack, team context, compensation range, and standard CV/availability questions. The Web3 focus and relatively high range add some uncertainty, but there are no requests for money, credentials, sensitive documents, or code execution.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t5",
+        "scamProbability": 0.2,
+        "evidenceUsed": [
+          "High cryptocurrency/Web3 focus",
+          "Unusually broad salary range",
+          "Awkward wording and grammatical errors"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation follows a plausible recruiting pattern: role details, technical stack, compensation, CV request, and a staged hiring process. The Web3 focus, broad pay range, and language issues create modest suspicion, but no request for money, credentials, sensitive documents, or unsafe code execution appears.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t6",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Web3/crypto recruiting context",
+          "Unusually broad $50–$100 hourly range",
+          "Awkward grammatical phrasing"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation shows a plausible recruiting process with a defined role, technology stack, compensation, and standard assessment/interview stages. Some crypto-sector risk, broad pay range, and poor wording create mild uncertainty, but there is no request for money, credentials, sensitive documents, or code execution.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t7",
+        "scamProbability": 0.38,
+        "evidenceUsed": [
+          "Unusually high hourly range for a brief LinkedIn recruiting exchange",
+          "Very short 2–3 hour deadline for a take-home assessment",
+          "External Google Docs assessment link without further verification"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The role and process are plausible, but the compressed assessment deadline and external document introduce moderate risk. No request to run code, install software, provide credentials, or make payments appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      }
+    ]
+  },
+  {
+    "E031": [
+      {
+        "time": "t0",
+        "scamProbability": 0.82,
+        "evidenceUsed": [
+          "Immediate employment offered after only reviewing qualifications",
+          "No interview or assessment mentioned",
+          "Unverified company and executive-board claim"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The unusually rapid job offer without any interview or hiring process is a strong fraud signal, though the message alone does not prove a scam.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.93,
+        "evidenceUsed": [
+          "Immediate job selection before any technical interview",
+          "Unsolicited executive-board approval claim",
+          "No interview or verification process described"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "Being selected for immediate employment without completing interviews is a strong recruitment-fraud signal. The candidate has only asked for clarification, with no harmful action requested.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.86,
+        "evidenceUsed": [
+          "Immediate employment offered before any interview",
+          "Claimed evaluation based only on public contributions and resume",
+          "Unsolicited high-seniority offer with unusually rapid process"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The offer is made immediately despite no technical interview, relying on vague claims of a senior-panel review. The compensation and benefits are plausible, but the highly accelerated hiring process is strongly suspicious.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.82,
+        "evidenceUsed": [
+          "Immediate employment offer before any interview",
+          "Claim that public contributions and resume alone satisfied senior technical evaluation",
+          "Unusually definitive hiring decision at an early stage"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The offer is highly suspicious because employment was granted immediately without interviews or a conventional hiring process. No harmful action has been requested yet.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.99,
+        "evidenceUsed": [
+          "Immediate job offer without interviews",
+          "Unsolicited company check to deposit",
+          "Instruction to purchase equipment through an approved supplier portal",
+          "High salary and rushed onboarding framing"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The offer bypasses normal interviews and requires depositing a provided check to buy equipment, a classic fake-check and possible payment-redirection scam pattern.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E032": [
+      {
+        "time": "t0",
+        "scamProbability": 0.28,
+        "evidenceUsed": [
+          "Cryptocurrency payment options (USDT/USDC)",
+          "Web3 rewards and airdrop project",
+          "Unsolicited remote recruiting outreach"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message contains some elevated-risk indicators, especially crypto compensation and a Web3 project, but it only proposes discussing the opportunity and requests no sensitive information or risky action.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      }
+    ]
+  },
+  {
+    "E033": [
+      {
+        "time": "t0",
+        "scamProbability": 0.82,
+        "evidenceUsed": [
+          "Vague confidential advisory offer with unusually attractive remote flexibility and benefits",
+          "Contradictory branding: claims partnership with Revolut but sender identifies as Northern Powergrid",
+          "Generic flattering language and undisclosed role specifics",
+          "External briefing document link referenced only as “HERE”"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The message has several strong phishing/recruitment-scam indicators, especially the unexplained mismatch between Revolut and Northern Powergrid and vague high-value claims. No direct request for money, credentials, or code execution appears.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E034": [
+      {
+        "time": "t0",
+        "scamProbability": 0.62,
+        "evidenceUsed": [
+          "Unsolicited vague pitch combining SocialFi, staking, AI, and gaming",
+          "No specific role, company identity, compensation, or verifiable hiring details",
+          "Promotional crypto-related language and unclear wording"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The outreach is vague and heavily promotional, with crypto/staking elements and no concrete recruiting details, creating meaningful fraud risk. However, no direct request for money, credentials, sensitive documents, or code execution appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.38,
+        "evidenceUsed": [
+          "Vague description combining social-fi, staking, AI, and gaming",
+          "No concrete company, role, compensation, or verifiable project details",
+          "Unusual wording and grammar"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The outreach is vague and crypto-related, with unclear product and role details, which creates moderate uncertainty. No harmful request or clear fraud attempt has appeared; the candidate only asked for more information.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Promises to boost a fallen token's price",
+          "Blockchain staking and multi-chain project with unclear specifics",
+          "Poor grammar and vague project/funding descriptions",
+          "Focus on token and game revival rather than a defined role"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains meaningful crypto-related scam signals, especially token-price promotion and vague claims about funding and development. However, no direct request for money, credentials, code execution, or sensitive documents has appeared; the recruiter only asks about experience and availability.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Vague blockchain, token-boosting, staking, and game claims",
+          "Unclear project identity, company details, and role scope",
+          "Poor grammar and unusually speculative crypto framing"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains strong crypto-recruiting red flags and little verifiable information, suggesting elevated fraud risk. However, no request for money, credentials, sensitive data, or execution of code appeared.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.66,
+        "evidenceUsed": [
+          "Unsolicited crypto/Web3 recruiting pitch",
+          "Focus on staking, token price, and boosting token value",
+          "Vague project description with poor grammar",
+          "Pressure to clarify that the work involves staking rather than ordinary software development"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains notable crypto-related scam signals and lacks concrete employer, product, role, or hiring-process details. However, no request for money, credentials, code execution, or other directly harmful action has appeared.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t5",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Unsolicited crypto/blockchain recruiting pitch",
+          "Promises to boost a declining token",
+          "Staking app and multi-chain token ecosystem",
+          "Vague, poorly written project and funding description",
+          "Recruiter dismisses the candidate’s concern rather than clarifying concrete role details"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The crypto-token and staking focus, vague claims, and unprofessional communication are suspicious, though no direct request for money, credentials, code execution, or other harmful action appears.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t6",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Blockchain staking and token-boosting focus",
+          "Vague project description with poor grammar",
+          "No project or token name, website, or verifiable details provided",
+          "Recruiter reframed the project after initial description"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction contains notable crypto-related and highly vague recruiting signals, including token price recovery/boosting and a lack of verifiable project information. However, no request for money, credentials, code execution, or other directly harmful action appears.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t7",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Crypto staking and token-boosting project",
+          "Vague, error-filled product description",
+          "Public project details limited to a CoinMarketCap link",
+          "Mention of reviving a fallen token and game ecosystem"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction has notable crypto-related scam indicators and lacks concrete company, role, or project information. However, no request for money, credentials, code execution, or other directly harmful action appears.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t8",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Crypto token and staking-app recruitment",
+          "Promises to boost a fallen token and redeploy its game",
+          "Vague project details and unclear role scope",
+          "Poorly written, evasive responses",
+          "Reliance on third-party links rather than a clear company or product site"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The crypto/staking focus, token-promotion language, vague project description, and limited verifiable company information create substantial fraud risk. No request to pay money, share credentials, or execute code appears in the conversation.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t9",
+        "scamProbability": 0.62,
+        "evidenceUsed": [
+          "Unsolicited crypto/blockchain recruiting pitch involving token price and staking",
+          "Vague, error-filled project description",
+          "Focus on boosting a token and reviving a previously declining game ecosystem",
+          "Limited verifiable company or role details; mainly third-party links"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The crypto staking and token-promotion context, vague description, and limited independently verifiable recruiting information create meaningful fraud risk. No request for money, credentials, code execution, or other harmful action appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t10",
+        "scamProbability": 0.58,
+        "evidenceUsed": [
+          "Blockchain staking and token-promotion focus",
+          "Vague, error-filled project description",
+          "Recruiter did not provide a clear company identity or hiring details",
+          "Reliance on public token and social links rather than concrete role information"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction has moderate fraud risk due to a vague crypto/staking opportunity, emphasis on boosting a token, and limited verifiable employer or role information. No request for money, credentials, sensitive documents, or code execution appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t11",
+        "scamProbability": 0.78,
+        "evidenceUsed": [
+          "Recruiting pitch centers on blockchain token staking and token-price boosting",
+          "Vague, error-filled project description with limited role or company details",
+          "Potentially inconsistent framing between LinkFi, staking app, and game ecosystem",
+          "No clear identity, company verification, or concrete hiring process provided"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction has notable scam indicators: vague and inconsistent crypto project descriptions, emphasis on boosting a token, and limited recruiter or company details. However, public project links and the candidate’s interest provide some context, so this is suspicious rather than certain fraud.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t12",
+        "scamProbability": 0.7,
+        "evidenceUsed": [
+          "Recruiter uses vague, error-filled descriptions of blockchain staking and token plans",
+          "Focus on boosting a declined token and expanding a game ecosystem",
+          "No clear company identity, role details, or formal hiring process provided"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation has notable crypto-recruiting risk signals and lacks concrete employer or role information, but no request for money, credentials, code execution, or other directly harmful action appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t13",
+        "scamProbability": 0.22,
+        "evidenceUsed": [
+          "Unclear, poorly written description of a blockchain staking project",
+          "Emphasis on boosting a declining token and reviving a game ecosystem",
+          "Recruiter provides limited direct company or role details"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation concerns recruiting for a blockchain/staking project with vague details and token-related objectives, which creates some risk. However, no request for money, credentials, code execution, or sensitive documents appears; public project links and scheduling are ordinary recruiting actions.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t14",
+        "scamProbability": 0.58,
+        "evidenceUsed": [
+          "Crypto staking and token-promotion project",
+          "Vague, poorly written project description",
+          "Recruiter does not clearly identify the hiring company or role",
+          "Conversation centers on reviving a declining token and game ecosystem"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The crypto/token focus, vague project details, and unclear employer identity create meaningful fraud risk. However, the recruiter shared public project links and has not requested money, credentials, code execution, or sensitive documents.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t15",
+        "scamProbability": 0.38,
+        "evidenceUsed": [
+          "Crypto/token staking project with plans to boost token value",
+          "Recruiter provides limited project details and unclear wording",
+          "No clear company identity or formal hiring process shown"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The crypto staking and token-promotion focus creates moderate fraud risk, especially with sparse company and role details. However, the visible exchange remains a conventional recruiting discussion with public links and call scheduling, and no request for money, credentials, code execution, or sensitive documents appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t16",
+        "scamProbability": 0.3,
+        "evidenceUsed": [
+          "Vague, poorly written project description",
+          "Token/staking and blockchain project carries financial-risk context",
+          "Recruiter provided limited role and company details"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation shows some uncertainty due to vague descriptions and a crypto token/staking focus, but no request for money, credentials, code execution, or other directly harmful action. Public project links and a planned call modestly reduce suspicion.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t17",
+        "scamProbability": 0.35,
+        "evidenceUsed": [
+          "Vague, poorly written project description",
+          "Crypto/token staking and blockchain focus",
+          "Recruiter provided little concrete role or company information"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction is somewhat suspicious due to vague language and a crypto staking/token project, but the recruiter shared publicly verifiable project links and the visible request is only for a Google Meet call. No payment, credential request, or code execution request appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t18",
+        "scamProbability": 0.38,
+        "evidenceUsed": [
+          "Vague, grammatically inconsistent description of a blockchain staking/game project",
+          "Token-linked recruitment and compensation discussion",
+          "Limited role, company, and employment details provided"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation has some risk signals due to vague blockchain/token-related recruiting and sparse organizational details, but it includes identifiable public project links, a Calendly scheduling flow, and a Google Meet call. No request for money, credentials, sensitive documents, or code execution appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t19",
+        "scamProbability": 0.42,
+        "evidenceUsed": [
+          "Vague, poorly written description of a blockchain/token project",
+          "Emphasis on boosting a declining token and staking app",
+          "Recruiter did not clearly identify the hiring company or role"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains some scam-adjacent signals: vague project details, cryptocurrency/token promotion, and unclear employer information. However, it also includes a publicly identifiable project, a video call, and ordinary compensation discussion, with no request for money, credentials, sensitive documents, or code execution.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t20",
+        "scamProbability": 0.3,
+        "evidenceUsed": [
+          "Crypto/token staking project with token-promotion language",
+          "Unclear, grammatically inconsistent description of the role and project",
+          "Compensation discussed before a detailed role or hiring process"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The interaction contains some crypto-recruiting risk signals and limited role clarity, but the recruiter provided public project links and only requested a CV or prior-product information. No payment, credentials, code execution, or other directly harmful action was requested.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t21",
+        "scamProbability": 0.42,
+        "evidenceUsed": [
+          "Crypto/token and staking-app focus",
+          "Unclear project explanation and poor grammar",
+          "Salary/bonus discussed before a formal interview",
+          "Recruiter requested a CV after limited verification"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The crypto and token-promotion context, vague description, and informal early compensation discussion create moderate fraud risk. However, the recruiter provided public project links, used a Google Meet call, and only requested a CV, with no payment, credential, or code-execution request.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t22",
+        "scamProbability": 0.3,
+        "evidenceUsed": [
+          "Crypto/token and staking-app focus",
+          "Vague, poorly written project and role description",
+          "Compensation discussed before clear role details or formal process"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains some crypto-recruiting risk signals and limited professionalism, but no request for money, credentials, code execution, or other directly harmful action. The recruiter shared a publicly identifiable project and requested a CV, so fraud evidence is limited.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t23",
+        "scamProbability": 0.28,
+        "evidenceUsed": [
+          "Vague, grammatically inconsistent project description",
+          "Crypto/token staking and token-price promotion focus",
+          "Recruiter provides little concrete company or role information",
+          "Very high stated compensation with minimal vetting"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The crypto/staking context, vague communication, and unusually high compensation are suspicious, but the recruiter shared public project links and only requested ordinary recruiting materials. No harmful action or financial request appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t24",
+        "scamProbability": 0.3,
+        "evidenceUsed": [
+          "Cryptocurrency staking/token project with vague, poorly written explanation",
+          "Unclear recruiter identity and limited role/company details",
+          "Compensation discussed before a formal interview or job specification"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation includes some crypto-related and vague recruiting signals, but no request for money, credentials, code execution, or sensitive documents. The recruiter shared a public token/project link and only requested a CV or project information, so fraud evidence is limited.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t25",
+        "scamProbability": 0.42,
+        "evidenceUsed": [
+          "Crypto/token staking and blockchain project with unclear role scope",
+          "Unusually high compensation mentioned early ($5k/month plus bonus)",
+          "Home challenge provided via an external Google Docs link",
+          "Recruiter identity and company details are not independently established"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The interaction has some scam indicators, particularly the crypto-focused project, vague explanations, high early compensation, and an external take-home challenge. However, the recruiter shared public project links, scheduled a Google Meet, and requested only a CV, portfolio, and challenge so far; no harmful action or payment was requested.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t26",
+        "scamProbability": 0.3,
+        "evidenceUsed": [
+          "Crypto/token and staking-focused project",
+          "Vague, error-filled project description",
+          "Unverified home challenge link"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The interaction has some scam-associated signals, particularly the crypto staking/token focus and vague communication, but it also includes identifiable public project links, standard scheduling, compensation discussion, and a CV request. The home challenge is context-dependent rather than clearly harmful.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t27",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Crypto/token staking project with promised token boosting",
+          "Unsolicited senior-role outreach with vague, ungrammatical project description",
+          "Very high stated compensation ($5k/month plus bonus)",
+          "Home challenge requested through an external Google document",
+          "Recruiter pressures candidate for challenge results"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The crypto staking and token-promotion focus, vague communication, unusually high compensation, and pressure around an external home challenge create substantial fraud risk. No request to execute code, pay money, or provide credentials appears, so the highest-risk action remains a context-dependent project/document review.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t28",
+        "scamProbability": 0.62,
+        "evidenceUsed": [
+          "Crypto/token and staking-focused project with token-promotion language",
+          "Unclear recruiter identity and inconsistent communication",
+          "Unpaid home challenge requested through an external document",
+          "Pressure asking when the challenge result will be shared"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The crypto project and vague claims create meaningful fraud risk, and the recruiter requests an unpaid take-home task. However, public project links, salary discussion, scheduling, and ordinary CV/portfolio requests provide some legitimacy signals. No request to execute code, install software, share credentials, or send money appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t29",
+        "scamProbability": 0.68,
+        "evidenceUsed": [
+          "Crypto/token staking project with plans to boost token value",
+          "Unclear project and recruiter identity",
+          "Poorly written, vague job description",
+          "External take-home challenge via Google Docs"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The interaction has notable crypto-recruiting and identity-clarity risks, plus a vague external assessment, but it also includes public project links, scheduling, compensation discussion, and no request to pay money, share credentials, or execute code. Fraud risk is moderately high but not conclusive.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t30",
+        "scamProbability": 0.42,
+        "evidenceUsed": [
+          "Vague, error-filled description of a blockchain staking/token project",
+          "Recruiter identity and relationship to the project are unclear",
+          "Different Calendly name/domain context creates identity ambiguity",
+          "Unverified home challenge link requested before clear company verification"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The conversation contains some suspicious ambiguity around the recruiter, project ownership, and scheduling identity, plus a blockchain/token-related opportunity. However, no request for money, credentials, code execution, or other directly harmful action appears. The home challenge and document review are context-dependent, so fraud risk is uncertain but moderate.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t31",
+        "scamProbability": 0.58,
+        "evidenceUsed": [
+          "Vague, poorly written description of a crypto staking/token project",
+          "Compensation and bonus presented before a clear interview or role definition",
+          "Recruiter identity appears inconsistent across Calendly links",
+          "Unsolicited home challenge requested via Google Docs"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The crypto/token focus, unclear project and role details, inconsistent recruiter identities, and early take-home challenge create moderate fraud risk. However, the interaction includes public project links, a stated compensation package, and ordinary recruiting steps, so the evidence is not conclusive.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t32",
+        "scamProbability": 0.42,
+        "evidenceUsed": [
+          "Vague, error-filled project description",
+          "Crypto/token and staking focus",
+          "Inconsistent recruiter and scheduling identities",
+          "Homework challenge requested before clear company verification"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The crypto project and inconsistent identities create meaningful suspicion, especially with a take-home challenge and unclear employer details. However, the recruiter shared public project links, arranged a call, and requested ordinary recruiting materials; no request to run code, pay money, or provide credentials appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t33",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Vague, poorly written project description involving token price boosting and staking",
+          "Recruiter identity and organizational details remain unclear",
+          "Scheduling link uses a different person’s name",
+          "Requested an unpaid home challenge before clear company verification",
+          "Technical manager appears employed elsewhere and is described as part-time"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The crypto/token context, unclear identities, inconsistent recruiting details, and unpaid challenge create substantial fraud risk. No request to run code, install software, provide credentials, or send money appears, so the highest-risk action is reviewing a project challenge.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t34",
+        "scamProbability": 0.62,
+        "evidenceUsed": [
+          "Vague, poorly written blockchain/token project description",
+          "Recruiter initially obscures the project and role details",
+          "Unclear recruiter identity and mismatch with Calendly contact",
+          "Request for an unpaid home challenge before clear company verification",
+          "Compensation claim lacks supporting employment or company details"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The interaction has meaningful scam indicators: vague crypto-related claims, unclear identities, and an unsolicited take-home challenge. Public project links and a stated salary provide some potentially legitimate context, but do not sufficiently verify the recruiter or opportunity.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t35",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Crypto/token staking project with token-promotion goals",
+          "Unclear recruiter identity and inconsistent Calendly contact",
+          "Unpaid take-home assignment requested",
+          "Recruiter pressured candidate for assignment results",
+          "Compensation promise made before clear hiring process"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The crypto staking context, vague project details, identity inconsistencies, and pressure around an unpaid assignment are suspicious. However, public project links, a scheduled call, and a conventional coding task provide some legitimacy signals. The candidate has not been asked to execute unknown code, pay money, or share credentials.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t36",
+        "scamProbability": 0.76,
+        "evidenceUsed": [
+          "Crypto/token project with plans to boost token price",
+          "Vague, poorly written project and hiring details",
+          "Recruiter identity and technical manager affiliation appear unclear",
+          "Unpaid home challenge tied to an existing repository",
+          "Request to implement features in the existing repo"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The crypto staking context, vague communication, unclear identities, and request for unpaid implementation in an existing repository are suspicious. However, no explicit request to run code, install dependencies, provide credentials, or send money appears.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t37",
+        "scamProbability": 0.72,
+        "evidenceUsed": [
+          "Crypto/token staking project with compensation tied to bonus",
+          "Recruiter provides limited identity and project transparency",
+          "Unclear technical manager affiliation",
+          "Pressure to complete a home challenge using an existing repository",
+          "Recruiter requests implementation in the existing repo for testing"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The crypto staking context, vague recruiter identity, inconsistent affiliations, and request to modify an existing repository create meaningful fraud risk. However, the conversation includes public project links, a plausible interview process, and no explicit request to execute code, install software, share credentials, or send money.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t38",
+        "scamProbability": 0.86,
+        "evidenceUsed": [
+          "Crypto/token and staking project with vague, ungrammatical description",
+          "Unclear recruiter and technical manager identities",
+          "Existing repository required despite candidate offering a fresh implementation",
+          "Insistence that using the repository is mandatory without explaining why",
+          "Unpaid home challenge involving an existing codebase"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The crypto context, vague communication, identity inconsistencies, and insistence on using an existing repository create substantial fraud risk. However, the conversation does not explicitly request executing code, installing dependencies, sharing credentials, or making payments.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t39",
+        "scamProbability": 0.74,
+        "evidenceUsed": [
+          "Crypto/token and staking project with vague, poorly written description",
+          "Recruiter insists on using an existing Bitbucket repository despite a simpler fresh implementation",
+          "Unclear team identity and part-time manager affiliation",
+          "Unexplained requirement that repository use is a mandatory hiring step"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The crypto-focused opportunity has vague details and inconsistent communication. The mandatory existing-repository requirement is suspicious, but the conversation does not explicitly request executing code, installing dependencies, or sharing credentials.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E035": [
+      {
+        "time": "t0",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "Only an initial recruiting outreach is visible. It contains no concrete scam indicators or requests for sensitive information, money, or risky actions.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a brief, ordinary recruiting exchange with no suspicious requests or high-risk actions. The probability is low, though legitimacy cannot be confirmed from the limited conversation.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.99,
+        "evidenceUsed": [
+          "Unofficial-looking domain unrelated to kraken.com",
+          "Password-protected ZIP attachment",
+          "Request to extract and run an unknown viewer",
+          "Premature NDA requirement before role details"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The recruiter uses a suspicious external domain and asks the candidate to extract and run unknown software from a password-protected archive, a strong malware/scam indicator. The request also precedes sharing basic role information.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E036": [
+      {
+        "time": "t0",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a routine recruiting acknowledgment with no suspicious requests or risky actions.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is only an initial recruiting exchange with no suspicious requests or risky actions.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.62,
+        "evidenceUsed": [
+          "Requires running a provided diagnostic client during a coding test",
+          "Unverified executable software from the recruiter"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The role and technical context are plausible, but requiring the candidate to run an unverified diagnostic client creates a significant security risk and is a common scam vector.",
+        "policyAResult": "HOLD",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.93,
+        "evidenceUsed": [
+          "Diagnostic client download was flagged by Windows SmartScreen and antivirus",
+          "Recruiter requires running a provided client during the assessment"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The security warnings on a required downloadable diagnostic client are strong indicators of potential malware or unsafe software, especially in a recruiting context.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.99,
+        "evidenceUsed": [
+          "Antivirus and SmartScreen flagged the test client",
+          "Requests disabling Windows Real-Time Protection",
+          "Requests whitelisting a folder in Defender",
+          "Requests running an unknown client as Administrator"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The recruiter instructs the candidate to bypass security protections and run a flagged executable with administrator privileges, a strong indicator of malicious or fraudulent activity.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E037": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "A brief, plausible recruiting outreach with role-relevant personalization. No suspicious requests or harmful actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.01,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a brief, technically specific recruiting exchange with no requests for sensitive information, payments, repository access, or code execution. There is no visible evidence of fraud.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is a brief, technically specific recruiting exchange with no requests for sensitive information, payments, external links, or code execution. The limited context does not establish legitimacy, but there are no visible scam indicators.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is limited to technical discussion about AMM routing and gas optimization, with no suspicious requests, links, credentials, payments, or risky actions.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation is a plausible, technically specific recruiting exchange with no requests for credentials, money, code execution, or other risky actions. Fraud cannot be ruled out, but there are no visible scam indicators.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t5",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The conversation is technically specific and contains no clear fraud indicators. The candidate asks how to review the SDK, which is a context-dependent recruiting action but not inherently harmful.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t6",
+        "scamProbability": 0.88,
+        "evidenceUsed": [
+          "Requests installing an unfamiliar npm package",
+          "Asks candidate to run and test unverified code",
+          "Package is presented as an alpha candidate from an unverified recruiter"
+        ],
+        "harmCategory": "harmful",
+        "reasoningSummary": "The technical recruiting discussion is plausible, but asking the candidate to install and run an unfamiliar alpha npm package creates substantial malware and supply-chain risk.",
+        "policyAResult": "FLAG",
+        "policyBResult": "FLAG"
+      }
+    ]
+  },
+  {
+    "E038": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a conventional recruiting outreach requesting a CV and phone number for a stated role. No clear fraud indicators or harmful requests appear, though legitimacy cannot be confirmed from this message alone.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a conventional recruiter outreach for a frontend role, requesting a CV and contact number. No clear scam indicators or harmful requests appear, though the employer and role details are vague.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a conventional recruiting exchange involving a CV and standard screening questions about compensation, nationality, availability, location, relocation, and technical experience. No clear fraudulent request or harmful action appears.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a conventional recruiting exchange: the recruiter requests a CV, contact details, compensation, location, availability, relocation interest, and skills. No clear scam indicators or harmful requests appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E039": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a standard recruiting message requesting role-relevant compensation and notice-period details. No suspicious or harmful requests are visible.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a routine recruiting exchange: a role description and standard compensation/notice-period questions, followed by a request for interview details. No suspicious or harmful requests appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange describes a standard senior engineering role, gives a plausible interview process, and requests a resume via a company-domain email. No suspicious or harmful request is visible.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E040": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a generic but ordinary recruiting outreach with no requests for sensitive information, payments, software execution, or other harmful actions. The limited detail creates some uncertainty but little direct evidence of fraud.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a brief, generic recruiting exchange with no requests for money, credentials, sensitive documents, links, or code execution. The limited detail creates some uncertainty, but there are no concrete fraud indicators.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains a generic recruiting outreach and a request for a resume, which are ordinary hiring steps. The blockchain/real-estate description is not inherently suspicious, though there is limited verification information.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation contains a routine recruiting outreach and a request for a resume. The recruiter provides a specific company and role, while the candidate only asks about the hiring process and whether an MVP is involved. No clear scam indicators or harmful requests appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.38,
+        "evidenceUsed": [
+          "Generic praise and broad full-time/part-time recruiting outreach",
+          "Crypto/Web3 real-estate tokenization context",
+          "Request to review an MVP and architecture before an initial discussion"
+        ],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The outreach is somewhat generic and involves a crypto/Web3 platform, which carries elevated recruiting-scam risk. However, the stated process is coherent and the requested MVP review is not inherently harmful; no request to run code, install software, provide money, or share sensitive credentials appears.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      },
+      {
+        "time": "t5",
+        "scamProbability": 0.18,
+        "evidenceUsed": [],
+        "harmCategory": "context_dependent",
+        "reasoningSummary": "The conversation describes a plausible staged hiring process and requests a resume and review of an MVP/product architecture. No clear scam indicators or harmful execution request appear, though the MVP review is context-dependent.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E041": [
+      {
+        "time": "t0",
+        "scamProbability": 0.18,
+        "evidenceUsed": [
+          "Highly promotional, grandiose blockchain claims",
+          "Very high compensation and token package",
+          "Unsolicited recruiting outreach with limited verifiable role details",
+          "External Calendly booking link"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message is promotional and provides few concrete job details, but it does not request money, credentials, sensitive documents, or code execution. The recruiter identity and claims would need independent verification, so fraud risk is possible but not strongly established.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E042": [
+      {
+        "time": "t0",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a routine initial recruiting outreach describing a role; no suspicious requests or harmful actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t1",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "This is a brief, conventional recruiting exchange with no requests for money, credentials, sensitive documents, or risky actions. The limited context does not establish legitimacy, but there are no visible fraud indicators.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t2",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange contains standard recruiting details: a defined role, remote arrangement, compensation range, and a request for public GitHub or open-source links before screening. No suspicious or harmful request is visible.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t3",
+        "scamProbability": 0.08,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The exchange contains ordinary recruiting activity: a role description, compensation and remote-work details, and a request to review public GitHub work. No suspicious requests or harmful actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      },
+      {
+        "time": "t4",
+        "scamProbability": 0.03,
+        "evidenceUsed": [],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The conversation shows ordinary recruiting behavior: a plausible role, compensation details, remote scope, and a request to review public GitHub work. No suspicious requests, credential demands, payments, or unsafe actions appear.",
+        "policyAResult": "SAFE",
+        "policyBResult": "SAFE"
+      }
+    ]
+  },
+  {
+    "E043": [
+      {
+        "time": "t0",
+        "scamProbability": 0.38,
+        "evidenceUsed": [
+          "Generic “elite Client” wording and grammatical errors",
+          "Unsolicited Web3 recruiting pitch",
+          "Requests resume and desired salary before further verification",
+          "Phone number has a U.S. area code despite a Sweden-based role"
+        ],
+        "harmCategory": "non_harmful",
+        "reasoningSummary": "The message has some generic and inconsistent recruiting details, but it only requests a resume and salary expectations and contains no clear payment, credential, or unsafe-action demand.",
+        "policyAResult": "HOLD",
+        "policyBResult": "HOLD"
+      }
+    ]
+  }
+]

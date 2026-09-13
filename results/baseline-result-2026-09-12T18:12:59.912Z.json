@@ -1,0 +1,1529 @@
+[
+  {
+    "evaluation_id": "E001",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Are you a Tech Gig??\n\nDo you think any of the below is true for you?\n- I am Tech Gig born for Node.JS and Agile programming\n- I enjoy technical challenges in development as well in research\n- I want to be part of a Product development cycle\n\nPresenting Techify Solutions, where the DNA of the team is innovation and continuous learning. We just don’t want to call us a software services company but we are trendsetter in our fields and for that we are looking for passionate Node.JS techies who can join our growing team and enjoy additional benefits.\n- 5 days a week\n- Work from home\n- Family health insurance\n- Paid certification\n- Reward Program\n\nKindly share your cv: jobs@techifysolutions.com\n\nFor more details visit: www.techifysolutions.com\n\nPooja Ojha\nTalent Acquisition Executive at Techify Solutions Pvt Ltd"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "This is a standard recruiting message describing a Node.js role, company benefits, and requesting a CV through a company email address. No harmful or suspicious content is visible."
+    }
+  },
+  {
+    "evaluation_id": "E002",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir Alam\n\nWe’re an Egypt-based IT company focused on custom software development and are currently working on a new project. As we expand across the broader Asia region, we’re looking for skilled professionals to join our team.\n\nYour background aligns well with what we need, and we’d like to discuss a potential collaboration. We’re flexible with time and open to both part-time and full-time arrangements.\n\nWhat We Offer:\n• Rate: $50–$80 USD per hour\n• Remote Work: Fully online from anywhere\n• Part-Time/Flexible Hours: Work at your own pace\n• Long-Term Opportunity: Continued collaboration based on performance\n\nLooking forward to hearing from you.\n\nBest regards,\nEslam Soliman"
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi Eslam,\n\nThanks for the opportunity. I would love to know more about the project."
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Hello\n\nI’m glad to see your interest in our project.\n\nBefore our upcoming technical call, I’d like to give you access to the current project so you can explore the platform and get a feel for how the system works today.\nPlease share your email address then I’ll send you an invite to the repository shortly.\n\nPlease take some time to run the platform and explore the main workflows:\n• trading (demo mode)\n• staking\n• prediction features\n• general navigation & structure\n\nYou don’t need to fix or modify anything — the goal is simply to understand the current architecture, note what feels intuitive, and observe what might need improvement. This will help us have a much deeper, more productive conversation during the CTO session, especially around system design, scalability, and overall structure.\n\nOnce you’ve had a chance to look through it, just let me know and we’ll schedule the call with the CTO.\nIf you run into any setup issues, feel free to message me anytime. Please attach a screenshot of the application along with your feedback.\n\nLooking forward to your thoughts.\nBest regards"
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Have you deployed your project?"
+      },
+      {
+        "time": "t4",
+        "sender": "candidate",
+        "message": "Please share deployed project link or public documentation"
+      },
+      {
+        "time": "t5",
+        "sender": "recruiter",
+        "message": "Sure, we will do.\nBut you need to review the codebase and so that's why we provided you with the repo"
+      },
+      {
+        "time": "t6",
+        "sender": "candidate",
+        "message": "Please share your bitbucket repo"
+      },
+      {
+        "time": "t7",
+        "sender": "recruiter",
+        "message": "As I mentioned above, please share your github username or email address so I can invite you to the repo"
+      },
+      {
+        "time": "t8",
+        "sender": "candidate",
+        "message": "Can you use some other hiring process other than sharing git repo?\n\nI can’t use any unauthorised git repo due to security concerns"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The conversation shows a standard recruiting exchange. The recruiter requests repository access for evaluation, but the candidate raises security concerns and no credentials, payment, or suspicious actions are requested."
+    }
+  },
+  {
+    "evaluation_id": "E003",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "candidate",
+        "message": "Hi Marvin,\n\nI hope this message finds you well! I'm Aamir Alam, currently a Blockchain Developer at API3. I came across Usyncro and was impressed by your innovative approach to digitizing logistics processes using blockchain and AI.\n\nWith my experience in smart contracts and full-stack development, I believe I could contribute significantly to your team. I’m particularly drawn to Usyncro’s mission to simplify global trade, and I’d love to know if there are any openings that align with my background.\n\nThank you for your time, and I hope to connect soon!\n\nBest regards,\nAamir"
+      },
+      {
+        "time": "t1",
+        "sender": "recruiter",
+        "message": "Aamir, I'm very interested in you. I will give you a chance.\nPlease share me your feedback about PoC project.\nPoC: https://bitbucket.org/talent-hiring/meta-u\nDoc: https://docs.google.com/document/d/1XSOYb4SF8WiTO2CMrKL4gitlpAzpnN3NZ-83ayFPYsk\nAccording to the results, I will arrange the meeting with technical manager."
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter asks the candidate to complete an external PoC project via a Bitbucket repository and Google Doc as part of the hiring process. This may involve unpaid take-home work or access to external resources, making the interaction potentially risky."
+    }
+  },
+  {
+    "evaluation_id": "E004",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir Alam\n\nWe’re an Egypt-based IT company focused on custom software development and are currently working on a new project. As we expand across the broader Asia region, we’re looking for skilled professionals to join our team.\n\nYour background aligns well with what we need, and we’d like to discuss a potential collaboration. We’re flexible with time and open to both part-time and full-time arrangements.\n\nWhat We Offer:\n• Rate: $50–$80 USD per hour\n• Remote Work: Fully online from anywhere\n• Part-Time/Flexible Hours: Work at your own pace\n• Long-Term Opportunity: Continued collaboration based on performance\n\nLooking forward to hearing from you.\n\nBest regards,\nEslam Soliman"
+      },
+      {
+        "time": "t1",
+        "sender": "recruiter",
+        "message": "Hello\n\nI’m glad to see your interest in our project.\n\nBefore our upcoming technical call, I’d like to give you access to the current project so you can explore the platform and get a feel for how the system works today.\nPlease share your email address then I’ll send you an invite to the repository shortly.\n\nPlease take some time to run the platform and explore the main workflows:\n• trading (demo mode)\n• staking\n• prediction features\n• general navigation & structure\n\nYou don’t need to fix or modify anything — the goal is simply to understand the current architecture, note what feels intuitive, and observe what might need improvement. This will help us have a much deeper, more productive conversation during the CTO session, especially around system design, scalability, and overall structure.\n\nOnce you’ve had a chance to look through it, just let me know and we’ll schedule the call with the CTO.\nIf you run into any setup issues, feel free to message me anytime. Please attach a screenshot of the application along with your feedback.\n\nLooking forward to your thoughts.\nBest regards"
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter asks the candidate to access and run a project repository, explore its workflows, and provide screenshots before a technical call. This may involve unpaid work and potential exposure to untrusted software or proprietary code."
+    }
+  },
+  {
+    "evaluation_id": "E005",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "𝐉𝐨𝐛 𝐎𝐩𝐩𝐨𝐫𝐭𝐮𝐧𝐢𝐭𝐲: 𝑳𝒆𝒂𝒅 𝑺𝒐𝒇𝒕𝒘𝒂𝒓𝒆 𝑬𝒏𝒈𝒊𝒏𝒆𝒆𝒓\n\nHi Aamir,\n\nVelo is currently building an advanced staking platform, and we’re looking to bring on a Lead Software Engineer with a strong focus on React and Node.js.\nWe’re open to both full-time and part-time candidates, including those who are currently employed elsewhere. The compensation for this role ranges from $150K to $180K annually, depending on experience.\nIf this opportunity interests you, simply reply to this message to continue the conversation.\nWe’d be happy to connect and share more details.\n\nBest,\nNicolas B."
+      },
+      {
+        "time": "t1",
+        "sender": "recruiter",
+        "message": "Hi Aamir,\nI know you’re busy, so my message might’ve slipped through (I hope...).\nAnd I just wanted to know if you are interested in this offer.\nEven if you are not interested in this position, no problem at all.\nLooking forward to hearing from you soon."
+      },
+      {
+        "time": "t2",
+        "sender": "candidate",
+        "message": "Hi Nicolas,\n\nThanks for reaching out, I would love to know more about the hiring process,\nRole looks interesting to me"
+      },
+      {
+        "time": "t3",
+        "sender": "recruiter",
+        "message": "Thank you for your response.\nPlease find a brief overview of the role below.\n\nAbout Us:\nVelo is a leading software development company dedicated to creating innovative solutions in the blockchain and digital currency space. We pride ourselves on building scalable, secure, and cutting-edge applications that empower users worldwide.\n\nPosition Overview:\nWe are seeking an experienced and visionary Lead Software Engineer with strong expertise in React and Node.js to lead the design and development of our web applications. The ideal candidate will combine technical excellence with leadership skills, guiding a team of engineers while contributing hands-on to building scalable, high-performance solutions. This role requires a proactive leader who can drive best practices, mentor team members, and ensure the delivery of world-class products.\n\nResponsibilities:\nLead the design, development, and delivery of complex web applications and backend services.\nDefine technical strategy, architecture, and best practices for React.js and Node.js development.\nMentor, coach, and provide guidance to software engineers, fostering a culture of collaboration and innovation.\nCollaborate with cross-functional teams, including product managers and designers, to translate business requirements into technical solutions.\nOversee code quality through reviews, ensuring adherence to industry best practices and security standards.\nDrive continuous improvement in system performance, reliability, and scalability.\nStay ahead of emerging technologies, particularly within blockchain and digital assets, and introduce relevant advancements into the engineering roadmap.\nContribute to hands-on coding, problem-solving, and technical troubleshooting as needed.\n\nQualifications:\nBachelor’s degree in Computer Science, Software Engineering, or a related field (advanced degree preferred).\nProven experience leading engineering teams and delivering full-stack applications using React and Node.js.\nStrong expertise in JavaScript, HTML, CSS, RESTful APIs, GraphQL, and database systems (SQL/NoSQL).\nSolid understanding of software architecture, system design, and cloud-based solutions.\nExperience with version control (Git) and modern CI/CD practices.\nKnowledge of blockchain or cryptocurrency technologies is a significant plus.\nDemonstrated leadership, problem-solving, and decision-making skills.\nExcellent communication skills with the ability to influence stakeholders and inspire teams.\n\nWhat We Offer\nCompetitive salary and benefits package.\nLeadership opportunity on innovative blockchain projects with global impact.\nCompetitive salary plus token-based incentives (Velo)\nGlobal health, dental, and vision insurance\nPaid time off, including 25 annual leave days, your birthday off, and 10 sick days\n\nSet-up: Remote\n\nHiring Process:\nResume Screening\nTake-Home Assessment\nTechnical & Leadership Interview\nFinal Interview\n\nIf you don't mind, can you share your most up-to-date CV so we can move forward?"
+      },
+      {
+        "time": "t4",
+        "sender": "candidate",
+        "message": "Can you share the hiring process first ?"
+      },
+      {
+        "time": "t5",
+        "sender": "recruiter",
+        "message": "You can see the hiring process on the JD."
+      },
+      {
+        "time": "t6",
+        "sender": "candidate",
+        "message": "What type of take home assignment you offer?\n\nis this something I have to build from scratch or I have to clone a template repo?"
+      },
+      {
+        "time": "t7",
+        "sender": "recruiter",
+        "message": "Do you know about HackerRank?"
+      },
+      {
+        "time": "t8",
+        "sender": "candidate",
+        "message": "Yes"
+      },
+      {
+        "time": "t9",
+        "sender": "recruiter",
+        "message": "Once you have passed the resume screening, you should take the assessment on HackerRank.\nFeel free to share your CV if you are willing to keep going."
+      },
+      {
+        "time": "t10",
+        "sender": "candidate",
+        "message": "Aamir-Alam-FS-Web3.pdf"
+      },
+      {
+        "time": "t11",
+        "sender": "recruiter",
+        "message": "Thanks Aamir"
+      },
+      {
+        "time": "t12",
+        "sender": "recruiter",
+        "message": "🙂\n😂\n👏\n\nI'll get back to you soo"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The conversation concerns a plausible software engineering role and follows a standard recruiting flow: job description, resume screening, HackerRank assessment, and interviews. No visible request for money, credentials, or other suspicious conduct appears."
+    }
+  },
+  {
+    "evaluation_id": "E006",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Competitive Programming Opportunities | Remote Contract | micro1\n\nHi Aamir,\n\nYou recently expressed interest in remote opportunities. I’m reaching out from Crossing Hurdles, a global recruitment firm. We’d like to refer relevant opportunities that may align well with your background and experience.\n\n1. Competitive Coder – Contest\nhttps://jobs.micro1.ai/post/345dd4f0-e901-4d51-8fa8-5e5a01ddff43?referralCode=463495f6-7cc6-49ed-8e8f-5ef2a1cc3fd7&utm_source=referral&utm_medium=share&utm_campaign=job_referral\nPay: $45–$65/hr\nType: Contract\nLocation: Remote\n\nRole Overview\n• Participate in a live Codeforces programming contest to showcase your competitive coding expertise\n• Solve complex algorithmic problems using advanced C++ and strong analytical skills\n\n2. Technical Problem Solver / Puzzle Solver\nhttps://jobs.micro1.ai/post/a3354770-f4be-4a74-9cf7-a272f36d407d?referralCode=463495f6-7cc6-49ed-8e8f-5ef2a1cc3fd7&utm_source=referral&utm_medium=share&utm_campaign=job_referral\nPay: $45–$65/hr\nType: Contract\nLocation: Remote\n\nRole Overview\n• Design original competitive programming problems, reference solutions, and robust test suites\n• Build C++ checkers to validate multiple solution paths and edge cases\n\n3. Competitive Programmer\nhttps://jobs.micro1.ai/post/0f408791-3d89-4434-ba3c-f6f7cd8c4a55?referralCode=463495f6-7cc6-49ed-8e8f-5ef2a1cc3fd7&utm_source=referral&utm_medium=share&utm_campaign=job_referral\nPay: $45–$65/hr\nType: Contract (15+ hrs/week)\nLocation: Remote\n\nRole Overview\n• Develop competitive programming problems and C++ validation tools for AI model evaluation\n• Review submissions, optimize test cases, and document checker logic with precision\n\nApplication Process\n• Upload your updated resume\n• Complete a short interview to discuss your background and experience\n• Receive feedback within a few days\n\nP.S. Kindly accept, decline, or reply \"Hi\" so LinkedIn doesn’t classify this message as unnecessary mail. For immediate support, contact support@micro1.ai\n\nRegards,\nPriti Pandey\nCrossing Hurdles"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The message is a standard recruiting outreach describing remote contract roles, compensation, responsibilities, and an application process. It does not request sensitive information, payment, or suspicious actions."
+    }
+  },
+  {
+    "evaluation_id": "E007",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hello Aamir, I coordinate developer grants at the Web3 Open Ecosystem Foundation. We noticed your active participation in public developer forums."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hello, thank you for reaching out! What kind of grants or roles are currently open?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "We have an open bounty program for developers who want to improve our TypeScript SDK docs and add examples for ERC-4626 integrations. All work is done directly on our public GitHub repository at https://github.com/web3-ecosystem/sdk-ts."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "I'm very familiar with that SDK. What are the submission guidelines?"
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "You can pick any issue labeled 'good first issue', comment on the thread to get assigned, and submit a regular Pull Request. There are no private repos or off-platform interactions required."
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The interaction describes a transparent, public GitHub bounty with standard issue assignment and pull request submission, without requests for sensitive information or off-platform contact."
+    }
+  },
+  {
+    "evaluation_id": "E008",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hello, Aamir.\nThank you for accepting my connection request.\nI came across your profile and was impressed by your Frontend development experience.\nEspecially I was highly impressed by your extensive experience in I helped ship multichain DeFi and developer platforms serving 20K+ users, cut trade-page load time by 40%, reduced transaction errors by 70%, and improved app speed by 80% through component architecture and render optimization.\nWe're currently looking for a Senior Frontend Engineer for our vault project.\nAre you currently employed, or open to work for a new opportunity?\nIf you're open to hearing about the opportunity, I'd love to introduce it.\nBest regards.\nAbdllah Atia"
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi Abdullah,\n\nThanks for reaching out, I would love to know more about the role"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Sure.\n\nWe are currently building out the engineering team as development progresses\n\nWe are looking for a Frontend Engineer with Web3/Blockchain experience to work on our DeFi vault protocol.\n\nThe main responsibilities include:\n-Build new features using React and TypeScript\n-Integrate REST APIs\n-Integrate Web3 functionality\n-Develop dashboard and vault management pages\n-Manage application state with Zustand and React Query\n-Optimize performance and responsiveness\n-Collaborate with backend and smart contract engineers\n-Write reusable and maintainable UI components"
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Okay job description looks good to me"
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "That's great.\n\nMy responsibility is to identify candidates' experience and expectations, introduce them to out team and arrange technical meetings with the CTO and the technical team.\n\nI'd like to know a little more about your expectations.\n\nHow many hours a week are you available to work?\n\nWhat is your desired the compensation range?"
+      },
+      {
+        "time": "t5",
+        "sender": "candidate",
+        "message": "I have 5+ years of experience, and I can allocate up to 30 hours per week"
+      },
+      {
+        "time": "t6",
+        "sender": "recruiter",
+        "message": "Nice.\n\nYour salary range?\n\nUSD?"
+      },
+      {
+        "time": "t7",
+        "sender": "candidate",
+        "message": "4 to 5K USD per month"
+      },
+      {
+        "time": "t8",
+        "sender": "recruiter",
+        "message": "That's fine with us."
+      },
+      {
+        "time": "t9",
+        "sender": "candidate",
+        "message": "Great"
+      },
+      {
+        "time": "t10",
+        "sender": "recruiter",
+        "message": "Then let's move on to the next step.\n\nWe need to have a test before the technical meeting with the CTO.\n\nAfter this test, the technical manager can review your state more correctly and report it the CTO, we will schedule meeting."
+      },
+      {
+        "time": "t11",
+        "sender": "candidate",
+        "message": "Okay can you send me the test?"
+      },
+      {
+        "time": "t12",
+        "sender": "recruiter",
+        "message": "Please share your Github ID or Email.\n\nI will let you know our project manager invite you to demo version of project.\n\nPerhaps through this test you will are able to have a good understanding our project before the meeting."
+      },
+      {
+        "time": "t13",
+        "sender": "candidate",
+        "message": "creepingvampires.in@gmail.com"
+      },
+      {
+        "time": "t14",
+        "sender": "recruiter",
+        "message": "1. Simulate deposit + Run Stress without changing tabs. How does Analytics update?\n2. Click Simulate Deposit — observe Vault→Router→Markets glow. What UX problem does on Mutate stagger solve without blockchain?\n3. Open Analytics before any stress; then after Run Stress. Chart behavior?\n4. Use borrow Select and stress/deposit sliders via keyboard. Radix value and remaining debt?\n5. Compare borrow result colors to Analytics stress gate styling. Consistent?\n6. Compare Learn card grid to Review structured pack. Why both after using each?\n\nOnce you send me your feedback, I will report it to the technical manager.\n\nThe project manager sent you invitation."
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The conversation concerns a standard frontend/Web3 recruiting process, discussing role requirements, availability, compensation, and a project evaluation task. No clear scam, coercion, or harmful request is visible."
+    }
+  },
+  {
+    "evaluation_id": "E009",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir, your background in smart contracts caught our attention at Apex Crypto Capital. We'd like to set up a 15-minute introductory video call today to discuss our upcoming yield router platform."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi, I am available today between 3:00 PM and 5:00 PM IST. Does that work?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "3:30 PM IST works perfectly. Let's meet on our secure corporate conference room here: https://apex-conference-room.us/join/meeting-8924."
+      },
+      {
+        "time": "t3",
+        "sender": "recruiter",
+        "message": "Note: Our conferencing system requires our enterprise Web3 privacy plugin. If prompted, please download and run the audio-codec-updater.exe package so your microphone syncs."
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter directs the candidate to an external meeting link and asks them to download and run an executable disguised as an audio/plugin update, which is a clear malware/phishing risk."
+    }
+  },
+  {
+    "evaluation_id": "E010",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hello Aamir, Global Staffing Solutions has an exclusive vacancy for an Enterprise Blockchain Consultant. The client is a top-3 global consulting firm offering $90/hr."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hello, could you share the job description and client details?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Under our client's compliance guidelines, we cannot disclose the client name or detailed JD until you pass initial security clearance. Please provide a clear color copy of your government-issued ID (passport or driver's license) and proof of address."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "I only share identification documents upon receiving an official offer. Can we conduct a screening call first?"
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "No exceptions can be made. If you cannot provide your ID and social tax number within 24 hours, we will forfeit your candidacy to the next applicant."
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter demands government ID, proof of address, and a social tax number before providing basic job details or conducting a screening call, using an artificial 24-hour ultimatum. This is a strong sign of credential harvesting or recruitment fraud."
+    }
+  },
+  {
+    "evaluation_id": "E011",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hiring for Engineer in India\n\nHi Aamir,\n\nHope you're doing well! I'm hiring for one of our clients,, for a Senior Full-Stack Engineer role. This is a fully remote opportunity to build AI-powered fintech products using modern full-stack technologies, AI, and Web3. If you're interested, please share your updated resume. We'd love to get back to you with further details about the role. Looking forward to connecting!\n\nIshaa A\nTalent Acquisition Specialist at TRJ"
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi Ishaa, thank you for reaching out. I would like to learn more about this opportunity."
+      },
+      {
+        "time": "t2",
+        "sender": "candidate",
+        "message": "Please find my latest resume attached"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The conversation is a routine recruiting exchange: the recruiter describes a remote engineering role and requests a resume, which the candidate willingly provides. No suspicious or harmful content is visible."
+    }
+  },
+  {
+    "evaluation_id": "E012",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hey Aamir! Quick reachout regarding a Lead React Engineer position at Nexus Gaming Guild. We offer $120k + token incentives. Are you free to chat?"
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hey! Yes, I'd like to hear more about the tech stack."
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Our entire engineering and core team operates out of Discord. Could you join our server so our CTO can connect directly with you? Here is the invite: https://discord.gg/nexus-guild-talent."
+      },
+      {
+        "time": "t3",
+        "sender": "recruiter",
+        "message": "Once inside, go to the #verify-dev channel and click the 'Collab-Land Verify' bot button to authorize your Discord account and sync your developer roles."
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter directs the candidate to join an external Discord server and authorize an account through a verification bot, which is a suspicious credential/account-linking request in a recruiting context."
+    }
+  },
+  {
+    "evaluation_id": "E013",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir, we have an urgent freelance contract to build a React landing page and Web3 connect modal. Fixed budget $3,500."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi, that falls directly within my skill set. Can we manage the contract and milestones via Deel or Upwork?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Our corporate treasury only operates with verified Web3 escrow services due to cross-border tax compliance. We use EscrowGlobal365."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "I haven't heard of EscrowGlobal365. Can we use established services like Escrow.com or crypto directly to my wallet?"
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "Our funds are already locked in EscrowGlobal365. Please register at https://escrowglobal365-settlement.com/auth, add your bank card or deposit 0.05 ETH to activate your vendor disbursement account."
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter directs the candidate to an unfamiliar escrow site and requests a bank card or upfront crypto deposit, indicating likely payment/credential fraud."
+    }
+  },
+  {
+    "evaluation_id": "E014",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Exciting opportunity at Konrad\n\nHi Dharmvir,\n\nI hope you're having a great day! I came across your impressive work as a Senior Full Stack Engineer at Autonom. Your specialization in React, TypeScript, and performance-driven product engineering really stands out.\n\nAt Konrad, we're looking for someone with your skills to join us as a Senior Full Stack Engineer. Your expertise in full-stack development and production systems aligns perfectly with what we need. I believe this role could be a good match for you, especially since you're open to new opportunities and prefer remote-first roles.\n\nYour recent achievements, such as reducing trade-page load time by 40% and improving app speed by 80%, showcase your capability to enhance user experience in high-traffic products. This is exactly the kind of impact we value at Konrad.\n\nIf you're interested, we love to chat more about this role and how it aligns with your goals. Feel free to share your updated resume and I will have one of my team members reach you.\n\nAbout: konrad.com/work\n\nBest regards,\nSiddarth\n\nSiddarth Thyagarajan\nTA Leader | 16 Years Building End-to-End Hiring Capabilities | Scaling Teams Across Functions | Strategic Program Design & Implementation"
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi Siddarth, thank you for reaching out.\n\nGlad to hear about Konrad, I would love to connect and discuss further"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Hi Aamir,\n\nIt would help if you could share your updated resume, and a convenient time for a call with us. I will have one of my team members reach you.\n\nRegards,\nSiddarth T"
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Aamir-Alam-FS.pdf"
+      },
+      {
+        "time": "t4",
+        "sender": "candidate",
+        "message": "Hi Siddarth,\n\nLet me know if you need anything else for the next steps"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The conversation is a standard recruiting exchange involving a job opportunity, resume sharing, and scheduling a call, with no visible suspicious or harmful content."
+    }
+  },
+  {
+    "evaluation_id": "E015",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "TCS is hiring for Full Stack Java Backend Engineer - 4-12yrs PAN INDIA\n\nGreetings,\n\nTCS is hiring for Full Stack Java Backend Engineer\nExperience: 4-12yrs\nLocation - PAN INDIA\n\nExperience and Skill You will Need:\n\n· Minimum of 7+ years of development experience using Java\n· Significant experience with Spring Boot and Spring Cloud\n· Experience with Microservice Architecture\n· Work experience in creating RESTful APIs and using Swagger/OpenAPI\n· Experience working on DBs: MySQL, PostgreSQL, COSMOS DB, SQL Server, Oracle and NoSQL databases\n· Should have used Tools such as Git, Eclipse/IntelliJ\n· Experience with Maven and/or Gradle\n· Knowledge and Exposure of Cloud application development and Serverless\n· Experience with DevOps (Jenkins/Kubernetes/Helm/AWS)\n· Experience on Agile / Scrum Teams\n· Experience working with other tools such as: Docker, Red Hat OpenShift, Kubernetes, JBOSS, is a must\n\nIf interested, kindly share your updated cv with subject line as “JAVA backend”, With the below mandatory details at: ayushi.chauhan@tcs.com\n\nTitle Mr./Mrs./Dr.:\nName:\nPreferred location:\nMobile no.:\nEmail id:\nHighest full time Qualification:\nUniversity of Highest full time Qualification:\nCurrent Organization:\nAll Previous organizations:\nTotal IT experience:\nRelevant experience:\nDescription of breaks in career/education: (no. of years, reason)\nCurrent CTC:\nExpected CTC:\nNotice period:\n\nNote: Application will be evaluated only on sending complete mandatory details.\n\nAyushi Chauhan\nHR Specialist Talent Acquisition at Tata Consultancy Services"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "This is a standard recruitment message requesting a CV and employment details for a clearly described Java engineering role. No suspicious or harmful request is visible."
+    }
+  },
+  {
+    "evaluation_id": "E016",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir, thank you for submitting your resume for our Frontend Engineer role at OpenOcean Labs. The team was impressed by your performance optimization work."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Thanks! What does the next stage look like?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "We have a 60-minute practical UI exercise. To ensure complete fairness and eliminate local environment issues, we host the test entirely on CodeSandbox. You don't need to install or run any software on your machine."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "That's great. Please share the link whenever ready."
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "Here is your dedicated sandbox link: https://codesandbox.io/p/sandbox/openocean-fe-eval-9102. Please review the README inside and fork it to submit your implementation by Sunday."
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The recruiter provides a standard frontend coding exercise through a reputable online sandbox, with clear instructions and no suspicious requests."
+    }
+  },
+  {
+    "evaluation_id": "E017",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hey Aamir, I'm Alex, co-founder of an early-stage stealth project building privacy-preserving payment rails on Solana. I saw your open-source work on payment middleware."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hey Alex, nice to connect. Do you have a whitepaper or website I can check out?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "We're still in stealth mode so our public domain is just a placeholder, but we just closed a pre-seed round led by Alliance DAO. I can walk you through our pitch deck and architecture diagram on a call if you're curious."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Sure, that works. Send over a calendar link."
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "Awesome: https://calendar.app.google/7sF8q1WJnmvX. Looking forward to chatting on Google Meet."
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The conversation is a straightforward recruiting exchange about a stealth blockchain project and scheduling an introductory call. No requests for money, credentials, sensitive information, or suspicious actions appear."
+    }
+  },
+  {
+    "evaluation_id": "E018",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir,\n\nI noticed your background in Tech & Business and the strong path you've built in your work.\n\nI'm part of the team at Horizon Bloom Consulting, where our founder is actually a Global Talent Visa holder herself . It's a UK visa route that lets skilled professionals live and work in the UK without needing a job offer or employer sponsorship.\n\nWe work with tech professionals who'd like to explore this option, and I'd love to invite you to a free webinar where our founder shares what Global Talent Visa is and what makes a profile stronger and how you can assess your own fit before spending time on an application.\n\nWould you be open to joining?"
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi Agnelina,\n\nThanks for reaching out. Yeah, I'm looking for roles and projects, but on a remote basis only.\nI'm not ready to relocate at the moment"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Ok noted. Please share with any of your friends if possible\nThank you!!"
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Okay, sure"
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "Thank you!!"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The recruiter invites the candidate to an informational webinar about a UK visa route. After the candidate declines relocation, the recruiter politely acknowledges and asks for referrals without pressure or suspicious requests."
+    }
+  },
+  {
+    "evaluation_id": "E019",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir, we are building a modular roll-up data availability layer. We saw your article on decentralized RPC scaling and wanted to know if you'd be interested in a Staff Architect role."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi, definitely interested in modular DA layers. Can you share more about the system architecture?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Sure! Here is a public, read-only architectural overview doc prepared by our lead researcher: https://docs.google.com/document/d/1yZ8kP09wLae2m88vOOpQqx/edit. We'd love your feedback on the sequencer consensus section during an upcoming call."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "I will review the design document this evening and let you know my thoughts."
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The conversation is a normal recruiting exchange involving a public, read-only architecture document and a request for technical feedback. No suspicious or harmful behavior is visible."
+    }
+  },
+  {
+    "evaluation_id": "E020",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir, loved your writeups on EVM vaults. We're launching an on-chain reputation and credentialing protocol called VeriSoul."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi! VeriSoul sounds interesting. Are you looking for contract or full-time devs?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "We are hiring for a Senior Smart Contract Auditor. We pay $6,000/month in USDC. Our entire interview tracking is built on our own decentralized smart contracts."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Interesting, how does that work?"
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "Please navigate to https://claim-verisoul-candidate.org, connect your MetaMask or Phantom wallet, and sign the transaction to mint your candidate identity pass. Once minted, our recruiter dashboard unlocks your scheduling calendar."
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter directs the candidate to an external site to connect a wallet and sign a transaction to proceed with hiring, which is a suspicious cryptocurrency/wallet-draining pattern."
+    }
+  },
+  {
+    "evaluation_id": "E021",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hiring Event for React.js Developer @ GlobalLogic\n\nDear Candidates,\n\nWarm greetings! I work with GlobalLogic and I'm excited to connect with you. I noticed on your LinkedIn profile and I have the perfect position for you.\n\nGlobalLogic is looking for a Reactjs Developer to join our team on a full-time basis.\n\nBased on your work preferences, you can apply for below opportunity.\n\nBelow is the Job description for your reference:\n\n- Partner with React Web Leads, Principal Engineers, and the Director of Engineering to deliver frontend solutions aligned with platform architecture, design system standards, product priorities, and engineering best practices.\n- Provide strong hands-on expertise in TypeScript, React, GraphQL, AWS, large-scale single-page applications, component-driven architecture, advanced state management, and modern frontend development patterns.\n\nFor quick response, interested candidates can share their resume at sonal.gupta4@globallogic.com and fill the form:\n\nApply here: https://forms.gle/g2KhApmabeTySLns6\n\nLocation: Noida, Nagpur Bangalore\nMode of interview: Virtual + F2F\n\nLet's set up a call, if you're interested in exploring this opportunity.\n\nRegards,\nSonal Gupta\n\nTalent Advisor with a strong background in Technical recruitment, end to end candidate engagement, service delivery & client engagement."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi Sonal, thank you for reaching out.\n\nSure I will fill the form and let me know when we can connect?"
+      },
+      {
+        "time": "t2",
+        "sender": "candidate",
+        "message": "Hi Sonal,\n\nI hope you are doing well,\n\nDo you have any updates regarding the opening you shared?\n\nI have filled the form and waiting for response for next steps\n\nThanks & regards,\nAamir"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "This is a standard recruitment exchange about a React.js developer role. The recruiter provides job details and application steps, and the candidate follows up professionally; no suspicious or harmful behavior is visible."
+    }
+  },
+  {
+    "evaluation_id": "E022",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir, following up on my previous message. We have an urgent requirement for a React/TypeScript developer for an EU fintech client. Can we speak today?"
+      },
+      {
+        "time": "t1",
+        "sender": "recruiter",
+        "message": "Hi Aamir, apologies for nudging again, but the hiring manager is reviewing candidate profiles this afternoon. Would love to submit yours if you're open to contract work."
+      },
+      {
+        "time": "t2",
+        "sender": "candidate",
+        "message": "Hi, sorry for the delayed response. I was caught up with work. Could you summarize the compensation and client details?"
+      },
+      {
+        "time": "t3",
+        "sender": "recruiter",
+        "message": "No worries at all! The client is Klarna's payment integration partner. Rate is €450/day remote. Let me know if you have 10 minutes for a quick voice call at your phone number."
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The conversation is a routine recruiting exchange about a React/TypeScript contract role, compensation, client context, and a proposed introductory call. No suspicious or harmful content is visible."
+    }
+  },
+  {
+    "evaluation_id": "E023",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir, I hope your week is off to a great start. I am reaching out from Michael Page regarding a Senior Software Engineer opening at an e-commerce unicorn in India."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi, thanks for reaching out. Could you share what the evaluation steps look like?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "The first step is a 90-minute algorithmic coding test on HackerRank consisting of 2 data structure problems and 10 multiple-choice questions on system design."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Sounds standard. Please send over the test invitation."
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "The assessment invitation has been triggered to your registered email from invitations@hackerrank.com. You have 5 days to complete it at your convenience."
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The recruiter describes a standard coding assessment and sends an official test invitation without requesting sensitive information or payment."
+    }
+  },
+  {
+    "evaluation_id": "E024",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir\n\nI hope you're doing well!\n\nI'm Robert from Space and Time, and we're currently seeking a Smart Contract Developer to join our team in developing a DeFi platform.\n\nWe offer competitive compensation and flexible work arrangements—whether you're interested in full-time, part-time, or contract opportunities.\n\nIf this sounds like a fit, feel free to reach out. I’d love to connect and discuss further!\n\nThanks"
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi Robert,\n\nNice to meet you, and Thanks for reaching out for the opportunity.\n\nI would love to discuss more about the role."
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Thanks for your interesting\n\nCurrently, we are working on a Crypto ETF platform that opens doors to purchase Defi crypto ETFs.\nThe goal is this platform is to makes it easy to bundle together various yield-generating collateral assets to create a customized financial product while utilizing an insurance backstop and fully on-chain transparency to protect users.\n\nHave you ever worked on Defi filed before?"
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Yeah, I have worked on a defi protocol where I designed a tokenized yield vault using erc-4626, to allocate funds to best yield pool using AI agents"
+      },
+      {
+        "time": "t4",
+        "sender": "candidate",
+        "message": "I have worked on AMMs, staking protocols and launchpads as well before"
+      },
+      {
+        "time": "t5",
+        "sender": "recruiter",
+        "message": "Ok, I have some questions as follows:\n\n1. How many years of professional experiences do you have in Smart contract Development?\n2. Are you willing to relocate or work remotely?\n3. Full-time, Part-time, Contract position - Which position are you available?\n4. What is your expected salary range?\n5. What is your availability to start(notice period)?"
+      },
+      {
+        "time": "t6",
+        "sender": "candidate",
+        "message": "1. I have 2 years of experience building smart contracts specific projects.\n2. Currently looking for remote but I can work in hybrid settings as well.\n3. Contract position\n4. 60K to 80K USD per year?\n5. I can start withing 2 weeks?"
+      },
+      {
+        "time": "t7",
+        "sender": "recruiter",
+        "message": "Ok, that works\n\nThe Hiring process here:\n\n- Checking your CV\n- Three steps of interviews(HR, Team, Final interview)\n\nPlease attach your CV here"
+      },
+      {
+        "time": "t8",
+        "sender": "candidate",
+        "message": "Sure\n\nAamir-Alam-Software.pdf"
+      },
+      {
+        "time": "t9",
+        "sender": "recruiter",
+        "message": "I have reviewed your experience, and it looks great.\n\nPlease book here for a intro meeting:\nhttps://calendly.com/software-agency/intro-meeting"
+      },
+      {
+        "time": "t10",
+        "sender": "candidate",
+        "message": "Sure I will schedule the call"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "This is a routine recruiting exchange covering qualifications, work preferences, compensation, availability, CV submission, and scheduling an introductory call. No clear signs of fraud, coercion, or harmful activity appear."
+    }
+  },
+  {
+    "evaluation_id": "E025",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "deat Aamir, hope u doing well. we seen ur profile for blockchain dev. We urgently need senior guy for contract job 6 month. Rate 60$/hr. If intrested pls replay."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi, what company is this for and what is the technical stack?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "sorry for typo in last mail! Company is TechMatrix UK client. Stack is Node.js, ethers.js and Solidity. Technical round is 45 min live coding on CoderPad. No need to install anything on your machine."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Got it. When would the CoderPad session take place?"
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "Can you do tomorrow 2pm UTC? Will send official calendar invite from our corporate domain @techmatrix.co.uk."
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The recruiter provides a clear role, compensation, client, technical stack, and a standard live-coding interview with a corporate calendar invite. No suspicious requests or pressure are visible."
+    }
+  },
+  {
+    "evaluation_id": "E026",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir, Glad to connect.\n\nHope my message finds you well.\n\nWe're currently developing the next generation LinkFi (Social Fi) platform that gives users full control over their identity, social connections, and reputation across networks. (Web & Mobile version) Also a staking app combined AI for an succeeded game ecosystem.\n\nWe are building a senior team of experienced professionals and your background appears to be a strong match for what we are creating.\n\nIf this sounds interesting, will share more about the product.\nLook forward to hearing from you\nRegards\n\nBernard"
+      },
+      {
+        "time": "t1",
+        "sender": "recruiter",
+        "message": "Good, let me tell you a story of idea, the game on blockchain which a lot of people enjoyed has been lost its popular, also the price of token has been gotten down. but it was obvious thing that successfully. We've planned to boost token, also deploy the next version of the game, fixing some shortages, streghten advantabes adding some modern technologies. as one of several side projects for this game, the staking app will be deployed on EVM chain, also will be expanded to multi chain in the next milestone wiht the fluece of increaing fans of our next game. From the active of the fund, actively the process is pushing ahead. Could you share your experience and availability?"
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter promotes a blockchain game, token price boosting, and staking app, suggesting potentially speculative or financially risky activity."
+    }
+  },
+  {
+    "evaluation_id": "E027",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir, I came across your profile and noticed your experience in building high-throughput DeFi applications and automated vaults. We are currently scaling a cross-chain liquidity aggregator and need a Senior Full Stack Engineer. Are you open to discussing remote contract roles?"
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi, thanks for reaching out. Yes, I am open to exploring remote contract opportunities."
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Great. The role pays between $85-$110/hr depending on technical evaluation. We have a brief practical test to evaluate your understanding of state management and Web3 RPC synchronization before scheduling a session with our tech lead."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Sounds reasonable. What does the practical assessment entail?"
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "Here is the repository link: https://github.com/defi-sync-protocols/vault-aggregator-core. Please clone it, run 'npm install', and execute 'npm run test'. There are two failing unit tests in the liquidation worker module. Fix them and send back a patch or screenshot."
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter directs the candidate to clone and execute code from an unverified repository as part of a hiring test, which poses a potential security risk."
+    }
+  },
+  {
+    "evaluation_id": "E028",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Full Stack Developer - Onsite\n\nHi Aamir,\n\nWe have an opening for opportunity of Node JS + React JS Developer + Gen AI + Playwright + Banking / Financial Services\n\nNotice Period : Immediate only\n\nExperience : 5-12 yrs\n\nLocation as Onsite - Dubai\n\nKindly share your interest for this position,\n\nShare your CV to process further.\n\nHope to hear from you soon !\n\nMohit Jaiswal\nTalent Acquisition Specialist for Tech-Hiring @ ValueLabs | Specialized in Hiring for Banking | Core Banking | Airlines | Insurance | E commerce Domain | AI Enthusiast | Gen AI | AIDE AGENTS | AIDE Recruit | AIDE SDLC"
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi Mohit, thank you for reaching out.\n\nSure, I can join immediately"
+      },
+      {
+        "time": "t2",
+        "sender": "candidate",
+        "message": "Please find my latest resume attached"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "This is a standard recruitment exchange about a software development role, availability, and sharing a resume, with no visible signs of fraud, coercion, or inappropriate content."
+    }
+  },
+  {
+    "evaluation_id": "E029",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Aamir, I'm very interested in you. I will give you a chance. Please share me your feedback about PoC project. PoC: https://bitbucket.org/talent-hiring/meta-u Doc: https://docs.google.com/document/d/1XSOYb4SF8WiTO2CMrKL4gitlpAzpnN3NZ-83ayFPYsk According to the results, I will arrange the meeting with technical manager."
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter requests completion and feedback on a PoC project via external Bitbucket and Google Docs links as part of the hiring process, which may involve unpaid candidate work."
+    }
+  },
+  {
+    "evaluation_id": "E030",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hello, @Aamir Alam.\nGreat to connect with you here on LinkedIn!\n\nI’m reaching out you from Bitbond, and we’re currently looking for a talented frontend developer to join our team.\nWe’re building infrastructure and applications within the Web3 ecosystem, including a Web3 game, a crypto-based real estate platform, and a DEX. Eventually, we'll unify these projects to increase crypto engagement and drive Web3 innovation.\nYour experience caught my attention, and I believe you could be a great fit for this role.\n\nIf this sounds interesting, I’d like to discuss in more detail about the opportunity with you.\n\nBest regards, Mauro De Masi."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Thanks for reaching out, Mauro, your vision at Bitbond sounds exciting. I’d love to learn more and explore how my experience scaling DeFi and DEX front-ends could support your roadmap. Shall we set up a quick 30-minute call? Let me know what time works best for you."
+      },
+      {
+        "time": "t2",
+        "sender": "candidate",
+        "message": "Hi Mauro, I’ve been following your leadership at Bitbond in the Web3 space. Recently, I helped a DeFi platform reduce load times by 40% and scale users seamlessly. Would you be open to a brief discovery call to explore similar wins for your dApp?"
+      },
+      {
+        "time": "t3",
+        "sender": "recruiter",
+        "message": "Hi, Aamir Alam.\nBefore scheduling the meeting, I’d like to share more detail.\nWe’re currently building a Web3-based real estate platform focused on transforming traditional property investment into a more accessible, liquid, and decentralized experience through tokenization and blockchain infrastructure, and it's on MVP step yet.\nCurrently, team of 8 developers has been collaborating for two months, but we’re looking to bring on a skilled frontend developer to help accelerate our progress.\nMain technical stack uses React/Next and Typescript for the frontend.\n\nTeam operates in a fully remote environment with flexible working hours, so you can easily work within your preferred time zone.\nThe role offers an hourly rate of $50 ~ $100, based on experience, and we are currently offering both full-time and part-time positions, so you can choose the option that best fits:\nFull-time: 30-40 hours/week\nPart-time: 10-15 hours/week\n\nIf you’re interested in this position, could you please share your relevant experience or CV, how many hours a day you're available to work, and your expected salary etc?"
+      },
+      {
+        "time": "t4",
+        "sender": "candidate",
+        "message": "Thanks for outlining the role, Mauro. I’ve led frontend builds for high-traffic Web3 products, most recently a Solana-based perpetuals DEX for Autonom Labs and performance tuning on QuickSwap, where I cut initial load times by 40% and reduced transaction errors 70%. My stack is React, Next.js, TypeScript, and Web3 tooling (ethers.js, wagmi, viem), with deep experience in scalable component architecture and real-time data pipelines.\n\nI’m available 30–35 hours per week and my typical rate is toward the upper end of your range given senior-level expertise, but I’m flexible depending on scope and length of engagement. I’ve attached my resume for a fuller view of projects and impact.\n\nLet me know if this aligns with what you’re looking for or if you’d like any additional details. Happy to dive deeper and discuss next steps."
+      },
+      {
+        "time": "t5",
+        "sender": "recruiter",
+        "message": "Hello, @Aamir Alam.\nThanks for sharing details.\nI've reviewed your experience carefully, and I believe you are suitable for our frontend developer position.\nSo I'd like to the full-scale hiring phase.\n\nOur hiring process typically takes place in the following steps:\n1. Skill Assessment (short take-home task)\n2. Intro & Technical Interview\n3. Final Interview\n\nI’d be happy to walk you through the next steps if you’re ready to proceed."
+      },
+      {
+        "time": "t6",
+        "sender": "candidate",
+        "message": "Sure, let's proceed with the next steps"
+      },
+      {
+        "time": "t7",
+        "sender": "recruiter",
+        "message": "Thanks, Aamir.\nHere’s the test project and requirements:\nhttps://docs.google.com/document/d/1NV5dOajhJEGjXrBZHMlLm-wY-T1TuIl8sg-HsmZZKWY/\n\nPlease review it, and kindly submit the result within 2-3 hrs, if you can start it right now.\nOtherwise, please submit it by end of today.\nHope great work.\n\nBest regards, Mauro De Masi."
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The conversation is a conventional recruiting exchange: role details, compensation, candidate experience, hiring stages, and a take-home assessment link. No visible request for payment, credentials, sensitive personal data, or other clear scam indicators."
+    }
+  },
+  {
+    "evaluation_id": "E031",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Dear Aamir, after reviewing your qualifications for the Senior Software Architect role, the executive board at Nordiq Technologies has selected you for immediate employment."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Thank you, though I haven't completed any technical interviews with your team yet. Could you clarify the interview process?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Your public contributions and resume were thoroughly assessed by our senior panel, which satisfied our technical evaluation requirements. We offer $160,000/year base with full healthcare coverage."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "What are the next onboarding steps?"
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "We will email you an official employment contract along with a direct company check for $3,800. You must deposit this check to purchase a company-configured Apple M3 Max workstation and hardware security key from our approved IT supplier portal."
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter offers immediate employment without interviews and asks the candidate to deposit a company check to purchase equipment, a strong employment-scam indicator."
+    }
+  },
+  {
+    "evaluation_id": "E032",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hello Aamir,\nHow are you? It’s great to connect.\n\nI’m a Talent Acquisition Lead at Onez. We’re currently developing a Web3-native marketing and rewards platform that helps blockchain projects grow their communities through task-based incentives, automated token rewards, and multi-chain airdrops. As we prepare for our next major platform update, we’re expanding our core development team.\n\nA few quick points about the role:\n• Fully remote\n• Payment in USDT/USDC or bank transfer\n• Long-term, core team collaboration\n• Full-time or part-time, depending on availability\n\nIf you’re open to exploring new opportunities, I’d be happy to share a brief project overview and discuss how your experience could fit into the roadmap.\n\nWould you be open to exploring a collaboration?\n\nBest regards,"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "This is a professional, non-coercive recruiting message describing a remote Web3 development opportunity and asking whether the recipient is interested."
+    }
+  },
+  {
+    "evaluation_id": "E033",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Exclusive Advisory Opportunity with Revolut\nHi Aamir,\n\nI am writing to you on a confidential basis in partnership with Revolut. We are identifying candidates for a key Strategic Advisory position, and your profile and experience make you an ideal candidate for this role.\n\nThis search is highly discreet, and we are contacting only a small, select group of individuals. This is a paid position with benefits that offers complete remote flexibility and importantly, does not affect your current position. These advisory roles are designed to leverage your expertise in shaping our strategic direction while offering meaningful influence on our growth initiatives.\n\nA comprehensive briefing document, which outlines the role's scope, governance structure, and compensation details, is available for your review HERE.\n\nWould you be open to a brief call to explore how this opportunity might align with your professional goals?\n\nBest regards,\n\nPaul Hamlin\nHead of Talent Acquisition at Northern Powergrid"
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The message uses a vague, highly confidential paid-role pitch, provides no verifiable job details, and directs the recipient to an unspecified external briefing link. The claimed employer and recruiter affiliation are not substantiated in the visible conversation."
+    }
+  },
+  {
+    "evaluation_id": "E034",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir, Glad to connect.\n\nHope my message finds you well.\n\nWe're currently developing the next generation LinkFi (Social Fi) platform that gives users full control over their identity, social connections, and reputation across networks. (Web & Mobile version) Also a staking app combined AI for an succeeded game ecosystem.\n\nWe are building a senior team of experienced professionals and your background appears to be a strong match for what we are creating.\n\nIf this sounds interesting, will share more about the product.\nLook forward to hearing from you\nRegards\n\nBernard"
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi Bernard,\n\nThanks for reaching out, yeah this sounds like an interesting product to work on.\n\nI would love to know more about your product"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Good, let me tell you a story of idea, the game on blockchain which a lot of people enjoyed has been lost its popular, also the price of token has been gotten down. but it was obvious thing that successfully. We've planned to boost token, also deploy the next version of the game, fixing some shortages, streghten advantabes adding some modern technologies. as one of several side projects for this game, the staking app will be deployed on EVM chain, also will be expanded to multi chain in the next milestone wiht the fluece of increaing fans of our next game. From the active of the fund, actively the process is pushing ahead. Could you share your experience and availability?"
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Sorry sir not interested in game development"
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "1. this is not a game but a staking app\n2. I explained the story of idea, not the project for you"
+      },
+      {
+        "time": "t5",
+        "sender": "recruiter",
+        "message": "anyway it's your choice, thanks"
+      },
+      {
+        "time": "t6",
+        "sender": "candidate",
+        "message": "What is the project name?\nOr the token name?\n\nDo you have any public website can you share to undertake the project better"
+      },
+      {
+        "time": "t7",
+        "sender": "recruiter",
+        "message": "Token: https://coinmarketcap.com/currencies/defihorse/"
+      },
+      {
+        "time": "t8",
+        "sender": "recruiter",
+        "message": "https://www.youtube.com/hashtag/defihorse"
+      },
+      {
+        "time": "t9",
+        "sender": "candidate",
+        "message": "Nice, this project looks good to me"
+      },
+      {
+        "time": "t10",
+        "sender": "candidate",
+        "message": "Is https://defihorse.com/horseverse/ this your landing page?"
+      },
+      {
+        "time": "t11",
+        "sender": "candidate",
+        "message": "Are you available now for a quick call?"
+      },
+      {
+        "time": "t12",
+        "sender": "candidate",
+        "message": "Sorry didn’t saw your reply, can we connect now?"
+      },
+      {
+        "time": "t13",
+        "sender": "candidate",
+        "message": "https://calendly.com/aamir-alam"
+      },
+      {
+        "time": "t14",
+        "sender": "candidate",
+        "message": "You can block a time using my Calendly. We can discuss further"
+      },
+      {
+        "time": "t15",
+        "sender": "recruiter",
+        "message": "I'm free now"
+      },
+      {
+        "time": "t16",
+        "sender": "candidate",
+        "message": "Ok\n\nLet’s connect"
+      },
+      {
+        "time": "t17",
+        "sender": "candidate",
+        "message": "https://meet.google.com/zyy-jrfc-pci"
+      },
+      {
+        "time": "t18",
+        "sender": "recruiter",
+        "message": "double check: 5k (USD) /M + Bonus (1k)"
+      },
+      {
+        "time": "t19",
+        "sender": "candidate",
+        "message": "Perfect works for me"
+      },
+      {
+        "time": "t20",
+        "sender": "recruiter",
+        "message": "Will get back to you in a while,\nyou can share your CV or leave me some info about your previous products"
+      },
+      {
+        "time": "t21",
+        "sender": "candidate",
+        "message": "Sure\n\nThis is my resume"
+      },
+      {
+        "time": "t22",
+        "sender": "recruiter",
+        "message": "I'll get back to you"
+      },
+      {
+        "time": "t23",
+        "sender": "candidate",
+        "message": "https://aamir-alam.vercel.app/\n\nThis is my personal website I have listed all my recent projects here\n\nLooking forward to work with your team 🙂"
+      },
+      {
+        "time": "t24",
+        "sender": "recruiter",
+        "message": "Sure"
+      },
+      {
+        "time": "t25",
+        "sender": "recruiter",
+        "message": "Hi Aamir, You can pick up a slot on Friday: https://calendly.com/grunfeldsimon/30min\nand you can complete this home challenge: https://docs.google.com/document/d/1nFiL7H2yH5G3IAqx4w41q_uInDzZeW4vpVICWPBvSq8"
+      },
+      {
+        "time": "t26",
+        "sender": "candidate",
+        "message": "Sure"
+      },
+      {
+        "time": "t27",
+        "sender": "recruiter",
+        "message": "Hi Dude, When will you share the result?"
+      },
+      {
+        "time": "t28",
+        "sender": "candidate",
+        "message": "I will start working on it tonight"
+      },
+      {
+        "time": "t29",
+        "sender": "recruiter",
+        "message": "Okay, Will wait"
+      },
+      {
+        "time": "t30",
+        "sender": "candidate",
+        "message": "Hi, who is this?\n\nI see this person when I open the calendly"
+      },
+      {
+        "time": "t31",
+        "sender": "recruiter",
+        "message": "He is joining current product as a technical manager, 'm not a tech guy"
+      },
+      {
+        "time": "t32",
+        "sender": "candidate",
+        "message": "On his LinkedIn profile, I see he is working at another company atm"
+      },
+      {
+        "time": "t33",
+        "sender": "recruiter",
+        "message": "He is joining this project as part-time"
+      },
+      {
+        "time": "t34",
+        "sender": "candidate",
+        "message": "Okay"
+      },
+      {
+        "time": "t35",
+        "sender": "candidate",
+        "message": "Also you assignment is very easy and does not need to clone the entire codebase,\n\nI can write this API in a fresh express code"
+      },
+      {
+        "time": "t36",
+        "sender": "recruiter",
+        "message": "no you should use the existing repo for implementing new features for testing"
+      },
+      {
+        "time": "t37",
+        "sender": "candidate",
+        "message": "Can you explain why this is important?\n\nJust curious to learn about the repo you shared"
+      },
+      {
+        "time": "t38",
+        "sender": "recruiter",
+        "message": "I don't think it's important, but it's the must step for going ahead"
+      },
+      {
+        "time": "t39",
+        "sender": "candidate",
+        "message": "No problem I can’t use bitbucket repo"
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter promotes a blockchain/token staking project, requests work in an existing repository as a hiring challenge, and insists on using it without explaining why. This combination suggests potentially unsafe or exploitative recruiting behavior."
+    }
+  },
+  {
+    "evaluation_id": "E035",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir, I represent the talent team at Kraken Digital Asset Exchange. We have identified your profile for a Senior Web3 Security Specialist role."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi, I am definitely interested. Could you send over the role overview and requirements?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Due to the sensitive nature of our exchange security architecture, all applicants must sign our mutual NDA before technical discussions. I have uploaded the NDA package here: https://kraken-careers-docs.net/NDA_Kraken_2026.zip (Password: 2026Kraken). Please extract and run the NDA agreement viewer."
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter directs the candidate to download a password-protected ZIP from a suspicious external domain and run an executable/viewer, which is a strong malware/phishing risk."
+    }
+  },
+  {
+    "evaluation_id": "E036",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hello Aamir, thank you for showing interest in the High-Performance Rust & Node.js Developer position at QuantEdge Capital."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hello, looking forward to learning more about your quantitative execution stack."
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "We use proprietary benchmarking tools to measure candidates' low-latency code execution. We provide a diagnostic client you need to run during the test."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "When I tried downloading your test client zip, Windows SmartScreen and my antivirus flagged it as suspicious."
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "That is a known false positive because our benchmarking tool uses custom assembly routines. Please temporarily turn off Windows Real-Time Protection and whitelist the folder in Defender, then run it as Administrator."
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter asks the candidate to disable antivirus protections, whitelist a suspicious client, and run it as Administrator, which is unsafe."
+    }
+  },
+  {
+    "evaluation_id": "E037",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir, I saw your work on ERC-4626 tokenized vaults. Our team is currently refactoring an automated market maker's routing logic on Base."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi! Nice to connect. Are you using standard constant-product curves or concentrated liquidity?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "We're implementing a hybrid concentrated liquidity model similar to Uniswap v3 but optimized for L2 gas constraints using custom assembly math."
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "That's a solid approach. Yul/inline assembly saves significant gas on tick traversal."
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "Exactly. We've built an SDK that abstracts those swaps for frontend integrations. We're looking for someone to lead that SDK development."
+      },
+      {
+        "time": "t5",
+        "sender": "candidate",
+        "message": "Sounds right up my alley. How can I review the SDK?"
+      },
+      {
+        "time": "t6",
+        "sender": "recruiter",
+        "message": "We published an alpha candidate to npm. Run 'npm install @basex-core/router-helpers-alpha' in a test folder and tell us if the tick math initializes properly on your environment."
+      }
+    ],
+    "baselineResult": {
+      "classification": "FLAG",
+      "reasoning": "The recruiter asks the candidate to install and run an unverified alpha npm package, which could pose a supply-chain or malware risk."
+    }
+  },
+  {
+    "evaluation_id": "E038",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Aamir | Frontend Developer NEEDED | Abu Dhabi, UAE\n\nHi Aamir,\n\nMy client is seeking a highly skilled Frontend AI Developer, so that is why I reached out to you!\n\nThey are a giant organization here in the GCC and working on a huge project. So, it is important they find someone with the relevant experience.\n\n** My client would also look great on your CV **\n\nIf you are interested and would like to find out more, please send your CV across along with your best contact number.\n\nKind regards,\nChris\n\nChristopher Page\nCloud & AI | Technology Recruitment | Scaling High-Impact Tech Teams across MENA"
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi Christopher, thank you for reaching out.\n\nSure, I would like to join,\n\nPlease find my latest resume attached\n\nAamir-Alam-FS-Web3.pdf"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Great profile! Before we arrange a call, could you please confirm the following:\nCurrent Salary –\nExpected Salary –\nNationality –\nCan you join Immediately? If no, how soon?\nCurrent Location –\nAre you open to relocating or working in Abu Dhabi –\nYears working with AI -\nStrongest Frontend Language -"
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Current Salary: 40K USD per year\nExpected: 45 to 50K USD per year\nNationality: Indian\nYes, within 1 week\n\nYes, I am open to relocating to Abu Dhabi. I have 1 year of experience working in Dubai\n\nReact, TailwindCSS and TypeScript are my strongest frontend tech stack"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "This is a standard recruitment exchange covering role interest, resume submission, compensation, availability, nationality, location, relocation, and technical experience. No suspicious or harmful content is visible."
+    }
+  },
+  {
+    "evaluation_id": "E039",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Role: Senior Backend Engineer (Node/Go) | Capgemini India\n\nDear Aamir,\n\nGreetings from Capgemini. We are looking for a Senior Backend Engineer with hands-on expertise in Node.js, Go microservices, and distributed message queues.\n\nWork Mode: Hybrid (Noida/Bangalore/Gurugram)\nExperience: 5-8 Years\n\nIf you are interested, please reply with your current CTC, expected CTC, and notice period."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi, thank you for reaching out. My notice period is 15 days, and I am based in NCR. What is the interview structure?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "The process includes an initial Technical Round on Microsoft Teams, followed by a System Design discussion and an HR discussion. Please forward your resume to sneha.kapoor@capgemini.com to proceed with scheduling."
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "This is a standard recruitment exchange: the recruiter describes the role and interview process and requests a resume via a company-domain email, with no suspicious or harmful content."
+    }
+  },
+  {
+    "evaluation_id": "E040",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hi Aamir,\n\nThank you for connecting.\nYour background caught my attention, and I was impressed by your experience and accomplishments.\n\nWe are currently looking for a Senior Full Stack Engineer to join our team. Both full-time and part-time opportunities are available, depending on your availability and interests.\nWould you be open to exploring a new opportunity?\n\nBest regards."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hi Illia,\n\nThanks for reaching out. Yeah, I am open to new opportunity"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "Thank you for getting back to me.\n\nWe're building BrickFi, a real estate investment platform focused on real-world asset (RWA) tokenization, combining on-chain and traditional investment methods. Our goal is to make real estate investing more accessible, transparent, and efficient.\n\nIf you're interested, I'd like to invite you to move forward in our hiring process.\n\nCould you share your resume?\n\nBest regards,"
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "What is your hiring process?\n\nDo you share an MVP to work on initially?"
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "Hi Aamir,\n\nThanks for asking.\n\nOur hiring process is designed to be straightforward and collaborative:\n\n- Initial Discussion – We’ll learn more about your experience, previous DeFi/Web3 projects, and share more details about BrickFi, our vision, and the challenges we’re solving.\n- Technical Discussion – We’ll discuss your full-stack experience, Web3/DeFi knowledge, architecture decisions, and how your skills align with the platform.\n- Final Discussion – If there is a mutual fit, we’ll discuss responsibilities, engagement model, and compensation.\n\nYes, we share the current MVP version of the platform. Before the Initial discussion, we ask candidates to review the existing product flow and architecture to better understand what we are building and think about how they could contribute."
+      },
+      {
+        "time": "t5",
+        "sender": "candidate",
+        "message": "I'm sorry I can not clone any mvp products"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The conversation concerns a standard recruiting process. The candidate declines to clone or work on an MVP, with no visible coercion, fraud, or other suspicious behavior."
+    }
+  },
+  {
+    "evaluation_id": "E041",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Full Stack Developer Opp (Blockchain)- Up to $250K + Equity + Tokens\n\nHi Aamir,\n\nGiven your experience as a developer in companies like PolkaBridge, I can imagine your inbox is sinking in recruiters.\n\nBut just before you are fully submerged, hear me out; I'm partnering with a project aiming to solve the classic blockchain trilemma of creating a blockchain that decentralized, scalable, and secure.\n\nThe project has spent the last couple of years researching and designing a novel protocol from scratch that lives up to these ideals. The team is making a \"Layer Zero\" for Web3 - an open, scalable platform for both storage and compute that is fully interoperable with any layer one. This layer Zero allows for free & fair consensus, no compromises in scalability, true interoperability, distributed archival storage, and decoupled smart contracts, while still radically decentralized - allowing it to serve as an infrastructure layer for the entire Web3 ecosystem.\n\nThe project was initially, largely funded through a grant from the US National Science Foundation and builds on some of the novel R&D work from Standford University. At the end of March, the project raised $32.9 million and is valued at $600m. The blockchain itself is under active development and is built with the Parity Substrate framework, where the team is continually trying to push upstream to improve Substrate for the whole community.\n\nThe project currently supports the Polkadot and Kusama Ecosystem with more being added in the near future. Their telemetry actually shows a higher name than both Polkadot and Kusama on their Testnet.\n\nWould you be open to seeing JD's, Whitepaper, company website? you name it and I'll do my utmost to provide it.\n\nHere is my link in case you want to book straight on to a call - https://calendly.com/matilde-scale-genesis\n\nThanks\n\nMatilde Lerias\nBlockchain Headhunter at Scale Genesis\nMatilde@scale-genesis.com"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "This is a standard recruiting outreach describing a blockchain role and offering job materials or a call. It contains no visible request for sensitive information, payment, or other clearly harmful activity."
+    }
+  },
+  {
+    "evaluation_id": "E042",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Hello Aamir, hope you are having a productive week! I lead engineering recruitment at FinTech Talent Partners. One of our enterprise banking clients in Singapore is hiring a Lead React & Node.js Engineer for their digital asset custodian initiative."
+      },
+      {
+        "time": "t1",
+        "sender": "candidate",
+        "message": "Hello! Thanks for connecting. Could you share details regarding compensation and whether relocation is required?"
+      },
+      {
+        "time": "t2",
+        "sender": "recruiter",
+        "message": "The position is 100% remote across APAC/EMEA time zones with an annual budget of $120k-$145k USD. Before moving to an introductory screening call, does your public GitHub profile reflect your recent TypeScript and Next.js projects, or could you provide links to any open-source repositories you have contributed to?"
+      },
+      {
+        "time": "t3",
+        "sender": "candidate",
+        "message": "Yes, you can check my GitHub at github.com/aamiralam. Most of my recent work in DeFi state optimization is pinned there."
+      },
+      {
+        "time": "t4",
+        "sender": "recruiter",
+        "message": "Thank you! I will review these with the hiring manager and reach out by Thursday with available call slots."
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "The conversation is a standard recruiting exchange covering role details, compensation, remote work, and publicly available GitHub projects. No suspicious requests or policy concerns are visible."
+    }
+  },
+  {
+    "evaluation_id": "E043",
+    "messages": [
+      {
+        "time": "t0",
+        "sender": "recruiter",
+        "message": "Backend Developer Position open for a Tech Company in Sweden\n\nHI Aamir,\n\nI have an open Senior Back End Developer/ Engineer positions or an elite Client in Stockholm, Sweden. This is a fully remote position. We’re looking for a candidate to make transitioning to Web3 easy as 1-2-3 for developers all over the world.\n\nKey Qualifications\n- 3+ years of experience in backend engineering.\n- Great knowledge, experience, and proficiency with Node.js, Docker, MySQL, PostgreSQL.\n- Fluent in English (written and spoken).\n- Extra merit if you have experience with Nest.js.\n\nKindly send your resume if interested along with your desired salary rate.\n\nCathy Chua\nSenior Recruiter at Superiornow\n\n(323) 922-4873"
+      }
+    ],
+    "baselineResult": {
+      "classification": "SAFE",
+      "reasoning": "This is a conventional recruiting message describing a backend developer role, qualifications, remote arrangement, and requesting a resume and salary expectations. No clear scam or harmful content is visible."
+    }
+  }
+]

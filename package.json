@@ -1,0 +1,30 @@
+{
+  "name": "linkedinjobscamagent",
+  "version": "1.0.0",
+  "description": "Early scam identifier agent",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-aa:AamirAlam/LinkedInJobScamAgent.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "src/agent_v1.ts",
+  "scripts": {
+    "analyze": "node script/analyze_evaluation.js",
+    "test:analyze": "node --test script/analyze_evaluation.test.js",
+    "start": "tsx src/agent_v1.ts",
+    "baseline": "tsx src/baseline.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@openai/agents": "^0.17.0",
+    "dotenv": "^17.2.3",
+    "zod": "^4.5.4"
+  }
+}
