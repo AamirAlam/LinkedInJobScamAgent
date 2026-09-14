@@ -1,4 +1,4 @@
-# Conversational scam detection Agent — Week 1
+# Conversational scam detection Agent — v1
 
 ## Objective
 
