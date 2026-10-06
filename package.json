@@ -9,12 +9,18 @@
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "src/agent_v1.ts",
+  "main": "src/v1/agent_v1.ts",
   "scripts": {
-    "analyze": "node script/analyze_evaluation.js",
-    "test:analyze": "node --test script/analyze_evaluation.test.js",
-    "start": "tsx src/agent_v1.ts",
-    "baseline": "tsx src/baseline.ts",
+    "test:bayes": "node --import tsx --test src/v2/tests/bayes.test.ts",
+    "test:repository-policy": "node --import tsx --test src/v2/tests/repository-policy.test.ts",
+    "test:execution-extractor": "node --import tsx --test src/v2/tests/execution-extractor.test.ts",
+    "evaluate:execution": "node --env-file=.env --import tsx src/v2/scripts/evaluate_execution_requests.ts",
+    "test:repository-replay": "node --import tsx --test src/v2/tests/repository-replay.test.ts",
+    "evaluate:repository-replay": "node --env-file=.env --import tsx src/v2/scripts/evaluate_repository_replay.ts",
+    "analyze": "node src/v1/scripts/analyze_evaluation.js",
+    "test:analyze": "node --test src/v1/tests/analyze_evaluation.test.js",
+    "start": "tsx src/v1/agent_v1.ts",
+    "baseline": "tsx src/v1/baseline.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
