@@ -2,7 +2,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { isDeepStrictEqual, parseArgs } = require('node:util');
 
-const root = path.resolve(__dirname, '..');
+const root = path.resolve(__dirname, '../../..');
 const readJson = file => JSON.parse(fs.readFileSync(file, 'utf8'));
 const policies = ['policyAResult', 'policyBResult'];
 const actions = ['SAFE', 'HOLD', 'FLAG'];

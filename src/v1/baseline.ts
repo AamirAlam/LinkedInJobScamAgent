@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { Agent, run } from '@openai/agents';
 import { z } from 'zod'
-import evaluationData from '../data/evaluation-data-masked.json'
+import evaluationData from '../../data/evaluation-data-masked.json'
 import fs from 'fs';
 
 declare const process: {

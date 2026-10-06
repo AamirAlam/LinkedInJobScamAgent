@@ -237,6 +237,8 @@ student-project/
 ├── discussion-record.md
 ├── review-record.md
 ├── src/
+│   ├── v1/  # Previous agent, baseline, policies, constants and analysis script
+│   └── v2/  # Bayesian updates, extraction, repository policy, scripts and tests
 ├── data/
 ├── experiments/
 ├── results/

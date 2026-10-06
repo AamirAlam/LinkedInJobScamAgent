@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { Agent, run } from '@openai/agents';
 import { z } from 'zod'
-import evaluationData from '../data/evaluation-data-masked.json'
+import evaluationData from '../../data/evaluation-data-masked.json'
 import {instruction, harmCategories} from './constants'
 import { policyA, policyB } from './policies'
 import fs from 'fs';
