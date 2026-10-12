@@ -240,6 +240,10 @@ student-project/
 │   ├── v1/  # Previous agent, baseline, policies, constants and analysis script
 │   └── v2/  # Bayesian updates, extraction, repository policy, scripts and tests
 ├── data/
+│   ├── real/
+│   └── synthesis/
+├── archive/v1-data/  # Original V1 inputs; origins unspecified or mixed
+├── notes/
 ├── experiments/
 ├── results/
 │   ├── policy-results-v1.json

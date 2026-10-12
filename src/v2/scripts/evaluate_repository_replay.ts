@@ -7,7 +7,7 @@ import { executionInstructions } from '../execution-extractor.ts';
 async function main() {
     const args = process.argv.slice(2);
     if (args.some(arg => arg !== '--dry-run')) throw new Error('Only --dry-run is supported.');
-    const raw = readFileSync('data/synthetic-repository-pair.json', 'utf8');
+    const raw = readFileSync('data/synthesis/synthetic-repository-pair.json', 'utf8');
     const fixture = JSON.parse(raw);
     if (args.includes('--dry-run')) {
         console.log(`Ready: ${fixture.cases.length} synthetic cases; extraction uses messages, checks use scripted results, labels stay in scoring.`);
@@ -16,7 +16,7 @@ async function main() {
     const report = {
         purpose: 'synthetic_repository_extraction_and_policy_replay',
         created_at: new Date().toISOString(), model: process.env.V2_ANNOTATION_MODEL ?? 'gpt-5.6-luna',
-        source_file: 'data/synthetic-repository-pair.json',
+        source_file: 'data/synthesis/synthetic-repository-pair.json',
         source_sha256: createHash('sha256').update(raw).digest('hex'),
         prompt_sha256: createHash('sha256').update(executionInstructions).digest('hex'),
         held_out: false,

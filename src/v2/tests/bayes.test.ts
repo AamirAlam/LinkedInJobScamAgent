@@ -38,7 +38,7 @@ test('probability boundaries, invalid numbers, and impossible evidence preserve 
 });
 
 test('matched cases share visible history and unmodelled check results cannot silently update belief', () => {
-    const fixture = JSON.parse(readFileSync(resolve(__dirname, '../../../data/synthetic-repository-pair.json'), 'utf8'));
+    const fixture = JSON.parse(readFileSync(resolve(__dirname, '../../../data/synthesis/synthetic-repository-pair.json'), 'utf8'));
     const [legitimate, scam] = fixture.cases;
     assert.deepEqual(legitimate.events.slice(0, 3), scam.events.slice(0, 3));
     for (const scenario of fixture.cases) {

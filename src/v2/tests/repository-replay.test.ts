@@ -6,7 +6,7 @@ import { replayRepositoryEvents } from '../repository-replay.ts';
 import type { RepositoryReplayStep } from '../repository-replay.ts';
 import type { ExecutionAnnotation, VisibleMessage } from '../execution-extractor.ts';
 
-const fixture = JSON.parse(readFileSync(resolve(__dirname, '../../../data/synthetic-repository-pair.json'), 'utf8'));
+const fixture = JSON.parse(readFileSync(resolve(__dirname, '../../../data/synthesis/synthetic-repository-pair.json'), 'utf8'));
 const calls: VisibleMessage[][] = [];
 const stub = async (messages: readonly VisibleMessage[]): Promise<ExecutionAnnotation> => {
     calls.push(structuredClone([...messages]));

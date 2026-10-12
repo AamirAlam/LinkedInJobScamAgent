@@ -15,10 +15,10 @@ async function main() {
     if (caseArgs.length > 1 || (caseArgs.length && args.includes('--all'))) {
         throw new Error('Select either --all or one --case=ID.');
     }
-    const raw = readFileSync('data/july-conversations.json', 'utf8');
+    const raw = readFileSync('data/real/july-conversations.json', 'utf8');
     const cases: Case[] = JSON.parse(raw);
     const references: Reference[] = ['code-execution-pilot.json', 'code-execution-proposals.json']
-        .flatMap(name => JSON.parse(readFileSync(`data/${name}`, 'utf8')).annotations);
+        .flatMap(name => JSON.parse(readFileSync(`data/real/${name}`, 'utf8')).annotations);
     const byId = new Map(references.map(reference => [reference.evaluation_id, reference]));
     const prefixMode = args.includes('--prefixes');
     const pilotIds = prefixMode ? [6, 31, 38, 41, 44, 45] : [6, 31, 41, 44, 45];
@@ -46,7 +46,7 @@ async function main() {
     const report = {
         purpose: prefixMode ? 'development_execution_prefix_comparison' : 'development_execution_annotation_comparison',
         model, created_at: new Date().toISOString(),
-        source_file: 'data/july-conversations.json',
+        source_file: 'data/real/july-conversations.json',
         source_sha256: createHash('sha256').update(raw).digest('hex'),
         prompt_sha256: createHash('sha256').update(executionInstructions).digest('hex'),
         prompt: executionInstructions,

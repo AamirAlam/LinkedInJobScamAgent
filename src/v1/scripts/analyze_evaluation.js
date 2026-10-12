@@ -22,8 +22,8 @@ function calculateMetrics(pairs) {
 }
 
 function analyze(resultPath) {
-    const cases = readJson(path.join(root, 'data/evaluation-data.json'));
-    const masked = readJson(path.join(root, 'data/evaluation-data-masked.json'));
+    const cases = readJson(path.join(root, 'archive/v1-data/evaluation-data.json'));
+    const masked = readJson(path.join(root, 'archive/v1-data/evaluation-data-masked.json'));
     if (!isDeepStrictEqual(masked, cases.map(({ evaluation_id, messages }) => ({ evaluation_id, messages })))) {
         throw new Error('Labeled and masked evaluation datasets are not aligned.');
     }

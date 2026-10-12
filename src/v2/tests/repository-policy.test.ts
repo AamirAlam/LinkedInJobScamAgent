@@ -5,7 +5,7 @@ import { test } from 'node:test';
 import { recommendRepositoryAction } from '../repository-policy.ts';
 import type { RepositoryAssessment } from '../repository-policy.ts';
 
-const fixture = JSON.parse(readFileSync(resolve(__dirname, '../../../data/synthetic-repository-pair.json'), 'utf8'));
+const fixture = JSON.parse(readFileSync(resolve(__dirname, '../../../data/synthesis/synthetic-repository-pair.json'), 'utf8'));
 
 // History-dependent boundary variants are checked by repository-replay.test.ts.
 for (const scenario of fixture.cases.filter((item: { evaluation_id: number }) => [101, 107].includes(item.evaluation_id))) {

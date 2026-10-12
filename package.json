@@ -23,7 +23,8 @@
     "baseline": "tsx src/v1/baseline.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:decision-cost": "node --import tsx --test src/v2/tests/decision-cost.test.ts",
-    "test:decision-policy": "node --import tsx --test src/v2/tests/decision-policy.test.ts"
+    "test:decision-policy": "node --import tsx --test src/v2/tests/decision-policy.test.ts",
+    "demo:synthetic-bayes": "node --import tsx src/v2/scripts/replay_synthetic_bayes.ts"
   },
   "devDependencies": {
     "@types/node": "^26.4.1",
