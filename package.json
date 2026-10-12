@@ -21,7 +21,9 @@
     "test:analyze": "node --test src/v1/tests/analyze_evaluation.test.js",
     "start": "tsx src/v1/agent_v1.ts",
     "baseline": "tsx src/v1/baseline.ts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:decision-cost": "node --import tsx --test src/v2/tests/decision-cost.test.ts",
+    "test:decision-policy": "node --import tsx --test src/v2/tests/decision-policy.test.ts"
   },
   "devDependencies": {
     "@types/node": "^26.4.1",
