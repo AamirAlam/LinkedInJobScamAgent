@@ -28,7 +28,8 @@
     "start:v2": "node --env-file=.env --import tsx src/v2/agent-v2.ts",
     "test:agent-v2": "node --import tsx --test src/v2/tests/agent-v2.test.ts",
     "compare:v2": "node --import tsx src/v2/scripts/compare_policies.ts",
-    "test:policy-comparison": "node --import tsx --test src/v2/tests/policy-comparison.test.ts"
+    "test:policy-comparison": "node --import tsx --test src/v2/tests/policy-comparison.test.ts",
+    "test:conversation": "node --import tsx --test src/v2/tests/conversation-runner.test.ts"
   },
   "devDependencies": {
     "@types/node": "^26.4.1",

@@ -71,6 +71,51 @@ export function prepareRepositoryCases(fixture: Fixture, benchmarkMode: boolean)
 
 export async function main() {
     const args = process.argv.slice(2);
+    if (args[0] === '--conversation') {
+        if (args.length < 2 || args.length > 3 || (args.length === 3 && args[2] !== '--dry-run')) {
+            throw new Error('Use --conversation FILE.json [--dry-run].');
+        }
+        const { parseConversation, runConversation } = await import('./conversation-runner.ts');
+        const messages = parseConversation(JSON.parse(readFileSync(args[1], 'utf8')));
+        if (args[2] === '--dry-run') {
+            console.log(`Ready: ${messages.length} messages; at most one repository inspection. No API calls made.`);
+            return;
+        }
+        const report = { created_at: new Date().toISOString(), purpose: 'conversation_driven_repository_inspection',
+            status: 'running', belief_update: 'none_no_real_likelihoods_configured',
+            model: process.env.V2_ANNOTATION_MODEL ?? 'gpt-5.6-luna',
+            source_sha256: createHash('sha256').update(JSON.stringify(messages)).digest('hex'),
+            steps: [] as unknown[] };
+        mkdirSync('results', { recursive: true });
+        const path = `results/conversation-v2-${report.created_at.replace(/[:.]/g, '-')}.json`;
+        writeFileSync(path, JSON.stringify(report, null, 2) + '\n', { flag: 'wx' });
+        for await (const step of runConversation({ messages })) {
+            report.steps.push(step);
+            writeFileSync(path, JSON.stringify(report, null, 2) + '\n');
+            console.log(`${step.time}: ${step.action} — ${step.reason}`);
+        }
+        report.status = 'complete';
+        writeFileSync(path, JSON.stringify(report, null, 2) + '\n');
+        console.log(`Report: ${path}`);
+        return;
+    }
+    if (args[0] === '--inspect-local' || args[0] === '--inspect-repo') {
+        if (args.length !== 4 || args[2] !== '--action') {
+            throw new Error('Use --inspect-local PATH or --inspect-repo HTTPS_URL followed by --action "requested command".');
+        }
+        const result = args[0] === '--inspect-repo'
+            ? await (await import('./repository-inspection-cycle.ts')).runRepositoryInspection(args[1], args[3])
+            : await (await import('./repository-inspector.ts')).inspectRepository(args[1], args[3]);
+        mkdirSync('results', { recursive: true });
+        const path = `results/repository-inspection-${new Date().toISOString().replace(/[:.]/g, '-')}.json`;
+        writeFileSync(path, JSON.stringify(result, null, 2) + '\n', { flag: 'wx' });
+        if ('recommendation' in result) {
+            console.log(`Inspection: ${result.inspection.outcome}. Recommendation: ${result.recommendation.action}.`);
+            console.log(result.recommendation.reason);
+        } else console.log(`Inspection: ${result.outcome}. Authorisation is not verified by this check.`);
+        console.log(`Report: ${path}`);
+        return;
+    }
     if (args.some(arg => !['--dry-run', '--synthetic-bayes', '--benchmark'].includes(arg))) {
         throw new Error('Use --dry-run, --synthetic-bayes and/or --benchmark.');
     }

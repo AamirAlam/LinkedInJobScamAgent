@@ -357,6 +357,124 @@ still requires verified assessment authorisation before execution is cleared.
 The replay preserves the latest scope in `inspectionScope` for auditing. Existing
 scripted fixtures without scope remain supported. Schema validation checks record
 consistency, not the truth of findings or completeness of dependency tracing.
-This is the inspection result contract only: automated repository reading and
-manual-review orchestration are not implemented yet. No programs are downloaded
-or executed by this addition; likelihoods and decision costs are unchanged.
+A bounded local-file inspector is available as described below. Manual-review
+orchestration is not implemented yet. Likelihoods and decision costs are unchanged.
+
+
+### Live read-only repository inspection
+
+```sh
+npm run start:v2 -- --inspect-repo https://github.com/AamirAlam/portfolio-app --action "npm install && npm run dev"
+# Existing local snapshots are also supported:
+npm run start:v2 -- --inspect-local /path/to/separate-snapshot --action "npm start"
+```
+
+Public HTTPS GitHub and Bitbucket Cloud repository root URLs are supported.
+The fetcher resolves the default branch to a commit, reads source through the
+provider API, and sends bounded source text to the configured LLM. The requested
+command is data: it is never executed. No clone, install, archive extraction,
+program download, submodule or LFS fetch occurs. Remote source stays in memory;
+there is no checkout to clean up. Only timestamped audit reports are retained.
+
+Inspection follows relevant file references for up to 4 model calls, 24 paths,
+32 KiB per file and 128 KiB of source text. Fetching is limited to 60 requests,
+3 MB of responses and a 120-second fetch window, with 10-second request timeouts.
+Redirects, symlinks, non-provider hosts and private/tool paths are refused.
+Private repositories, missing source, malformed responses, API failures, missing
+required files and budget limits remain unresolved. Local snapshots must be
+stable; the local reader is not an OS sandbox against concurrent modification.
+
+The automated result is one of:
+
+- `harmful_behaviour_found`: a model-identified harmful behaviour has exact
+  file/line/quote evidence. The policy recommends FLAG. This is an automated
+  assessment, not independently confirmed ground truth.
+- `no_harmful_behaviour_found`: the model reports complete coverage of the
+  requested scope, with files inspected and no unresolved gaps. This is scoped
+  static analysis, not proof that the entire repository or recruiter is safe.
+- `unresolved`: incomplete coverage or review failure. The policy keeps HOLD and
+  records manual review as a candidate, with the user's assumed 30-minute effort.
+
+Harmful findings persist across review rounds. External package dependencies
+remain a coverage gap for package-manager execution; familiar package names
+and a lockfile do not establish dependency safety. Direct `node file.js`
+inspection follows its own execution paths rather than automatically requiring
+unrelated development packages.
+
+The URL CLI does not establish assessment authorisation, so even a scoped-clean
+repository remains HOLD under the existing policy until separate authorisation
+is verified. It does not invent a scam probability or a review-value estimate.
+Conversation-driven URL extraction and automatic scheduling of checks are not
+part of this CLI. No dataset labels are edited from inspection output.
+
+Provider API references: [GitHub Git trees](https://docs.github.com/en/rest/git/trees),
+[GitHub commits](https://docs.github.com/en/rest/commits/commits), and
+[Bitbucket source](https://developer.atlassian.com/cloud/bitbucket/rest/api-group-source/).
+
+The 2026-10-14 live portfolio-app run inspected 19 files at commit
+`ac1280fab0288b88f692d6dc2a64badaa476abbd`, with 4 model calls. It reported no harmful
+findings but unresolved dependency, file-size, path-budget and HTTP 403 gaps;
+therefore HOLD. See
+`results/repository-inspection-2026-10-14T11-32-44-924Z.json`.
+GitHub live access was exercised; Bitbucket protocol behaviour is tested with
+stubbed responses, not a live Bitbucket repository. These are development checks,
+not evidence of calibrated malware-detection accuracy.
+
+Inspection reports also retain `review_errors`: the review round, failure category
+and rejected findings. Source text is accompanied by numbered lines for citation
+accuracy. Schema/citation failures can be corrected within the same four-call
+budget; rejected findings never enter policy evidence. Schema-valid file requests
+can advance inspection during correction. API failures or an exhausted correction
+budget keep the assessment unresolved unless valid harmful evidence was already
+established. The reviewer prioritises automatic workspace tasks and the Git hooks
+they activate; this is generic traversal guidance, not a repository-name rule.
+
+Citations are anchored to a unique exact source substring (outer quote whitespace
+is ignored). The inspector derives authoritative line numbers and stores complete
+source lines, recording changes in `citation_adjustments`. It does not fuzzy-match
+code or accept an invented or ambiguous quote. A wrong model line number alone no
+longer discards an otherwise verifiable finding.
+
+### Conversation-triggered inspection
+
+```sh
+npm run start:v2 -- --conversation conversation.json --dry-run
+npm run start:v2 -- --conversation conversation.json
+```
+
+Input format (illustrative messages, not collected evidence):
+
+```json
+{
+  "messages": [
+    {"time":"t0","sender":"candidate","message":"Please share the assessment."},
+    {"time":"t1","sender":"recruiter","message":"Run npm install and npm run dev in https://github.com/OWNER/REPO"}
+  ]
+}
+```
+
+Messages are processed in file order, exposing only each arrived prefix to the
+extractor. Reviewer metadata and ground truth are removed. Candidate statements,
+links alone, and ambiguous requests cannot trigger a repository fetch. An explicit
+execution request must contain exactly one supported repository root URL in that
+same message. Earlier-message URL binding, multiple repositories and document-link
+resolution are not implemented; those targets remain HOLD for clarification.
+
+HOLD is emitted and saved before inspection begins. The source inspection and
+policy result are then saved in the same timestamped conversation report. There
+is at most one inspection per conversation run. Later instructions do not reuse
+an earlier clearance; HOLD/FLAG persists and a new assessment is required. Early
+SAFE is conversation-only. Assessment authorisation remains unresolved, so a clean
+inspection cannot by itself allow execution. No synthetic prior or likelihood is
+used in this real-data path. This is a sequential CLI, not a persistent chat server.
+Tests use stubbed extraction and inspection. A live synthetic conversation run on
+2026-10-14 correctly triggered at the execution request, then retained HOLD when
+GitHub returned HTTP 403. Successful source inspection through this conversation
+path remains unvalidated; see `results/conversation-v2-2026-10-14T13-15-17-994Z.review.md`.
+
+Source errors now distinguish HTTP 429 and HTTP 403 with an exhausted allowance
+as `provider_rate_limited`. `source_errors` records the affected path and
+`retry_at` when the provider supplies a valid reset or retry header. Further
+network fetches in that source instance are suppressed after the limit response.
+Other HTTP 403 responses remain generic access failures. No automatic waiting or
+cross-run retry is performed; unresolved inspection stays HOLD.
