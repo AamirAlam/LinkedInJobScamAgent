@@ -21,7 +21,7 @@
     "test:analyze": "node --test src/v1/tests/analyze_evaluation.test.js",
     "start": "tsx src/v1/agent_v1.ts",
     "baseline": "tsx src/v1/baseline.ts",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run test:v2",
     "test:decision-cost": "node --import tsx --test src/v2/tests/decision-cost.test.ts",
     "test:decision-policy": "node --import tsx --test src/v2/tests/decision-policy.test.ts",
     "demo:synthetic-bayes": "node --import tsx src/v2/scripts/replay_synthetic_bayes.ts",
@@ -29,12 +29,22 @@
     "test:agent-v2": "node --import tsx --test src/v2/tests/agent-v2.test.ts",
     "compare:v2": "node --import tsx src/v2/scripts/compare_policies.ts",
     "test:policy-comparison": "node --import tsx --test src/v2/tests/policy-comparison.test.ts",
-    "test:conversation": "node --import tsx --test src/v2/tests/conversation-runner.test.ts"
+    "test:conversation": "node --import tsx --test src/v2/tests/conversation-runner.test.ts",
+    "test:v2": "node --import tsx --test src/v2/tests/*.test.ts",
+    "typecheck:v2": "tsc -p tsconfig.v2.json",
+    "lint:v2": "eslint src/v2 --max-warnings 0",
+    "format:v2": "prettier --write \"src/v2/**/*.ts\"",
+    "format:check:v2": "prettier --check \"src/v2/**/*.ts\"",
+    "check:v2": "npm run format:check:v2 && npm run lint:v2 && npm run typecheck:v2 && npm run test:v2"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/node": "^26.4.1",
+    "eslint": "^10.12.0",
+    "prettier": "^3.9.10",
     "tsx": "^4.20.6",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.71.2"
   },
   "dependencies": {
     "@openai/agents": "^0.17.0",
