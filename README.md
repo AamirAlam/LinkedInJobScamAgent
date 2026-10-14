@@ -322,3 +322,41 @@ V1 achieved **100% precision and 72.73% recall** with no false-positive FLAG dec
 The baseline achieved identical binary metrics, but the agent’s `HOLD` action reduced decision cost by avoiding confident SAFE decisions on most missed scams.
 
 The main limitation is detecting scams that rely on identity deception or realistic recruiting behavior rather than explicit harmful actions.
+
+## Run V2
+
+The V2 entry point is `src/v2/agent-v2.ts`, whose exported `main()` loads the current four-case repository fixture, configures optional synthetic beliefs, coordinates sequential replay and writes evaluation results. `npm start` continues to run V1.
+
+```bash
+npm run start:v2 -- --synthetic-bayes --dry-run
+```
+
+Remove `--dry-run` to call the LLM and evaluate the four cases. Inspection and authorisation findings remain scripted. `--synthetic-bayes` explicitly enables the reviewed exercise configuration; without it the original repository rules are used. The existing `evaluate:repository-replay` command delegates to the same entry function.
+
+V2 reports include recommendation `scope` and `guidance`. Early SAFE permits conversation only; repository execution requires the configured checks and precautions. The displayed probability is the **last modelled scam belief**. `lastUpdatedAtEvent` identifies its latest numerical update and `unmodelledEvidenceEventIds` lists observations not incorporated into that probability, even when safety rules act on them. Schema version 2 adds these fields; older reports are preserved.
+
+To evaluate the repository-compatible subset of the 100-case development benchmark:
+
+```bash
+npm run start:v2 -- --benchmark --synthetic-bayes --dry-run
+```
+
+The current selection is 28 supported cases and 72 explicitly skipped cases, with 93 planned message-level API calls. Remove `--dry-run` for the paid LLM run. Preflight validates selected event schemas, artifact references, event order and checkpoint targets. Reports record coverage, skipped IDs/reasons and proposed-target IDs. The synthetic likelihoods are an explicit exercise snapshot; this is not held-out accuracy or a full 100-case result.
+
+### Scoped repository inspection records
+
+Repository inspection events may now include `agent_input.scope` with
+`requested_action`, `artifact_revision`, `inspected_files`, `findings`, and `gaps`.
+Each finding records `file`, `start_line`, `end_line`, `behaviour`, and `harmful`.
+Citations must reference inspected files. A scoped clean outcome requires at
+least one inspected file and no relevant uninspected execution paths. Concrete
+harm requires a cited harmful finding; missing dependencies or exhausted review
+budgets should be recorded as gaps with an unresolved outcome. Clean inspection
+still requires verified assessment authorisation before execution is cleared.
+
+The replay preserves the latest scope in `inspectionScope` for auditing. Existing
+scripted fixtures without scope remain supported. Schema validation checks record
+consistency, not the truth of findings or completeness of dependency tracing.
+This is the inspection result contract only: automated repository reading and
+manual-review orchestration are not implemented yet. No programs are downloaded
+or executed by this addition; likelihoods and decision costs are unchanged.

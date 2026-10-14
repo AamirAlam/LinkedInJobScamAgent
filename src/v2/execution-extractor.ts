@@ -1,4 +1,3 @@
-import { Agent, Runner } from '@openai/agents';
 import { z } from 'zod';
 
 export type VisibleMessage = { time: string; sender: 'candidate' | 'counterparty'; message: string };
@@ -98,6 +97,8 @@ export async function extractExecutionRequests(
 ): Promise<ExecutionAnnotation> {
     const input = visibleMessages(messages);
     if (!process.env.OPENAI_API_KEY) throw new Error('OPENAI_API_KEY is missing.');
+    // Local validation and stubbed replay do not need to load the API SDK.
+    const { Agent, Runner } = await import('@openai/agents');
     const agent = new Agent({
         name: 'Execution request annotator',
         model,

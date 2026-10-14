@@ -24,7 +24,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "test:decision-cost": "node --import tsx --test src/v2/tests/decision-cost.test.ts",
     "test:decision-policy": "node --import tsx --test src/v2/tests/decision-policy.test.ts",
-    "demo:synthetic-bayes": "node --import tsx src/v2/scripts/replay_synthetic_bayes.ts"
+    "demo:synthetic-bayes": "node --import tsx src/v2/scripts/replay_synthetic_bayes.ts",
+    "start:v2": "node --env-file=.env --import tsx src/v2/agent-v2.ts",
+    "test:agent-v2": "node --import tsx --test src/v2/tests/agent-v2.test.ts",
+    "compare:v2": "node --import tsx src/v2/scripts/compare_policies.ts",
+    "test:policy-comparison": "node --import tsx --test src/v2/tests/policy-comparison.test.ts"
   },
   "devDependencies": {
     "@types/node": "^26.4.1",

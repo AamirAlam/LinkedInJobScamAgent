@@ -7,6 +7,25 @@ import type { RepositoryAssessment } from '../repository-policy.ts';
 
 const fixture = JSON.parse(readFileSync(resolve(__dirname, '../../../data/synthesis/synthetic-repository-pair.json'), 'utf8'));
 
+test('unresolved scam, legitimate and unknown cases share visible evidence and all HOLD', () => {
+    const benchmark = JSON.parse(readFileSync(resolve(__dirname, '../../../data/synthesis/synthetic-benchmark-100.json'), 'utf8'));
+    const scam = benchmark.cases.find((item: { evaluation_id: number }) => item.evaluation_id === 255);
+    const unknown = benchmark.cases.find((item: { evaluation_id: number }) => item.evaluation_id === 196);
+    const legitimate = benchmark.cases.find((item: { evaluation_id: number }) => item.evaluation_id === 256);
+    assert.equal(scam.evaluator_only.ground_truth, 'scam');
+    assert.equal(unknown.evaluator_only.ground_truth, 'unknown');
+    assert.equal(legitimate.evaluator_only.ground_truth, 'legitimate');
+    assert.deepEqual(scam.events, unknown.events);
+    assert.deepEqual(legitimate.events, unknown.events);
+    const inspection = scam.events.find((event: { kind: string }) => event.kind === 'check_result').agent_input;
+    assert.equal(inspection.outcome, 'unresolved');
+    for (const state of ['pending', inspection.outcome]) {
+        assert.equal(recommendRepositoryAction({
+            executionRequested: true, inspection: state, assessmentAuthorisation: 'unresolved',
+        }).action, 'HOLD');
+    }
+});
+
 // History-dependent boundary variants are checked by repository-replay.test.ts.
 for (const scenario of fixture.cases.filter((item: { evaluation_id: number }) => [101, 107].includes(item.evaluation_id))) {
     test(`synthetic case ${scenario.evaluation_id}: policy follows available evidence`, () => {
