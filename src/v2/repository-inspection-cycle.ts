@@ -28,6 +28,7 @@ export async function runRepositoryInspection(
       outcome: 'unresolved',
       finding: `Repository source unavailable: ${reason}.`,
       scope: {
+        inspection_boundary: 'repository_controlled_code',
         requested_action: requestedAction,
         artifact_revision: 'unresolved',
         inspected_files: [],
@@ -45,6 +46,7 @@ export async function runRepositoryInspection(
       file_hashes: [],
       review_status: 'automated_assessment_not_ground_truth',
       limitations: 'Unavailable source does not establish malicious intent.',
+      file_request_decisions: [],
       review_errors: [],
       citation_adjustments: [],
       model_calls: 0,

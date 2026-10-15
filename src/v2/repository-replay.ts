@@ -23,6 +23,7 @@ export type ReplayBeliefConfig = {
 // or establish that a supplied finding is true.
 const inspectionScopeSchema = z
   .object({
+    inspection_boundary: z.literal('repository_controlled_code').optional(),
     requested_action: z.string().trim().min(1),
     artifact_revision: z.string().trim().min(1),
     inspected_files: z.array(z.string().trim().min(1)),
@@ -35,7 +36,7 @@ const inspectionScopeSchema = z
         harmful: z.boolean(),
       }),
     ),
-    // Relevant missing files, uninspected dependencies, or exhausted budget.
+    // Missing in-scope source or exhausted budget; legacy reports retain their original gaps.
     gaps: z.array(z.string().trim().min(1)),
   })
   .superRefine((scope, context) => {
@@ -49,7 +50,7 @@ const inspectionScopeSchema = z
     }
   });
 
-const repositoryInspectionSchema = z
+export const repositoryInspectionSchema = z
   .object({
     check: z.literal('repository_inspection'),
     artifact: z.string(),

@@ -98,6 +98,32 @@ export function prepareRepositoryCases(fixture: Fixture, benchmarkMode: boolean)
 /** Start the V2 CLI using the selected inspection, conversation, or replay mode. */
 export async function main(): Promise<void> {
   const args = process.argv.slice(2);
+  if (args[0] === '--apply-review') {
+    if (args.length !== 4 || args[2] !== '--source') {
+      throw new Error('Use --apply-review REVIEW.json --source ORIGINAL_REPORT.json.');
+    }
+    const { applyManualReview } = await import('./manual-review-result.ts');
+    const result = applyManualReview(
+      readFileSync(args[1], 'utf8'),
+      readFileSync(args[3], 'utf8'),
+      args[3],
+    );
+    const path = createReport('manual-review-assessment', result, result.created_at);
+    console.log(
+      `Human review: ${result.assessment.inspection}. Recommendation: ${result.recommendation.action}. Report: ${path}`,
+    );
+    return;
+  }
+  if (args[0] === '--prepare-review') {
+    if (args.length !== 2) {
+      throw new Error('Use --prepare-review REPORT.json.');
+    }
+    const { prepareManualReview } = await import('./manual-review.ts');
+    const review = prepareManualReview(readFileSync(args[1], 'utf8'), args[1]);
+    const path = createReport('manual-review', review, review.created_at);
+    console.log(`Manual review prepared: ${path}. No policy or belief update applied.`);
+    return;
+  }
   if (args[0] === '--conversation') {
     return runConversationCommand(args);
   }

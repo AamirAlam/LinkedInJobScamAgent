@@ -96,7 +96,7 @@ test('harmful evidence survives a later reviewer omission and yields FLAG', asyn
   assert.equal(result.inspection.scope.findings.length, 1);
 });
 
-test('provider errors, uninspected dependencies and missing referenced files remain unresolved', async () => {
+test('provider errors and missing local files stay unresolved while third-party dependencies are outside scope', async () => {
   for (const status of [404, 403, 429]) {
     const result = await runRepositoryInspection('https://github.com/example/demo', 'npm start', {
       fetcher: github('{}', status),
@@ -111,7 +111,19 @@ test('provider errors, uninspected dependencies and missing referenced files rem
     fetcher: github('{"dependencies":{"example":"1.0.0"}}'),
     review: clean,
   });
-  assert.equal(deps.inspection.outcome, 'unresolved');
+  assert.equal(deps.inspection.outcome, 'no_harmful_behaviour_found');
+  assert.equal(deps.inspection.scope.inspection_boundary, 'repository_controlled_code');
+  assert.match(deps.inspection.limitations, /Third-party.*unverified/);
+  assert.equal(deps.recommendation.action, 'HOLD'); // Authorisation remains independent.
+  const event = repositoryEventSchema.parse({
+    event_id: 'e2',
+    kind: 'check_result',
+    check_id: 'repository_inspection',
+    requested_after_event: 'e1',
+    agent_input: deps.inspection,
+  });
+  assert.ok(event.kind === 'check_result' && event.agent_input.check === 'repository_inspection');
+  assert.equal(event.agent_input.scope?.inspection_boundary, 'repository_controlled_code');
   let calls = 0;
   const missing = await runRepositoryInspection('https://github.com/example/demo', 'npm start', {
     fetcher: github('{}'),
@@ -255,4 +267,14 @@ test('optional GitHub token is host-scoped, redirects refused, private repositor
     /invalid_github_token_format/,
   );
   assert.equal(calls, 1);
+});
+
+test('excluding third-party verification does not clear an unreadable repository manifest', async () => {
+  const result = await runRepositoryInspection('https://github.com/example/demo', 'npm install', {
+    fetcher: github('{invalid manifest'),
+    review: clean,
+  });
+  assert.equal(result.inspection.outcome, 'unresolved');
+  assert.ok(result.inspection.scope.gaps.includes('package.json could not be parsed.'));
+  assert.equal(result.recommendation.action, 'HOLD');
 });
