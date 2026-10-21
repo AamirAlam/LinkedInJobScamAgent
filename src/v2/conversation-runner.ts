@@ -1,4 +1,6 @@
 import { z } from 'zod';
+import { applyAssessmentAuthorisation } from './assessment-authorisation.ts';
+import { recommendRepositoryAction } from './repository-policy.ts';
 import {
   extractExecutionRequests,
   validateExecutionAnnotation,
@@ -7,6 +9,61 @@ import {
 import type { ExecutionAnnotation, VisibleMessage } from './execution-extractor.ts';
 import { parseRepositoryUrl } from './repository-source.ts';
 import { runRepositoryInspection } from './repository-inspection-cycle.ts';
+
+export type ConversationAuthorisation = {
+  rawRecord: string;
+  rawSource: string;
+  sourcePath: string;
+};
+
+function decideInspectedRequest(
+  inspection: Awaited<ReturnType<typeof runRepositoryInspection>>,
+  artifact: string,
+  requestedAction: string,
+  isCurrentRequest: boolean,
+  authorisation: ReturnType<typeof applyAssessmentAuthorisation> | undefined,
+) {
+  if (!authorisation) {
+    return {
+      recommendation:
+        inspection.recommendation.action === 'FLAG'
+          ? inspection.recommendation
+          : recommendRepositoryAction({
+              executionRequested: true,
+              inspection: inspection.inspection.outcome,
+              assessmentAuthorisation: 'unresolved',
+            }),
+      authorisation_status: 'not_supplied',
+    };
+  }
+  const scope = inspection.inspection.scope;
+  const binding = authorisation.binding;
+  const matches =
+    artifact === binding.artifact &&
+    inspection.inspection.artifact === artifact &&
+    requestedAction === binding.requested_action &&
+    scope?.requested_action === requestedAction &&
+    scope.artifact_revision === binding.revision &&
+    scope.inspection_boundary === binding.inspection_boundary;
+  const priorHarm = matches && authorisation.inspection.outcome === 'harmful_behaviour_found';
+  const recommendation = recommendRepositoryAction({
+    executionRequested: true,
+    inspection:
+      priorHarm || inspection.recommendation.action === 'FLAG'
+        ? 'harmful_behaviour_found'
+        : inspection.inspection.outcome,
+    assessmentAuthorisation:
+      matches && isCurrentRequest ? authorisation.assessment.assessmentAuthorisation : 'unresolved',
+  });
+  return {
+    recommendation,
+    authorisation_status: matches
+      ? isCurrentRequest
+        ? authorisation.assessment.assessmentAuthorisation
+        : 'later_message_requires_reassessment'
+      : 'scope_mismatch',
+  };
+}
 
 /** Validate a conversation and strip labels before any network or model work. */
 export function parseConversation(input: unknown): VisibleMessage[] {
@@ -41,8 +98,16 @@ export async function* runConversation(
     messages: readonly VisibleMessage[],
   ) => Promise<ExecutionAnnotation> = extractExecutionRequests,
   inspect: typeof runRepositoryInspection = runRepositoryInspection,
+  authorisationInput?: ConversationAuthorisation,
 ) {
   const messages = parseConversation(input); // preflight before any paid/network work
+  const authorisation = authorisationInput
+    ? applyAssessmentAuthorisation(
+        authorisationInput.rawRecord,
+        authorisationInput.rawSource,
+        authorisationInput.sourcePath,
+      )
+    : undefined;
   let inspected = false;
   let executionSeen = false;
   let flagged = false;
@@ -120,15 +185,29 @@ export async function* runConversation(
     inspected = true;
     try {
       const inspection = await inspect(artifact, request.message);
-      flagged = inspection.recommendation.action === 'FLAG';
+      const decision = decideInspectedRequest(
+        inspection,
+        artifact,
+        request.message,
+        request.time === current.time,
+        authorisation,
+      );
+      flagged = decision.recommendation.action === 'FLAG';
       yield {
         time: current.time,
         artifact,
-        action: flagged ? 'FLAG' : 'HOLD',
+        action: decision.recommendation.action ?? 'HOLD',
         scope: 'repository_execution',
         inspection_triggered: false,
         inspection,
-        reason: inspection.recommendation.reason,
+        authorisation_status: decision.authorisation_status,
+        ...(authorisationInput
+          ? { authorisation_record_sha256: authorisation?.submitted_record_sha256 }
+          : {}),
+        reason: decision.recommendation.reason,
+        ...('precautions' in decision.recommendation
+          ? { precautions: decision.recommendation.precautions }
+          : {}),
       };
     } catch {
       yield {

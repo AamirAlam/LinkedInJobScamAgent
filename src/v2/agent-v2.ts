@@ -98,6 +98,48 @@ export function prepareRepositoryCases(fixture: Fixture, benchmarkMode: boolean)
 /** Start the V2 CLI using the selected inspection, conversation, or replay mode. */
 export async function main(): Promise<void> {
   const args = process.argv.slice(2);
+  if (args[0] === '--prepare-authorisation') {
+    if (args.length !== 2) {
+      throw new Error('Use --prepare-authorisation REPORT.json.');
+    }
+    const { prepareAssessmentAuthorisation } = await import('./assessment-authorisation.ts');
+    const record = prepareAssessmentAuthorisation(readFileSync(args[1], 'utf8'), args[1]);
+    const path = createReport('assessment-authorisation', record, record.created_at);
+    console.log(`Pending authorisation record: ${path}. No policy update applied.`);
+    return;
+  }
+  if (args[0] === '--apply-authorisation') {
+    if (args.length !== 4 || args[2] !== '--source') {
+      throw new Error('Use --apply-authorisation RECORD.json --source REPORT.json.');
+    }
+    const { applyAssessmentAuthorisation } = await import('./assessment-authorisation.ts');
+    const result = applyAssessmentAuthorisation(
+      readFileSync(args[1], 'utf8'),
+      readFileSync(args[3], 'utf8'),
+      args[3],
+    );
+    const path = createReport('assessment-authorisation-result', result, result.created_at);
+    console.log(
+      `Authorisation: ${result.assessment.assessmentAuthorisation}. Recommendation: ${result.recommendation.action}. Report: ${path}`,
+    );
+    return;
+  }
+  if (args[0] === '--apply-supplement') {
+    if (args.length !== 4 || args[2] !== '--source') {
+      throw new Error('Use --apply-supplement SUPPLEMENT.json --source ORIGINAL_REPORT.json.');
+    }
+    const { applyAutomatedSupplement } = await import('./automated-supplement.ts');
+    const result = applyAutomatedSupplement(
+      readFileSync(args[1], 'utf8'),
+      readFileSync(args[3], 'utf8'),
+      args[3],
+    );
+    const path = createReport('automated-supplement-assessment', result, result.created_at);
+    console.log(
+      `Combined inspection: ${result.inspection.outcome}. Recommendation: ${result.recommendation.action}. Report: ${path}`,
+    );
+    return;
+  }
   if (args[0] === '--apply-review') {
     if (args.length !== 4 || args[2] !== '--source') {
       throw new Error('Use --apply-review REVIEW.json --source ORIGINAL_REPORT.json.');
@@ -134,12 +176,38 @@ export async function main(): Promise<void> {
 }
 
 async function runConversationCommand(args: readonly string[]): Promise<void> {
-  if (args.length < 2 || args.length > 3 || (args.length === 3 && args[2] !== '--dry-run')) {
-    throw new Error('Use --conversation FILE.json [--dry-run].');
+  const dryRun = args.at(-1) === '--dry-run';
+  const commandArgs = dryRun ? args.slice(0, -1) : args;
+  if (!(
+    commandArgs.length === 2 ||
+    (commandArgs.length === 6 &&
+      commandArgs[2] === '--authorisation' &&
+      commandArgs[4] === '--source')
+  )) {
+    throw new Error(
+      'Use --conversation FILE.json [--authorisation RECORD.json --source REPORT.json] [--dry-run].',
+    );
   }
   const { parseConversation, runConversation } = await import('./conversation-runner.ts');
-  const messages = parseConversation(JSON.parse(readFileSync(args[1], 'utf8')));
-  if (args[2] === '--dry-run') {
+  const messages = parseConversation(JSON.parse(readFileSync(commandArgs[1], 'utf8')));
+  const authorisation =
+    commandArgs.length === 6
+      ? {
+          rawRecord: readFileSync(commandArgs[3], 'utf8'),
+          rawSource: readFileSync(commandArgs[5], 'utf8'),
+          sourcePath: commandArgs[5],
+        }
+      : undefined;
+  // Validate submitted evidence before creating reports or spending API calls, including dry runs.
+  if (authorisation) {
+    const { applyAssessmentAuthorisation } = await import('./assessment-authorisation.ts');
+    applyAssessmentAuthorisation(
+      authorisation.rawRecord,
+      authorisation.rawSource,
+      authorisation.sourcePath,
+    );
+  }
+  if (dryRun) {
     console.log(
       `Ready: ${messages.length} messages; at most one repository inspection. No API calls made.`,
     );
@@ -155,7 +223,7 @@ async function runConversationCommand(args: readonly string[]): Promise<void> {
     steps: [] as unknown[],
   };
   const path = createReport('conversation-v2', report, report.created_at);
-  for await (const step of runConversation({ messages })) {
+  for await (const step of runConversation({ messages }, undefined, undefined, authorisation)) {
     report = { ...report, steps: [...report.steps, step] };
     writeReport(path, report);
     console.log(`${step.time}: ${step.action} — ${step.reason}`);

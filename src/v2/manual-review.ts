@@ -13,7 +13,11 @@ export type ManualCitation = z.infer<typeof manualCitationSchema>;
 
 const reportSchema = z.discriminatedUnion('purpose', [
   z.object({
-    purpose: z.literal('live_read_only_repository_inspection'),
+    purpose: z.enum([
+      'live_read_only_repository_inspection',
+      'automated_supplement_assessment',
+      'automated_execution_path_audit',
+    ]),
     inspection: z.unknown(),
   }),
   z.object({
@@ -23,9 +27,10 @@ const reportSchema = z.discriminatedUnion('purpose', [
   }),
 ]);
 
-function readInspection(rawReport: string) {
+/** Read a standalone or single completed conversation inspection; validates metadata, not source truth. */
+export function readInspectionReport(rawReport: string) {
   const report = reportSchema.parse(JSON.parse(rawReport));
-  if (report.purpose === 'live_read_only_repository_inspection') {
+  if ('inspection' in report) {
     return repositoryInspectionSchema.parse(report.inspection);
   }
   const inspections = report.steps.flatMap((step) =>
@@ -40,7 +45,7 @@ function readInspection(rawReport: string) {
 
 /** Prepare an unfilled human review record; never infer a verdict or change policy state. */
 export function prepareManualReview(rawReport: string, sourceReport: string) {
-  const inspection = readInspection(rawReport);
+  const inspection = readInspectionReport(rawReport);
   if (!inspection.scope) {
     throw new Error('Manual review requires an inspection scope and revision record.');
   }

@@ -83,8 +83,15 @@ export async function openRemoteRepository(
   value: string,
   fetcher: typeof fetch = fetch,
   githubToken = process.env.V2_GITHUB_TOKEN,
+  requestedRevision?: string,
 ): Promise<RepositorySource> {
   const repo = parseRepositoryUrl(value);
+  if (
+    requestedRevision !== undefined &&
+    (!/^(?:[a-f0-9]{40}|[a-f0-9]{64})$/.test(requestedRevision) || repo.host !== 'github.com')
+  ) {
+    throw new SourceError('Explicit revision requires a full GitHub commit hash.');
+  }
   const token = repo.host === 'github.com' ? githubToken?.trim() : undefined;
   if (token && !/^[A-Za-z0-9_]+$/.test(token)) {
     throw new SourceError('invalid_github_token_format');
@@ -97,7 +104,7 @@ export async function openRemoteRepository(
       : `/2.0/repositories/${repo.owner}/${repo.repo}`;
   const { get, json } = createSourceTransport(origin, token, fetcher);
   return repo.host === 'github.com'
-    ? openGitHubSource(repo.artifact, base, Boolean(token), json)
+    ? openGitHubSource(repo.artifact, base, Boolean(token), json, requestedRevision)
     : openBitbucketSource(repo.artifact, base, get, json);
 }
 
@@ -199,6 +206,7 @@ async function openGitHubSource(
   base: string,
   authenticated: boolean,
   json: ReadJson,
+  requestedRevision?: string,
 ): Promise<RepositorySource> {
   if (authenticated) {
     const metadata = z.object({ private: z.boolean() }).parse(await json(base));
@@ -208,7 +216,10 @@ async function openGitHubSource(
   }
   const commit = z
     .object({ sha: hash, commit: z.object({ tree: z.object({ sha: hash }) }) })
-    .parse(await json(`${base}/commits/HEAD`));
+    .parse(await json(`${base}/commits/${requestedRevision ?? 'HEAD'}`));
+  if (requestedRevision && commit.sha !== requestedRevision) {
+    throw new SourceError('source_revision_mismatch');
+  }
   const tree = z
     .object({
       truncated: z.boolean(),

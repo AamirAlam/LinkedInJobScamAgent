@@ -278,3 +278,43 @@ test('excluding third-party verification does not clear an unreadable repository
   assert.ok(result.inspection.scope.gaps.includes('package.json could not be parsed.'));
   assert.equal(result.recommendation.action, 'HOLD');
 });
+
+test('explicit GitHub revisions bypass HEAD and reject mismatched provider commits', async () => {
+  const revision = 'e'.repeat(40);
+  const fetcher = (async (url: string | URL | Request) => {
+    assert.ok(!String(url).endsWith('/commits/HEAD'));
+    if (String(url).endsWith(`/commits/${revision}`)) {
+      return json({ sha: revision, commit: { tree: { sha: tree } } });
+    }
+    return json({ truncated: false, tree: [] });
+  }) as typeof fetch;
+  const source = await openRemoteRepository(
+    'https://github.com/example/demo',
+    fetcher,
+    '',
+    revision,
+  );
+  assert.equal(source.revision, revision);
+  await assert.rejects(
+    openRemoteRepository(
+      'https://github.com/example/demo',
+      (async () => json({ sha: commit, commit: { tree: { sha: tree } } })) as typeof fetch,
+      '',
+      revision,
+    ),
+    /source_revision_mismatch/,
+  );
+  for (const invalid of ['main', '../HEAD', '', 'a'.repeat(39), 'a'.repeat(41)]) {
+    await assert.rejects(
+      openRemoteRepository(
+        'https://github.com/example/demo',
+        (async () => {
+          assert.fail('Invalid revision must not reach the network.');
+        }) as typeof fetch,
+        '',
+        invalid,
+      ),
+      /full GitHub commit hash/,
+    );
+  }
+});

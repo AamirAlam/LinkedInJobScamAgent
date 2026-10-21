@@ -14,6 +14,18 @@ import { discoverLocalImports } from './local-imports.ts';
 import { SourceError, validateSourcePath } from './repository-source.ts';
 import type { RepositorySource } from './repository-source.ts';
 
+const scopeGapSchema = z.object({
+  description: z.string().trim().min(1),
+  kind: z.enum([
+    'missing_repository_file',
+    'unresolved_repository_behaviour',
+    'third_party_verification',
+    'optional_setup',
+  ]),
+  source_file: z.string().nullable(),
+  source_quote: z.string().nullable(),
+});
+
 export const reviewSchema = z.object({
   coverage_complete: z.boolean(),
   requested_files: z.array(z.string()),
@@ -29,11 +41,13 @@ export const reviewSchema = z.object({
   ),
   gaps: z.array(z.string()),
   request_decisions: z.array(requestDecisionSchema).optional(),
+  scope_gaps: z.array(scopeGapSchema).optional(),
 });
 const modelReviewSchema = reviewSchema
-  .omit({ requested_files: true, request_decisions: true })
+  .omit({ requested_files: true, request_decisions: true, scope_gaps: true, gaps: true })
   .extend({
     file_requests: z.array(fileRequestSchema),
+    gaps: z.array(scopeGapSchema),
   });
 
 export type Review = z.infer<typeof reviewSchema>;
@@ -44,7 +58,8 @@ export type InspectionInput = {
   unavailable: string[];
   available_files?: string[];
   request_feedback?: RequestDecision[];
-  correction?: { code: string; rejected_findings: Review['findings'] };
+  collection_budget?: { remaining_paths: number; remaining_bytes: number };
+  correction?: { code: string; rejected_findings: Review['findings']; rejected_gaps?: string[] };
 };
 
 export const inspectionInstructions = `Review the requested action using only supplied repository file text.
@@ -83,6 +98,14 @@ An example environment file used only as setup documentation is not a required e
 path. Inspect actual environment-variable usage and destinations in source; do not request
 secret environment files. A filename alone does not establish that its contents are safe.
 Report only unresolved blockers in gaps; use an empty array when none remain.
+Each gap requires description, kind, source_file and source_quote. For missing_repository_file
+or unresolved_repository_behaviour, cite an exact nonempty quote from supplied repository
+source that establishes the unresolved path or behaviour. A possibility with no source evidence
+is not a blocker. third_party_verification and optional_setup are outside this assessment;
+these claims will be rejected for correction rather than silently removed. Never reclassify
+an excluded claim as repository behaviour merely to pass validation. Missing local code,
+dynamic targets and concealed external execution referenced in repository source remain in
+scope. If correction includes rejected_gaps, reassess those claims against this boundary.
 Never put reassuring explanations or "no gaps" statements in gaps. Missing optional
 configuration files are not blockers unless referenced by the requested action.
 When available_files is supplied, use it to request exact existing paths (the list may
@@ -135,7 +158,8 @@ async function reviewWithModel(input: InspectionInput): Promise<Review> {
   return {
     coverage_complete: output.coverage_complete,
     findings: output.findings,
-    gaps: output.gaps,
+    gaps: output.gaps.map((gap) => gap.description),
+    scope_gaps: output.gaps,
     requested_files: selection.requestedFiles,
     request_decisions: selection.decisions,
   };
@@ -220,10 +244,21 @@ type CollectedSource = {
   machineGaps: string[];
   bytes: number;
 };
-type ReviewError = { round: number; code: string; rejected_findings: Review['findings'] };
+type ReviewError = {
+  round: number;
+  code: string;
+  rejected_findings: Review['findings'];
+  rejected_gaps?: string[];
+};
 type ReviewAttempt =
   | { ok: true; review: Review; adjustments: CitationAdjustment[] }
-  | { ok: false; error: ReviewError; pending: string[] };
+  | {
+      ok: false;
+      error: ReviewError;
+      pending: string[];
+      findings: Review['findings'];
+      adjustments: CitationAdjustment[];
+    };
 
 async function collectSourceFiles(
   source: RepositorySource,
@@ -348,6 +383,27 @@ function validateCitation(finding: Review['findings'][number], files: readonly F
   };
 }
 
+function validateScopeGaps(candidate: Review, files: readonly FileText[]): void {
+  if (!candidate.scope_gaps) {
+    return; // Legacy offline reviewers retain their string-gap contract.
+  }
+  if (
+    JSON.stringify(candidate.gaps) !==
+    JSON.stringify(candidate.scope_gaps.map((gap) => gap.description))
+  ) {
+    throw new Error('Gap descriptions must match the structured claims.');
+  }
+  for (const gap of candidate.scope_gaps) {
+    if (gap.kind === 'third_party_verification' || gap.kind === 'optional_setup') {
+      throw new Error('Gap is outside the repository-controlled-code boundary.');
+    }
+    const file = files.find((item) => item.file === gap.source_file);
+    if (!file || !gap.source_quote?.trim() || !file.text.includes(gap.source_quote)) {
+      throw new Error('Repository gap must cite exact supplied source evidence.');
+    }
+  }
+}
+
 async function attemptReview(
   input: InspectionInput,
   review: (input: InspectionInput) => Promise<Review>,
@@ -355,12 +411,15 @@ async function attemptReview(
 ): Promise<ReviewAttempt> {
   let candidate: Review | undefined;
   let errorCode = 'model_request_failed';
+  let validated: ReturnType<typeof validateCitation>[] = [];
   try {
     const output = await review(input);
     errorCode = 'invalid_review_schema';
     candidate = reviewSchema.parse(output);
     errorCode = 'invalid_evidence_citation';
-    const validated = candidate.findings.map((finding) => validateCitation(finding, input.files));
+    validated = candidate.findings.map((finding) => validateCitation(finding, input.files));
+    errorCode = 'invalid_scope_gap';
+    validateScopeGaps(candidate, input.files);
     return {
       ok: true,
       review: { ...candidate, findings: validated.map((item) => item.finding) },
@@ -369,8 +428,16 @@ async function attemptReview(
   } catch {
     return {
       ok: false,
-      error: { round: round + 1, code: errorCode, rejected_findings: candidate?.findings ?? [] },
+      error: {
+        round: round + 1,
+        code: errorCode,
+        rejected_findings: errorCode === 'invalid_scope_gap' ? [] : (candidate?.findings ?? []),
+        ...(errorCode === 'invalid_scope_gap' ? { rejected_gaps: candidate?.gaps ?? [] } : {}),
+      },
       pending: candidate?.requested_files ?? [],
+      findings: errorCode === 'invalid_scope_gap' ? validated.map((item) => item.finding) : [],
+      adjustments:
+        errorCode === 'invalid_scope_gap' ? validated.flatMap((item) => item.adjustments) : [],
     };
   }
 }
@@ -464,6 +531,10 @@ export async function inspectSource(
     const result = await attemptReview(
       {
         requested_action: requestedAction,
+        collection_budget: {
+          remaining_paths: MAX_INSPECTED_PATHS - collected.attempted.length,
+          remaining_bytes: MAX_INSPECTION_BYTES - collected.bytes,
+        },
         files: collected.files.map((file) => ({
           ...file,
           numbered_text: file.text
@@ -480,7 +551,17 @@ export async function inspectSource(
       round,
     );
     if (!result.ok) {
-      correction = { code: result.error.code, rejected_findings: result.error.rejected_findings };
+      evidence = [
+        ...new Map(
+          [...evidence, ...result.findings].map((finding) => [JSON.stringify(finding), finding]),
+        ).values(),
+      ];
+      citationAdjustments = [...citationAdjustments, ...result.adjustments];
+      correction = {
+        code: result.error.code,
+        rejected_findings: result.error.rejected_findings,
+        ...(result.error.rejected_gaps ? { rejected_gaps: result.error.rejected_gaps } : {}),
+      };
       reviewErrors = [...reviewErrors, result.error];
       pending = result.pending;
       lastReview = { ...lastReview, coverage_complete: false };
@@ -511,6 +592,19 @@ export async function inspectSource(
       ).values(),
     ];
     pending = lastReview.requested_files;
+    const collectionExhausted =
+      collected.attempted.length >= MAX_INSPECTED_PATHS || collected.bytes >= MAX_INSPECTION_BYTES;
+    if (pending.length && collectionExhausted) {
+      lastReview = { ...lastReview, coverage_complete: false };
+      collected = {
+        ...collected,
+        machineGaps: [
+          ...collected.machineGaps,
+          'Collection budget exhausted; requested paths remain uninspected.',
+        ],
+      };
+      break;
+    }
     if (!pending.length && requestFeedback.length) {
       lastReview = { ...lastReview, coverage_complete: false };
       if (round === MAX_REVIEW_ROUNDS - 1) {
@@ -570,17 +664,30 @@ function buildInspectionReport(
     requestDecisions: Array<RequestDecision & { round: number }>;
   },
 ) {
+  const discoveredImports = discoverLocalImports(collected.files, source.availableFiles ?? []);
   const latestRequests = new Map(diagnostics.requestDecisions.map((item) => [item.file, item]));
   const unsupportedGaps = [...latestRequests.values()]
     .filter(
       (item) =>
         item.status === 'unsupported_request' &&
-        !collected.files.some((file) => file.file === item.file),
+        !collected.files.some((file) => file.file === item.file) &&
+        !discoveredImports.includes(item.file),
     )
     .map((item) => `Unjustified in-scope file request: ${item.file}. ${item.reason}`);
+  const knownUnreadPaths = [
+    ...new Set([
+      ...discoveredImports,
+      ...lastReview.requested_files,
+      ...diagnostics.requestDecisions
+        .filter((item) => item.status === 'accepted')
+        .map((item) => item.file),
+    ]),
+  ].filter((path) => !collected.attempted.includes(path));
+  const unreadPathGaps = knownUnreadPaths.map((path) => `Uninspected local path: ${path}.`);
   const gaps = [
     ...new Set([
       ...unsupportedGaps,
+      ...unreadPathGaps,
       ...lastReview.gaps,
       ...collected.machineGaps,
       ...manifestParsingGaps(collected.files, requestedAction),
