@@ -1,8 +1,15 @@
+import { noWalletRequests } from './fixtures.ts';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { parseConversation, runConversation } from '../conversation-runner.ts';
+import {
+  parseConversation,
+  runConversation as runLiveConversation,
+} from '../conversation-runner.ts';
 import { runRepositoryInspection } from '../repository-inspection-cycle.ts';
 import type { ExecutionAnnotation, VisibleMessage } from '../execution-extractor.ts';
+
+const runConversation: typeof runLiveConversation = (input, extract, inspect, authorisation) =>
+  runLiveConversation(input, extract, inspect, authorisation, noWalletRequests);
 
 const url = 'https://github.com/example/demo';
 const extract = async (messages: readonly VisibleMessage[]): Promise<ExecutionAnnotation> => {

@@ -39,3 +39,13 @@ export async function collectSteps<T>(steps: AsyncIterable<T>): Promise<T[]> {
   }
   return collected;
 }
+
+/** Existing repository tests isolate wallet extraction from network calls. */
+export async function noWalletRequests() {
+  return {
+    status: 'absent_so_far' as const,
+    message_id: null,
+    quote: null,
+    reason: 'Synthetic no-wallet annotation.',
+  };
+}

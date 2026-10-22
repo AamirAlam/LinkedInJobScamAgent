@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createReport, writeReport, describeFailure } from './report.ts';
 import { replayRepositoryEvents, repositoryEventSchema } from './repository-replay.ts';
 import type { RepositoryReplayStep, ReplayBeliefConfig } from './repository-replay.ts';
+import { walletRequestInstructions } from './wallet-request-extractor.ts';
 import { executionInstructions } from './execution-extractor.ts';
 
 const fixtureSchema = z.object({
@@ -209,13 +210,14 @@ async function runConversationCommand(args: readonly string[]): Promise<void> {
   }
   if (dryRun) {
     console.log(
-      `Ready: ${messages.length} messages; at most one repository inspection. No API calls made.`,
+      `Ready: ${messages.length} messages; up to ${messages.length} execution annotations and ${messages.filter((message) => message.sender === 'counterparty').length} wallet annotations; at most one repository inspection. No API calls made.`,
     );
     return;
   }
   let report = {
     created_at: new Date().toISOString(),
     purpose: 'conversation_driven_repository_inspection',
+    wallet_prompt_sha256: createHash('sha256').update(walletRequestInstructions).digest('hex'),
     status: 'running',
     belief_update: 'none_no_real_likelihoods_configured',
     model: process.env.V2_ANNOTATION_MODEL ?? 'gpt-5.6-luna',
