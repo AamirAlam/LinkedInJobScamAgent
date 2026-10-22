@@ -1,9 +1,13 @@
+import { noWalletRequests } from './fixtures.ts';
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
 import { prepareAssessmentAuthorisation } from '../assessment-authorisation.ts';
-import { runConversation } from '../conversation-runner.ts';
+import { runConversation as runLiveConversation } from '../conversation-runner.ts';
 import { runRepositoryInspection } from '../repository-inspection-cycle.ts';
 import type { ExecutionAnnotation, VisibleMessage } from '../execution-extractor.ts';
+
+const runConversation: typeof runLiveConversation = (input, extract, inspect, authorisation) =>
+  runLiveConversation(input, extract, inspect, authorisation, noWalletRequests);
 
 const artifact = 'https://github.com/example/demo';
 const message = `Run npm run dev in ${artifact}`;

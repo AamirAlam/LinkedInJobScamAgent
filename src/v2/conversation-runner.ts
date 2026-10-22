@@ -1,4 +1,15 @@
 import { z } from 'zod';
+import {
+  extractWalletRequests,
+  validateWalletRequestAnnotation,
+} from './wallet-request-extractor.ts';
+import {
+  initialWalletApprovalState,
+  recordWalletApprovalRequest,
+  applyWalletApprovalGate,
+} from './wallet-approval-policy.ts';
+import type { WalletRequestAnnotation } from './wallet-request-extractor.ts';
+import type { WalletApprovalState } from './wallet-approval-policy.ts';
 import { applyAssessmentAuthorisation } from './assessment-authorisation.ts';
 import { recommendRepositoryAction } from './repository-policy.ts';
 import {
@@ -65,6 +76,47 @@ function decideInspectedRequest(
   };
 }
 
+async function assessWalletMessage(
+  messages: readonly VisibleMessage[],
+  state: WalletApprovalState,
+  knownArtifact: string | undefined,
+  extractWallet: typeof extractWalletRequests,
+) {
+  try {
+    const annotation = validateWalletRequestAnnotation(await extractWallet(messages), messages);
+    if (annotation.status === 'absent_so_far') {
+      return { state, annotation, detected: false, failed: false };
+    }
+    const current = messages.at(-1)!;
+    if (annotation.status === 'ambiguous' || annotation.message_id !== current.time) {
+      return { state, annotation, detected: true, failed: false };
+    }
+    const urls = [
+      ...new Set(
+        (current.message.match(/https?:\/\/[^\s<>"'`]+/g) ?? []).map((url) =>
+          url.replace(/[.,;)]*$/, ''),
+        ),
+      ),
+    ];
+    const artifact = urls.length === 1 ? urls[0] : urls.length === 0 ? knownArtifact : undefined;
+    if (!artifact) {
+      return { state, annotation, detected: true, failed: false };
+    }
+    return {
+      state: recordWalletApprovalRequest(
+        state,
+        { artifact, message_id: current.time, quote: annotation.quote },
+        messages,
+      ),
+      annotation,
+      detected: true,
+      failed: false,
+    };
+  } catch {
+    return { state, annotation: null, detected: false, failed: true };
+  }
+}
+
 /** Validate a conversation and strip labels before any network or model work. */
 export function parseConversation(input: unknown): VisibleMessage[] {
   const parsed = z
@@ -99,6 +151,7 @@ export async function* runConversation(
   ) => Promise<ExecutionAnnotation> = extractExecutionRequests,
   inspect: typeof runRepositoryInspection = runRepositoryInspection,
   authorisationInput?: ConversationAuthorisation,
+  extractWallet: typeof extractWalletRequests = extractWalletRequests,
 ) {
   const messages = parseConversation(input); // preflight before any paid/network work
   const authorisation = authorisationInput
@@ -111,12 +164,55 @@ export async function* runConversation(
   let inspected = false;
   let executionSeen = false;
   let flagged = false;
+  let knownArtifact: string | undefined;
+  let walletState = initialWalletApprovalState;
+  let walletPending = false;
   for (let messageIndex = 0; messageIndex < messages.length; messageIndex++) {
     const prefix = messages.slice(0, messageIndex + 1);
     const current = messages[messageIndex];
+    let walletAnnotation: WalletRequestAnnotation | null = null;
+    if (!flagged && current.sender === 'counterparty') {
+      const wallet = await assessWalletMessage(prefix, walletState, knownArtifact, extractWallet);
+      walletAnnotation = wallet.annotation;
+      walletState = wallet.state;
+      walletPending = walletPending || wallet.detected;
+      if (walletPending || wallet.failed) {
+        const decision = applyWalletApprovalGate(walletState, {
+          action: 'HOLD',
+          reason: 'Wallet action remains unverified.',
+        });
+        yield {
+          time: current.time,
+          wallet_annotation: walletAnnotation,
+          action: decision.action ?? 'HOLD',
+          scope: 'wallet_approval',
+          inspection_triggered: false,
+          wallet_request: walletState.request,
+          reason: wallet.failed
+            ? 'Wallet request extraction failed; no wallet action is authorised.'
+            : walletState.request
+              ? decision.reason
+              : 'Wallet action or target is unresolved; do not connect, sign or grant permissions.',
+        };
+        continue;
+      }
+    }
+    if (!flagged && walletPending) {
+      yield {
+        time: current.time,
+        wallet_annotation: walletAnnotation,
+        action: 'HOLD',
+        scope: 'wallet_approval',
+        inspection_triggered: false,
+        reason:
+          'Earlier wallet request remains unresolved; do not connect, sign or grant permissions.',
+      };
+      continue;
+    }
     if (flagged || inspected) {
       yield {
         time: current.time,
+        wallet_annotation: walletAnnotation,
         action: flagged ? 'FLAG' : 'HOLD',
         scope: 'repository_execution',
         inspection_triggered: false,
@@ -132,6 +228,7 @@ export async function* runConversation(
     } catch {
       yield {
         time: current.time,
+        wallet_annotation: walletAnnotation,
         action: 'HOLD',
         scope: 'conversation_only',
         inspection_triggered: false,
@@ -142,13 +239,14 @@ export async function* runConversation(
     if (annotation.status !== 'present') {
       yield {
         time: current.time,
+        wallet_annotation: walletAnnotation,
         annotation,
         action: executionSeen || annotation.status === 'ambiguous' ? 'HOLD' : 'SAFE',
         scope: executionSeen ? 'repository_execution' : 'conversation_only',
         inspection_triggered: false,
         reason: executionSeen
           ? 'Earlier execution request remains unresolved.'
-          : 'No explicit execution request established. SAFE permits conversation only, never code execution.',
+          : 'No explicit execution request established. SAFE permits conversation only, never code execution or wallet permissions.',
       };
       continue;
     }
@@ -162,6 +260,7 @@ export async function* runConversation(
     if (urls.size !== 1) {
       yield {
         time: current.time,
+        wallet_annotation: walletAnnotation,
         annotation,
         action: 'HOLD',
         scope: 'repository_execution',
@@ -172,9 +271,11 @@ export async function* runConversation(
       continue;
     }
     const artifact = [...urls][0];
+    knownArtifact = artifact;
     // Surface HOLD before slow source/API work. No unverified execution window.
     yield {
       time: current.time,
+      wallet_annotation: walletAnnotation,
       annotation,
       artifact,
       action: 'HOLD',
@@ -195,6 +296,7 @@ export async function* runConversation(
       flagged = decision.recommendation.action === 'FLAG';
       yield {
         time: current.time,
+        wallet_annotation: walletAnnotation,
         artifact,
         action: decision.recommendation.action ?? 'HOLD',
         scope: 'repository_execution',
@@ -212,6 +314,7 @@ export async function* runConversation(
     } catch {
       yield {
         time: current.time,
+        wallet_annotation: walletAnnotation,
         artifact,
         action: 'HOLD',
         scope: 'repository_execution',
