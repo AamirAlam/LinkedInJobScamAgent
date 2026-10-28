@@ -20,6 +20,7 @@ import {
 import type { ExecutionAnnotation, VisibleMessage } from './execution-extractor.ts';
 import { parseRepositoryUrl } from './repository-source.ts';
 import { runRepositoryInspection } from './repository-inspection-cycle.ts';
+import { createConversationBeliefTracker } from './conversation-belief.ts';
 
 export type ConversationAuthorisation = {
   rawRecord: string;
@@ -144,7 +145,7 @@ export function parseConversation(input: unknown): VisibleMessage[] {
 // One inspection per conversation run. Subsequent instructions require a new
 // assessment; no earlier scoped result silently authorises them. No synthetic prior.
 /** Yield decisions sequentially, holding execution before at most one read-only repository inspection. */
-export async function* runConversation(
+async function* runSafetyConversation(
   input: unknown,
   extract: (
     messages: readonly VisibleMessage[],
@@ -167,6 +168,7 @@ export async function* runConversation(
   let knownArtifact: string | undefined;
   let walletState = initialWalletApprovalState;
   let walletPending = false;
+  let conversationUnresolved = false;
   for (let messageIndex = 0; messageIndex < messages.length; messageIndex++) {
     const prefix = messages.slice(0, messageIndex + 1);
     const current = messages[messageIndex];
@@ -177,6 +179,7 @@ export async function* runConversation(
       walletState = wallet.state;
       walletPending = walletPending || wallet.detected;
       if (walletPending || wallet.failed) {
+        conversationUnresolved = true;
         const decision = applyWalletApprovalGate(walletState, {
           action: 'HOLD',
           reason: 'Wallet action remains unverified.',
@@ -200,6 +203,7 @@ export async function* runConversation(
     if (!flagged && walletPending) {
       yield {
         time: current.time,
+        ...(current.sender === 'candidate' ? { candidate_recorded: true } : {}),
         wallet_annotation: walletAnnotation,
         action: 'HOLD',
         scope: 'wallet_approval',
@@ -212,6 +216,7 @@ export async function* runConversation(
     if (flagged || inspected) {
       yield {
         time: current.time,
+        ...(current.sender === 'candidate' ? { candidate_recorded: true } : {}),
         wallet_annotation: walletAnnotation,
         action: flagged ? 'FLAG' : 'HOLD',
         scope: 'repository_execution',
@@ -222,10 +227,26 @@ export async function* runConversation(
       };
       continue;
     }
+    // Candidate replies add context; only counterparty messages trigger analysis.
+    if (current.sender === 'candidate') {
+      yield {
+        time: current.time,
+        wallet_annotation: null,
+        action: executionSeen || conversationUnresolved ? 'HOLD' : 'SAFE',
+        scope: executionSeen ? 'repository_execution' : 'conversation_only',
+        inspection_triggered: false,
+        candidate_recorded: true,
+        reason:
+          'Candidate reply recorded as context only; no model call or inspection was triggered. Earlier unresolved requests remain on hold.',
+      };
+      continue;
+    }
     let annotation: ExecutionAnnotation;
     try {
       annotation = validateExecutionAnnotation(await extract(prefix), prefix);
+      conversationUnresolved = annotation.status === 'ambiguous';
     } catch {
+      conversationUnresolved = true;
       yield {
         time: current.time,
         wallet_annotation: walletAnnotation,
@@ -322,6 +343,41 @@ export async function* runConversation(
         reason: 'Inspection failed; execution remains on hold.',
       };
     }
+  }
+}
+
+type SafetyStep = Exclude<
+  Awaited<ReturnType<ReturnType<typeof runSafetyConversation>['next']>>['value'],
+  void
+>;
+export type ConversationStep = SafetyStep & {
+  readonly probabilistic?: ReturnType<
+    ReturnType<typeof createConversationBeliefTracker>
+  >['probabilistic'];
+};
+
+/** Run live safety checks, optionally applying an explicit, provenance-labelled Bayes/cost model. */
+export async function* runConversation(
+  input: unknown,
+  extract?: Parameters<typeof runSafetyConversation>[1],
+  inspect?: typeof runRepositoryInspection,
+  authorisationInput?: ConversationAuthorisation,
+  extractWallet?: typeof extractWalletRequests,
+  beliefConfigInput?: unknown,
+): AsyncGenerator<ConversationStep> {
+  // Invalid model configuration must fail before model or source calls.
+  const track =
+    beliefConfigInput === undefined
+      ? undefined
+      : createConversationBeliefTracker(beliefConfigInput);
+  for await (const step of runSafetyConversation(
+    input,
+    extract,
+    inspect,
+    authorisationInput,
+    extractWallet,
+  )) {
+    yield track ? track(step) : step;
   }
 }
 

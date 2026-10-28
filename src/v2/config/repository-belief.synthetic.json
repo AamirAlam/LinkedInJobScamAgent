@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "purpose": "repository_conversation_belief",
+  "priorScam": 0.11578947368421053,
+  "executionLikelihoods": {
+    "likelihoodGivenScam": 0.5454545454545454,
+    "likelihoodGivenLegitimate": 0.25
+  },
+  "firstInspectionLikelihoods": {
+    "repository_inspection:unresolved": {
+      "likelihoodGivenScam": 0.16666666666666666,
+      "likelihoodGivenLegitimate": 0.047619047619047616
+    },
+    "repository_inspection:no_harmful_behaviour_found": {
+      "likelihoodGivenScam": 0.16666666666666666,
+      "likelihoodGivenLegitimate": 0.9523809523809523
+    }
+  },
+  "provenance": {
+    "kind": "synthetic",
+    "source": "Existing reviewed exercise configuration in agent-v2.ts, derived from authored synthetic-benchmark-100.json development counts: 11/95, execution 6/11 versus 21/84; first inspection conditional on execution, unresolved 1/6 versus 1/21 and scoped clean 1/6 versus 20/21.",
+    "limitations": "In-sample authored exercise proportions, not independent measured recruitment rates, held-out estimates or calibrated deployment probabilities. Harmful inspection, authorisation and wallet evidence have no numerical likelihood model here. Ordinary-hiring action costs remain student-assumed."
+  }
+}

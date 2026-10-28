@@ -3,6 +3,20 @@ export function isValidProbability(value: number): boolean {
   return Number.isFinite(value) && value >= 0 && value <= 1;
 }
 
+/** Return two-state entropy in bits; certain beliefs have zero entropy. */
+export function calculateBinaryEntropy(scamProbability: number): number {
+  if (!isValidProbability(scamProbability)) {
+    throw new RangeError('Scam probability must be finite and between 0 and 1.');
+  }
+  if (scamProbability === 0 || scamProbability === 1) {
+    return 0;
+  }
+  return (
+    -scamProbability * Math.log2(scamProbability) -
+    (1 - scamProbability) * Math.log2(1 - scamProbability)
+  );
+}
+
 /** Compute a two-state Bayes update; impossible evidence returns unsupported_evidence.
  * @throws {RangeError} If any input is outside the finite probability interval. */
 export function calculateScamProbability(

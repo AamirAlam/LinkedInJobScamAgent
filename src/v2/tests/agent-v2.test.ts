@@ -25,7 +25,12 @@ test('benchmark coverage accounts for all cases and excludes unsupported wallet 
             typeof event === 'object' &&
             event !== null &&
             'kind' in event &&
-            event.kind === 'message',
+            event.kind === 'message' &&
+            'agent_input' in event &&
+            typeof event.agent_input === 'object' &&
+            event.agent_input !== null &&
+            'sender' in event.agent_input &&
+            event.agent_input.sender === 'counterparty',
         ).length,
       0,
     ),
@@ -37,7 +42,7 @@ test('default fixture retains all four cases with inherited artifact scope', () 
   const result = prepareRepositoryCases(fixture, false);
   assert.equal(result.selected.length, 4);
   assert.deepEqual(result.skipped, []);
-  assert.equal(result.plannedMessageCalls, 13);
+  assert.equal(result.plannedMessageCalls, 9);
   assert.ok(
     result.selected.every((item) => item.assessment_artifact === fixture.assessment_artifact),
   );

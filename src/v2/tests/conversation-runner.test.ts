@@ -73,7 +73,7 @@ test('conversation triggers only on arrived execution request, emits HOLD first,
   assert.equal((await runner.next()).value?.action, 'FLAG');
   assert.equal((await runner.next()).done, true);
   assert.equal(inspections, 1);
-  assert.deepEqual(prefixes, [1, 2, 3]);
+  assert.deepEqual(prefixes, [1, 3]);
 });
 
 test('ambiguous repository binding, unsupported URLs, and invalid extraction never fetch', async () => {

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "scam",
+    "title": "Suspected scam example",
+    "source": {
+      "file": "data/real/july-conversations.json",
+      "evaluation_id": 44,
+      "message_time": "t2"
+    },
+    "dataset_label": "scam",
+    "label_status": "suspected",
+    "message": "Hello \n\nI’m glad to see your interest in our project.\n\nBefore our upcoming technical call, I’d like to give you access to the current project so you can explore the platform and get a feel for how the system works today.\nPlease share your email address then I’ll send you an invite to the repository shortly.\n\nPlease take some time to run the platform and explore the main workflows:\n• trading (demo mode)\n• staking\n• prediction features\n• general navigation & structure\n\nYou don’t need to fix or modify anything — the goal is simply to understand the current architecture, note what feels intuitive, and observe what might need improvement. This will help us have a much deeper, more productive conversation during the CTO session, especially around system design, scalability, and overall structure.\n\nOnce you’ve had a chance to look through it, just let me know and we’ll schedule the call with the CTO.\nIf you run into any setup issues, feel free to message me anytime. Please attach a screenshot of the application along with your feedback.\n\nLooking forward to your thoughts.\nBest regards\n\nRepository for this assessment: https://github.com/bitangels-lab/auron/",
+    "adaptation": "Repository URL added for simulation at the user’s request; not present in the source conversation."
+  },
+  {
+    "id": "legitimate",
+    "title": "Legitimate-labelled example",
+    "source": {
+      "file": "data/real/july-conversations.json",
+      "evaluation_id": 2,
+      "message_time": "t4"
+    },
+    "dataset_label": "legitimate",
+    "label_status": "confirmed",
+    "message": "Hey Aamir \nwould like to schedule a call with you for tomorrow around 3 pm to discuss more about your professional background."
+  }
+]
