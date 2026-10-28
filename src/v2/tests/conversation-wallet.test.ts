@@ -50,7 +50,7 @@ test('direct wallet requests hold without repository fetch and never expose labe
 });
 
 test('unbound, ambiguous and invalid wallet evidence cannot permit execution', async () => {
-  for (const [index, extractor] of [
+  for (const extractor of [
     present,
     async (prefix: readonly VisibleMessage[]) => ({
       ...(await present(prefix)),
@@ -60,7 +60,7 @@ test('unbound, ambiguous and invalid wallet evidence cannot permit execution', a
       ...(await present(prefix)),
       quote: 'fabricated',
     }),
-  ].entries()) {
+  ]) {
     let actions: string[] = [];
     for await (const step of runConversation(
       {
@@ -76,14 +76,14 @@ test('unbound, ambiguous and invalid wallet evidence cannot permit execution', a
     )) {
       actions = [...actions, step.action];
     }
-    assert.deepEqual(actions, index === 2 ? ['HOLD', 'SAFE'] : ['HOLD', 'HOLD']);
+    assert.deepEqual(actions, ['HOLD', 'HOLD']);
   }
 });
 
-test('candidate-only wallet text makes no wallet API call and grants conversation-only SAFE', async () => {
+test('candidate-only wallet text makes no model calls and grants conversation-only SAFE', async () => {
   const runner = runConversation(
     { messages: [{ time: 't0', sender: 'candidate', message: walletMessage }] },
-    absentExecution,
+    async () => assert.fail('No execution model call for candidate text'),
     async () => assert.fail('No fetch'),
     undefined,
     async () => assert.fail('No wallet call for candidate text'),

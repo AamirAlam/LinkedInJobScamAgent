@@ -6,6 +6,7 @@ import { replayRepositoryEvents, repositoryEventSchema } from './repository-repl
 import type { RepositoryReplayStep, ReplayBeliefConfig } from './repository-replay.ts';
 import { walletRequestInstructions } from './wallet-request-extractor.ts';
 import { executionInstructions } from './execution-extractor.ts';
+import { parseConversationBeliefConfig } from './conversation-belief.ts';
 
 const fixtureSchema = z.object({
   assessment_artifact: z.string().optional(),
@@ -178,7 +179,20 @@ export async function main(): Promise<void> {
 
 async function runConversationCommand(args: readonly string[]): Promise<void> {
   const dryRun = args.at(-1) === '--dry-run';
-  const commandArgs = dryRun ? args.slice(0, -1) : args;
+  const suppliedArgs = dryRun ? args.slice(0, -1) : args;
+  const beliefIndex = suppliedArgs.indexOf('--belief-config');
+  if (
+    beliefIndex !== -1 &&
+    (beliefIndex < 2 ||
+      !suppliedArgs[beliefIndex + 1] ||
+      suppliedArgs[beliefIndex + 1].startsWith('--'))
+  ) {
+    throw new Error('Use --belief-config FILE.json after the conversation path.');
+  }
+  const commandArgs =
+    beliefIndex === -1
+      ? suppliedArgs
+      : suppliedArgs.filter((_, index) => index !== beliefIndex && index !== beliefIndex + 1);
   if (!(
     commandArgs.length === 2 ||
     (commandArgs.length === 6 &&
@@ -186,11 +200,17 @@ async function runConversationCommand(args: readonly string[]): Promise<void> {
       commandArgs[4] === '--source')
   )) {
     throw new Error(
-      'Use --conversation FILE.json [--authorisation RECORD.json --source REPORT.json] [--dry-run].',
+      'Use --conversation FILE.json [--authorisation RECORD.json --source REPORT.json] [--belief-config MODEL.json] [--dry-run].',
     );
   }
   const { parseConversation, runConversation } = await import('./conversation-runner.ts');
   const messages = parseConversation(JSON.parse(readFileSync(commandArgs[1], 'utf8')));
+  const beliefConfig =
+    beliefIndex === -1
+      ? undefined
+      : parseConversationBeliefConfig(
+          JSON.parse(readFileSync(suppliedArgs[beliefIndex + 1], 'utf8')),
+        );
   const authorisation =
     commandArgs.length === 6
       ? {
@@ -210,25 +230,45 @@ async function runConversationCommand(args: readonly string[]): Promise<void> {
   }
   if (dryRun) {
     console.log(
-      `Ready: ${messages.length} messages; up to ${messages.length} execution annotations and ${messages.filter((message) => message.sender === 'counterparty').length} wallet annotations; at most one repository inspection. No API calls made.`,
+      `Ready: ${messages.length} messages; up to ${messages.filter((message) => message.sender === 'counterparty').length} execution annotations and wallet annotations each; at most one repository inspection. Belief mode: ${beliefConfig ? beliefConfig.provenance.kind : 'disabled'}. No API calls made.`,
     );
     return;
+  }
+  if (beliefConfig) {
+    console.log(
+      `Belief model: ${beliefConfig.provenance.kind}; provenance is caller-declared, not independently verified. Ordinary-hiring costs are assumed.`,
+    );
   }
   let report = {
     created_at: new Date().toISOString(),
     purpose: 'conversation_driven_repository_inspection',
     wallet_prompt_sha256: createHash('sha256').update(walletRequestInstructions).digest('hex'),
     status: 'running',
-    belief_update: 'none_no_real_likelihoods_configured',
+    belief_update: beliefConfig
+      ? 'configured_bayes_over_modelled_evidence'
+      : 'none_no_real_likelihoods_configured',
+    ...(beliefConfig ? { belief_config: beliefConfig } : {}),
     model: process.env.V2_ANNOTATION_MODEL ?? 'gpt-5.6-luna',
     source_sha256: createHash('sha256').update(JSON.stringify(messages)).digest('hex'),
     steps: [] as unknown[],
   };
   const path = createReport('conversation-v2', report, report.created_at);
-  for await (const step of runConversation({ messages }, undefined, undefined, authorisation)) {
+  for await (const step of runConversation(
+    { messages },
+    undefined,
+    undefined,
+    authorisation,
+    undefined,
+    beliefConfig,
+  )) {
     report = { ...report, steps: [...report.steps, step] };
     writeReport(path, report);
     console.log(`${step.time}: ${step.action} — ${step.reason}`);
+    if (step.probabilistic) {
+      console.log(
+        `Last modelled scam belief: ${(step.probabilistic.distribution.scam * 100).toFixed(2)}%; entropy: ${step.probabilistic.entropyBits.toFixed(3)} bits; update: ${step.probabilistic.updateStatus}. Unmodelled evidence: ${step.probabilistic.unmodelledEvidenceEventIds.length}.`,
+      );
+    }
   }
   report = { ...report, status: 'complete' };
   writeReport(path, report);
