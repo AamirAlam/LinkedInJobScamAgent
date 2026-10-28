@@ -228,8 +228,12 @@ export async function* replayRepositoryEvents(
     if (event.kind === 'message') {
       messages = [...messages, { time: event.event_id, ...event.agent_input }];
       const prefix = visibleMessages(messages);
-      annotation = validateExecutionAnnotation(await extract(prefix), prefix);
-      if (belief && beliefConfig && annotation.status === 'present') {
+      if (event.agent_input.sender === 'counterparty') {
+        annotation = validateExecutionAnnotation(await extract(prefix), prefix);
+      } else {
+        updateStatus = 'candidate_context_only';
+      }
+      if (belief && beliefConfig && annotation?.status === 'present') {
         const result = applyEvidence(
           belief,
           'conversation:execution-request',
@@ -240,7 +244,7 @@ export async function* replayRepositoryEvents(
       }
       assessment = {
         ...assessment,
-        executionRequested: assessment.executionRequested || annotation.status === 'present',
+        executionRequested: assessment.executionRequested || annotation?.status === 'present',
       };
     } else {
       const input = event.agent_input;

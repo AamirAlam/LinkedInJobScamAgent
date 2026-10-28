@@ -95,13 +95,21 @@ test('replay uses only arrived messages, ignores supplied annotations, and then 
           },
     );
     const steps = await collect(events);
-    const messageCount = events.filter(
-      (event: { kind: string }) => event.kind === 'message',
-    ).length;
+    let messageCount = 0;
+    let recruiterPrefixes: number[] = [];
+    for (const event of events) {
+      if (event.kind === 'message') {
+        messageCount += 1;
+        if (event.agent_input.sender === 'counterparty') {
+          recruiterPrefixes = [...recruiterPrefixes, messageCount];
+        }
+      }
+    }
     assert.deepEqual(
       calls.map((messages) => messages.length),
-      Array.from({ length: messageCount }, (_, index) => index + 1),
+      recruiterPrefixes,
     );
+    assert.equal(steps[1].annotation, null);
     assert.ok(
       calls.every((messages) =>
         messages.every(

@@ -60,7 +60,9 @@ export function prepareRepositoryCases(fixture: Fixture, benchmarkMode: boolean)
         throw new Error(`Case ${scenario.evaluation_id}: duplicate event ID.`);
       }
       if (event.kind === 'message') {
-        plannedMessageCalls++;
+        if (event.agent_input.sender === 'counterparty') {
+          plannedMessageCalls++;
+        }
         if (event.agent_input.sender === 'counterparty') {
           for (const url of event.agent_input.message.match(/https?:\/\/[^\s<>"']+/g) ?? []) {
             visibleArtifacts = new Set([...visibleArtifacts, url.replace(/[.,;)]*$/, '')]);
